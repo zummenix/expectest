@@ -2,3 +2,15 @@
 name = "expectest"
 version = "0.1.0"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
+
+description = "Test matchers with awesome syntax for Rust tests."
+
+documentation = "https://github.com/zummenix/expectest"
+homepage = "https://github.com/zummenix/expectest"
+repository = "https://github.com/zummenix/expectest"
+
+readme = "./README.md"
+
+keywords = ["unit", "test", "matcher", "expect"]
+
+license = "MIT"

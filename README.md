@@ -1,5 +1,5 @@
 # expectest
-Test matchers with awesome syntax for Rust tests. Inspired by [Nimble](https://github.com/Quick/Nimble) – A Matcher Framework for Swift and Objective-C.
+Test matchers with awesome syntax for Rust tests. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
 
 *Work In Progress*
 

@@ -1,5 +1,5 @@
 # expectest
-Test matchers with awesome syntax for Rust tests. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
+Library provides functions for unit testing with human-readable syntax. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
 
 *Work In Progress*
 

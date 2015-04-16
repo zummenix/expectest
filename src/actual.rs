@@ -2,21 +2,26 @@
 use SourceLocation;
 use Matcher;
 
-pub fn expect<T>(value: T, location: SourceLocation) -> ActualValue<T> {
-    ActualValue::new(value, location)
+pub fn expect<T>(value: T) -> ActualValue<T> {
+    ActualValue::new(value)
 }
 
 pub struct ActualValue<T> {
     value: T,
-    location: SourceLocation,
+    location: Option<SourceLocation>,
 }
 
 impl<T> ActualValue<T> {
-    fn new(value: T, location: SourceLocation) -> ActualValue<T> {
+    fn new(value: T) -> ActualValue<T> {
         ActualValue {
             value: value,
-            location: location,
+            location: None,
         }
+    }
+
+    pub fn location(mut self, l: SourceLocation) -> Self {
+        self.location = Some(l);
+        self
     }
 
     pub fn to<M>(self, matcher: M) where M: Matcher<T> {
@@ -27,18 +32,13 @@ impl<T> ActualValue<T> {
     }
 }
 
-pub fn failure(message: String, location: SourceLocation) {
+pub fn failure(message: String, location: Option<SourceLocation>) {
+    use std::rt::unwind::begin_unwind;
+
     println!("{}", message);
-    ::std::rt::unwind::begin_unwind("tests", &(location.file, location.line as usize));
-}
-
-#[cfg(test)]
-mod test {
-    use super::*;
-    use SourceLocation;
-
-    #[test]
-    fn new_expectation() {
-        expect([1, 2, 3], SourceLocation::new(file!(), line!()));
+    if let Some(l) = location {
+        begin_unwind("tests", &(l.file, l.line as usize));
+    } else {
+        begin_unwind("tests", &("unknown", 0));
     }
 }

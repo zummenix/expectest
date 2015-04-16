@@ -1,12 +1,10 @@
 [package]
 name = "expectest"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
-description = "Test matchers with awesome syntax for Rust tests."
+description = "Library provides functions for unit testing with human-readable syntax. (WIP)"
 
-documentation = "https://github.com/zummenix/expectest"
-homepage = "https://github.com/zummenix/expectest"
 repository = "https://github.com/zummenix/expectest"
 
 readme = "./README.md"

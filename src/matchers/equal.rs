@@ -1,6 +1,6 @@
 
 use std::fmt;
-use { Matcher, MatchResult };
+use core::{ MatchResult, Matcher };
 
 pub struct Equal<T> {
     expected: T,
@@ -30,7 +30,8 @@ impl<T: PartialEq + fmt::Debug> Matcher<T> for Equal<T> {
 
 #[cfg(test)]
 mod test {
-    use { equal, Matcher };
+    use super::equal;
+    use core::{ Matcher };
 
     #[test]
     fn equality_of_ints() {

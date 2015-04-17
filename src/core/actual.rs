@@ -1,6 +1,5 @@
 
-use SourceLocation;
-use Matcher;
+use core::{ SourceLocation, Matcher };
 
 pub fn expect<T>(value: T) -> ActualValue<T> {
     ActualValue::new(value)

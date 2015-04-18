@@ -1,4 +1,4 @@
 
-pub use self::equal::{ equal, Equal };
+pub use self::partial_eq::{ equal, Equal };
 
-pub mod equal;
+mod partial_eq;

@@ -32,12 +32,6 @@ impl<T> ActualValue<T> {
 }
 
 pub fn failure(message: String, location: Option<SourceLocation>) {
-    use std::rt::unwind::begin_unwind;
-
     println!("{}", message);
-    if let Some(l) = location {
-        begin_unwind("tests", &(l.file, l.line as usize));
-    } else {
-        begin_unwind("tests", &("unknown", 0));
-    }
+    panic!("test failure");
 }

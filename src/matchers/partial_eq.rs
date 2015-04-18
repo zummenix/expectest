@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::{ Matcher };
+use core::Matcher;
 
 pub struct Equal<E> {
     expected: E,

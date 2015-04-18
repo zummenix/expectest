@@ -1,5 +1,5 @@
 
-use core::{ Matcher };
+use core::Matcher;
 
 pub struct True;
 

@@ -7,11 +7,12 @@ macro_rules! expect {
 }
 
 pub mod prelude {
-    pub use core::expect;
-    pub use core::ActualValue;
-    pub use core::Matcher;
-    pub use matchers::be_equal_to;
-    pub use matchers::{ be_true, be_false };
+    pub use core::{ expect, ActualValue, Matcher };
+    pub use matchers::{
+        be_equal_to,
+        be_true,
+        be_false,
+    };
 }
 
 pub mod core;

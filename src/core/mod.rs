@@ -2,9 +2,7 @@
 use std::fmt;
 
 pub use self::location::SourceLocation;
-pub use self::actual::expect;
-pub use self::actual::ActualValue;
-pub use self::actual::failure;
+pub use self::actual::{ expect, ActualValue, failure };
 
 mod location;
 mod actual;

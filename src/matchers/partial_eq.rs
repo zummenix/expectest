@@ -31,7 +31,7 @@ impl<T: PartialEq + fmt::Debug> Matcher<T> for Equal<T> {
 #[cfg(test)]
 mod test {
     use super::equal;
-    use core::{ Matcher };
+    use core::Matcher;
 
     #[test]
     fn equality_of_ints() {

@@ -10,7 +10,7 @@ pub mod prelude {
     pub use core::expect;
     pub use core::ActualValue;
     pub use core::Matcher;
-    pub use matchers::equal;
+    pub use matchers::be_equal_to;
 }
 
 pub mod core;

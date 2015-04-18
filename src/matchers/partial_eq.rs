@@ -6,7 +6,7 @@ pub struct Equal<E> {
     expected: E,
 }
 
-pub fn equal<E>(expected: E) -> Equal<E> {
+pub fn be_equal_to<E>(expected: E) -> Equal<E> {
     Equal {
         expected: expected,
     }
@@ -29,11 +29,11 @@ impl<A, E> Matcher<A, E> for Equal<E>
 
 #[cfg(test)]
 mod test {
-    use super::equal;
+    use super::be_equal_to;
     use core::Matcher;
 
     #[test]
     fn equality_of_ints() {
-        assert!(equal(1).matches(&1));
+        assert!(be_equal_to(1).matches(&1));
     }
 }

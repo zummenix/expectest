@@ -1,14 +1,11 @@
 
-use std::fmt;
-
 pub use self::location::SourceLocation;
 pub use self::actual::{ expect, ActualValue, failure };
 
 mod location;
 mod actual;
 
-pub type MatchResult = Result<(), String>;
-
-pub trait Matcher<T>: fmt::Display {
-    fn matches(&self, actual: T) -> MatchResult;
+pub trait Matcher<A, E> {
+    fn format_message(&self, join: &'static str, actual: &A) -> String;
+    fn matches(&self, actual: &A) -> bool;
 }

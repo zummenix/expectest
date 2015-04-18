@@ -1,30 +1,29 @@
 
 use std::fmt;
-use core::{ MatchResult, Matcher };
+use core::{ Matcher };
 
-pub struct Equal<T> {
-    expected: T,
+pub struct Equal<E> {
+    expected: E,
 }
 
-pub fn equal<T>(expected: T) -> Equal<T> where T: PartialEq + fmt::Debug {
+pub fn equal<E>(expected: E) -> Equal<E> {
     Equal {
         expected: expected,
     }
 }
 
-impl<T: fmt::Debug> fmt::Display for Equal<T> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        self.expected.fmt(f)
-    }
-}
+impl<A, E> Matcher<A, E> for Equal<E>
+    where
+        A: PartialEq<E> + fmt::Debug,
+        E: fmt::Debug {
 
-impl<T: PartialEq + fmt::Debug> Matcher<T> for Equal<T> {
-    fn matches(&self, actual: T) -> MatchResult {
-        if self.expected.eq(&actual) {
-            Ok(())
-        } else {
-            Err(format!("{:?}", actual))
-        }
+    fn format_message(&self, join: &'static str, actual: &A) -> String {
+        format!("expected {} be equal to <{:?}>, got <{:?}>",
+            join, self.expected, actual)
+    }
+
+    fn matches(&self, actual: &A) -> bool {
+        *actual == self.expected
     }
 }
 
@@ -35,6 +34,6 @@ mod test {
 
     #[test]
     fn equality_of_ints() {
-        equal(1).matches(1).unwrap();
+        assert!(equal(1).matches(&1));
     }
 }

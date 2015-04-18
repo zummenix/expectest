@@ -5,13 +5,13 @@ pub fn expect<T>(value: T) -> ActualValue<T> {
     ActualValue::new(value)
 }
 
-pub struct ActualValue<T> {
-    value: T,
+pub struct ActualValue<A> {
+    value: A,
     location: Option<SourceLocation>,
 }
 
-impl<T> ActualValue<T> {
-    fn new(value: T) -> ActualValue<T> {
+impl<A> ActualValue<A> {
+    fn new(value: A) -> ActualValue<A> {
         ActualValue {
             value: value,
             location: None,
@@ -23,15 +23,19 @@ impl<T> ActualValue<T> {
         self
     }
 
-    pub fn to<M>(self, matcher: M) where M: Matcher<T> {
-        let location = self.location;
-        if let Err(mismatch) = matcher.matches(self.value) {
-            failure(format!("\nexpected <{}>, got <{}>", matcher, mismatch), location);
+    pub fn to<M, E>(self, matcher: M) where M: Matcher<A, E> {
+        if !matcher.matches(&self.value) {
+            let message = matcher.format_message("to", &self.value);
+            failure(message, self.location);
         }
     }
 }
 
 pub fn failure(message: String, location: Option<SourceLocation>) {
-    println!("{}", message);
+    if let Some(l) = location {
+        println!("\n{}\n{}\n", l, message);
+    } else {
+        println!("\n{}\n", message);
+    }
     panic!("test failure");
 }

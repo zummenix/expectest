@@ -11,6 +11,7 @@ pub mod prelude {
     pub use core::ActualValue;
     pub use core::Matcher;
     pub use matchers::be_equal_to;
+    pub use matchers::{ be_true, be_false };
 }
 
 pub mod core;

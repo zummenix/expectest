@@ -1,11 +1,16 @@
 
+use std::fmt;
+
 pub use self::location::SourceLocation;
 pub use self::actual::expect;
 pub use self::actual::ActualValue;
 pub use self::actual::failure;
-pub use self::matcher::Matcher;
-pub use self::matcher::MatchResult;
 
 mod location;
 mod actual;
-pub mod matcher;
+
+pub type MatchResult = Result<(), String>;
+
+pub trait Matcher<T>: fmt::Display {
+    fn matches(&self, actual: T) -> MatchResult;
+}

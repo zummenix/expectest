@@ -29,6 +29,20 @@ impl<A> ActualValue<A> {
             failure(message, self.location);
         }
     }
+
+    pub fn to_not<M, E>(self, matcher: M) where M: Matcher<A, E> {
+        if matcher.matches(&self.value) {
+            let message = matcher.format_message("to not", &self.value);
+            failure(message, self.location);
+        }
+    }
+
+    pub fn not_to<M, E>(self, matcher: M) where M: Matcher<A, E> {
+        if matcher.matches(&self.value) {
+            let message = matcher.format_message("not to", &self.value);
+            failure(message, self.location);
+        }
+    }
 }
 
 pub fn failure(message: String, location: Option<SourceLocation>) {

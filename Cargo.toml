@@ -1,14 +1,11 @@
 [package]
 name = "expectest"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
 description = "Library provides functions for unit testing with human-readable syntax. (WIP)"
-
 repository = "https://github.com/zummenix/expectest"
-
 readme = "./README.md"
-
 keywords = ["unit", "test", "matcher", "expect"]
 
 license = "MIT"

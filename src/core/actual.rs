@@ -25,21 +25,21 @@ impl<A> ActualValue<A> {
 
     pub fn to<M, E>(self, matcher: M) where M: Matcher<A, E> {
         if !matcher.matches(&self.value) {
-            let message = matcher.format_message("to", &self.value);
+            let message = matcher.failure_message("to", &self.value);
             failure(message, self.location);
         }
     }
 
     pub fn to_not<M, E>(self, matcher: M) where M: Matcher<A, E> {
         if matcher.matches(&self.value) {
-            let message = matcher.format_message("to not", &self.value);
+            let message = matcher.failure_message("to not", &self.value);
             failure(message, self.location);
         }
     }
 
     pub fn not_to<M, E>(self, matcher: M) where M: Matcher<A, E> {
         if matcher.matches(&self.value) {
-            let message = matcher.format_message("not to", &self.value);
+            let message = matcher.failure_message("not to", &self.value);
             failure(message, self.location);
         }
     }

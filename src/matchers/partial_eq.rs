@@ -17,7 +17,7 @@ impl<A, E> Matcher<A, E> for Equal<E>
         A: PartialEq<E> + fmt::Debug,
         E: fmt::Debug {
 
-    fn format_message(&self, join: &'static str, actual: &A) -> String {
+    fn failure_message(&self, join: &'static str, actual: &A) -> String {
         format!("expected {} be equal to <{:?}>, got <{:?}>",
             join, self.expected, actual)
     }

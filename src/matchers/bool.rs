@@ -14,7 +14,7 @@ pub fn be_false() -> False {
 }
 
 impl Matcher<bool, bool> for True {
-    fn format_message(&self, join: &'static str, _: &bool) -> String {
+    fn failure_message(&self, join: &'static str, _: &bool) -> String {
         format!("expected {} be true", join)
     }
 
@@ -24,7 +24,7 @@ impl Matcher<bool, bool> for True {
 }
 
 impl Matcher<bool, bool> for False {
-    fn format_message(&self, join: &'static str, _: &bool) -> String {
+    fn failure_message(&self, join: &'static str, _: &bool) -> String {
         format!("expected {} be false", join)
     }
 
@@ -45,7 +45,7 @@ mod test {
 
     #[test]
     fn test_be_true_message() {
-        let message = be_true().format_message("to", &false);
+        let message = be_true().failure_message("to", &false);
         assert!(message == "expected to be true");
     }
 
@@ -62,7 +62,7 @@ mod test {
 
     #[test]
     fn test_be_false_message() {
-        let message = be_false().format_message("to", &true);
+        let message = be_false().failure_message("to", &true);
         assert!(message == "expected to be false");
     }
 

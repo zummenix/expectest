@@ -1,7 +1,7 @@
 
 use core::{ SourceLocation, Matcher };
 
-pub fn expect<T>(value: T) -> ActualValue<T> {
+pub fn expect<A>(value: A) -> ActualValue<A> {
     ActualValue::new(value)
 }
 

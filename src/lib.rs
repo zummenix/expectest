@@ -10,8 +10,8 @@ pub mod prelude {
     pub use core::{ expect, ActualValue, Matcher };
     pub use matchers::{
         be_equal_to,
-        be_true,
-        be_false,
+        be_true, be_false,
+        be_some, BeSome,
     };
 }
 

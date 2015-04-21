@@ -11,7 +11,7 @@ pub mod prelude {
     pub use matchers::{
         be_equal_to,
         be_true, be_false,
-        be_some, BeSome,
+        be_some, BeSome, be_none, BeNone,
     };
 }
 

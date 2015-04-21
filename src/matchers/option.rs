@@ -46,6 +46,25 @@ impl<A, E> Matcher<Option<A>, Option<E>> for BeSome<E>
     }
 }
 
+pub struct BeNone;
+
+pub fn be_none() -> BeNone {
+    BeNone
+}
+
+impl<A> Matcher<Option<A>, Option<A>> for BeNone
+    where
+        A: fmt::Debug {
+
+    fn failure_message(&self, join: &'static str, actual: &Option<A>) -> String {
+        format!("expected {} be None, got <{:?}>", join, actual)
+    }
+
+    fn matches(&self, actual: &Option<A>) -> bool {
+        actual.is_none()
+    }
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -89,5 +108,22 @@ mod test {
     #[should_panic]
     fn be_some_matches_none_should_panic() {
         assert!(be_some().matches(&None::<u8>));
+    }
+
+    #[test]
+    fn be_none_matches_none() {
+        assert!(be_none().matches(&None::<u8>));
+    }
+
+    #[test]
+    fn be_none_failure_message() {
+        let message = be_none().failure_message("to", &Some(2));
+        assert!(message == "expected to be None, got <Some(2)>");
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_none_matches_some_should_panic() {
+        assert!(be_none().matches(&Some(6)));
     }
 }

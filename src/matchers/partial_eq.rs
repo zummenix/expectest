@@ -2,17 +2,17 @@
 use std::fmt;
 use core::Matcher;
 
-pub struct Equal<E> {
+pub struct BeEqualTo<E> {
     expected: E,
 }
 
-pub fn be_equal_to<E>(expected: E) -> Equal<E> {
-    Equal {
+pub fn be_equal_to<E>(expected: E) -> BeEqualTo<E> {
+    BeEqualTo {
         expected: expected,
     }
 }
 
-impl<A, E> Matcher<A, E> for Equal<E>
+impl<A, E> Matcher<A, E> for BeEqualTo<E>
     where
         A: PartialEq<E> + fmt::Debug,
         E: fmt::Debug {

@@ -1,19 +1,19 @@
 
 use core::Matcher;
 
-pub struct True;
+pub struct BeTrue;
 
-pub fn be_true() -> True {
-    True
+pub fn be_true() -> BeTrue {
+    BeTrue
 }
 
-pub struct False;
+pub struct BeFalse;
 
-pub fn be_false() -> False {
-    False
+pub fn be_false() -> BeFalse {
+    BeFalse
 }
 
-impl Matcher<bool, bool> for True {
+impl Matcher<bool, bool> for BeTrue {
     fn failure_message(&self, join: &'static str, _: &bool) -> String {
         format!("expected {} be true", join)
     }
@@ -23,7 +23,7 @@ impl Matcher<bool, bool> for True {
     }
 }
 
-impl Matcher<bool, bool> for False {
+impl Matcher<bool, bool> for BeFalse {
     fn failure_message(&self, join: &'static str, _: &bool) -> String {
         format!("expected {} be false", join)
     }

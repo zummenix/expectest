@@ -52,12 +52,12 @@ mod test {
     use core::Matcher;
 
     #[test]
-    fn some_value_some_value() {
+    fn be_some_value_matches_some_value() {
         assert!(be_some().value(5).matches(&Some(5)));
     }
 
     #[test]
-    fn some_some_value() {
+    fn be_some_matches_some_value() {
         assert!(be_some().matches(&Some(5)));
     }
 
@@ -75,13 +75,19 @@ mod test {
 
     #[test]
     #[should_panic]
-    fn some_value_none_should_panic() {
+    fn be_some_value_matches_some_value_should_panic() {
+        assert!(be_some().value(5).matches(&Some(4)));
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_some_value_matches_none_should_panic() {
         assert!(be_some().value(5).matches(&None::<u8>));
     }
 
     #[test]
     #[should_panic]
-    fn some_none_should_panic() {
+    fn be_some_matches_none_should_panic() {
         assert!(be_some().matches(&None::<u8>));
     }
 }

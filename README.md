@@ -5,5 +5,30 @@ Library provides functions for unit testing with human-readable syntax. Inspired
 
 *Work In Progress*
 
+### Usage
+
+In Cargo.toml:
+```toml
+[dev-dependencies]
+expectest = "*"
+```
+
+In your crate:
+```rust
+#[cfg(test)]
+#[macro_use(expect)]
+extern crate expectest;
+```
+
+You can export all needed functions and types from `prelude` module:
+```rust
+use expectest::prelude::*;
+```
+
+Simple unit test:
+```rust
+expect!(Some(6)).to(be_some());
+```
+
 ## License
 MIT

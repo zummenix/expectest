@@ -67,7 +67,7 @@ impl<A> Matcher<Option<A>, Option<A>> for BeNone
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use super::{ be_some, be_none };
     use core::Matcher;
 
     #[test]

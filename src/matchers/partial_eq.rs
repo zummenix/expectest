@@ -28,7 +28,7 @@ impl<A, E> Matcher<A, E> for BeEqualTo<E>
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::be_equal_to;
     use core::Matcher;
 

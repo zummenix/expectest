@@ -34,7 +34,7 @@ impl Matcher<bool, bool> for BeFalse {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::{ be_true, be_false };
     use core::Matcher;
 

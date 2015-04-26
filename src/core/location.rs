@@ -23,7 +23,7 @@ impl fmt::Display for SourceLocation {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::SourceLocation;
 
     #[test]

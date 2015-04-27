@@ -33,7 +33,19 @@ mod tests {
     use core::Matcher;
 
     #[test]
-    fn equality_of_ints() {
+    fn be_equal_to_one_matches_one() {
         assert!(be_equal_to(1).matches(&1));
+    }
+
+    #[test]
+    fn be_equal_to_failure_message() {
+        let message = be_equal_to(1).failure_message("to", &2);
+        assert!(message == "expected to be equal to <1>, got <2>");
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_equal_to_one_matches_four_should_panic() {
+        assert!(be_equal_to(1).matches(&4));
     }
 }

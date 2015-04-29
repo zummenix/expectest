@@ -7,12 +7,6 @@ pub fn be_true() -> BeTrue {
     BeTrue
 }
 
-pub struct BeFalse;
-
-pub fn be_false() -> BeFalse {
-    BeFalse
-}
-
 impl Matcher<bool, bool> for BeTrue {
     fn failure_message(&self, join: &'static str, _: &bool) -> String {
         format!("expected {} be true", join)
@@ -21,6 +15,12 @@ impl Matcher<bool, bool> for BeTrue {
     fn matches(&self, actual: &bool) -> bool {
         *actual == true
     }
+}
+
+pub struct BeFalse;
+
+pub fn be_false() -> BeFalse {
+    BeFalse
 }
 
 impl Matcher<bool, bool> for BeFalse {

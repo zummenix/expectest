@@ -17,7 +17,6 @@ pub fn close_to<E>(expected: E) -> CloseTo<E> where E: Float {
 
 impl<E> Matcher<E, E> for CloseTo<E>
     where
-        // A: PartialEq<E> + Float + fmt::Debug,
         E: Float + fmt::Debug {
 
     fn failure_message(&self, join: &'static str, actual: &E) -> String {

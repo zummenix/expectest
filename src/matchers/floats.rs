@@ -50,6 +50,12 @@ mod tests {
     }
 
     #[test]
+    fn close_to_one_failure_message() {
+        let message = close_to(1.0_f32).failure_message("to", &0.0);
+        assert!(message == "expected to be close to <1> ±0.001, got <0>");
+    }
+
+    #[test]
     #[should_panic]
     fn big_zero_matches_zero_should_panic() {
         assert!(close_to(0.0011_f32).matches(&0.0));

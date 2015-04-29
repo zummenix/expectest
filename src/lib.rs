@@ -1,4 +1,6 @@
 
+extern crate num;
+
 #[macro_export]
 macro_rules! expect {
     ($e: expr) => (

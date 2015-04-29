@@ -9,3 +9,6 @@ readme = "./README.md"
 keywords = ["unit", "test", "matcher", "expect"]
 
 license = "MIT"
+
+[dependencies]
+num = "*"

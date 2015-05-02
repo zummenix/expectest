@@ -1,6 +1,6 @@
 [package]
 name = "expectest"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
 description = "Library provides functions for unit testing with human-readable syntax. (WIP)"

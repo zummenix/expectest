@@ -14,7 +14,7 @@ Assume that 'result' contains vec: `[1, 2, 2]`. Of course test fails and gives u
 ```bash
 expected to be equal to <[1, 2, 3]>, got <[1, 2, 2]>
 ```
-> Note: You need to use `cargo test -- —nocapture` to see output from tests.
+> Note: You need to use `cargo test -- --nocapture` to see output from tests.
 
 ### Usage
 

@@ -41,5 +41,9 @@ Simple unit test:
 expect!(Some(6)).to(be_some());
 ```
 
+### Alternative crates
+- [rustspec-assertions](https://github.com/uorbe001/rustspec-assertions)
+- [hamcrest-rust](https://github.com/carllerche/hamcrest-rust)
+
 ## License
 MIT

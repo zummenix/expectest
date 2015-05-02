@@ -15,6 +15,7 @@ pub mod prelude {
         be_true, be_false,
         be_some, BeSome, be_none, BeNone,
         be_close_to, BeCloseTo,
+        be_empty,
     };
 }
 

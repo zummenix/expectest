@@ -1,4 +1,5 @@
 
+use std::fmt;
 use core::Matcher;
 
 pub struct BeEmpty;
@@ -23,6 +24,27 @@ impl Matcher<String, bool> for BeEmpty {
     }
 
     fn matches(&self, actual: &String) -> bool {
+        actual.is_empty()
+    }
+}
+
+impl<T> Matcher<Vec<T>, bool> for BeEmpty where T: fmt::Debug {
+    fn failure_message(&self, join: &'static str, actual: &Vec<T>) -> String {
+        format!("expected {} be empty, got <{:?}>", join, actual)
+    }
+
+    fn matches(&self, actual: &Vec<T>) -> bool {
+        actual.is_empty()
+    }
+}
+
+
+impl<'a, T> Matcher<&'a [T], bool> for BeEmpty where T: fmt::Debug {
+    fn failure_message(&self, join: &'static str, actual: &&[T]) -> String {
+        format!("expected {} be empty, got <{:?}>", join, actual)
+    }
+
+    fn matches(&self, actual: &&[T]) -> bool {
         actual.is_empty()
     }
 }
@@ -54,5 +76,31 @@ mod tests {
     #[should_panic]
     fn be_empty_str_should_panic() {
         assert!(be_empty().matches(&"0"));
+    }
+
+    #[test]
+    fn be_empty_vec() {
+        let v: Vec<u8> = vec![];
+        assert!(be_empty().matches(&v));
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_empty_vec_should_panic() {
+        let v: Vec<u8> = vec![1, 2, 3];
+        assert!(be_empty().matches(&v));
+    }
+
+    #[test]
+    fn be_empty_array() {
+        let v: &[u8] = &[];
+        assert!(be_empty().matches(&v));
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_empty_array_should_panic() {
+        let v: &[u8] = &[1, 2, 3];
+        assert!(be_empty().matches(&v));
     }
 }

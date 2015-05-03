@@ -1,16 +1,19 @@
 
 use core::{ SourceLocation, Matcher };
 
+/// A function that intended to replace an `expect!` macro if desired.
 pub fn expect<A>(value: A) -> ActualValue<A> {
     ActualValue::new(value)
 }
 
+/// Wrapps an actual value and location in a source code.
 pub struct ActualValue<A> {
     value: A,
     location: Option<SourceLocation>,
 }
 
 impl<A> ActualValue<A> {
+    /// Creates new `ActualValue`.
     fn new(value: A) -> ActualValue<A> {
         ActualValue {
             value: value,
@@ -18,11 +21,14 @@ impl<A> ActualValue<A> {
         }
     }
 
+    /// Sets new `SourceLocation`.
     pub fn location(mut self, l: SourceLocation) -> Self {
         self.location = Some(l);
         self
     }
 
+    /// Performs assertion with "to" word. Prints a failure message and panics
+    /// if an actual value does not match with an expected value.
     pub fn to<M, E>(self, matcher: M) where M: Matcher<A, E> {
         if !matcher.matches(&self.value) {
             let message = matcher.failure_message("to", &self.value);
@@ -30,6 +36,8 @@ impl<A> ActualValue<A> {
         }
     }
 
+    /// Performs negation with "to not" words. Prints a failure message and
+    /// panics if an actual value matches with an expected value.
     pub fn to_not<M, E>(self, matcher: M) where M: Matcher<A, E> {
         if matcher.matches(&self.value) {
             let message = matcher.failure_message("to not", &self.value);
@@ -37,6 +45,8 @@ impl<A> ActualValue<A> {
         }
     }
 
+    /// Performs negation with "not to" words. Prints a failure message and
+    /// panics if an actual value matches with an expected value.
     pub fn not_to<M, E>(self, matcher: M) where M: Matcher<A, E> {
         if matcher.matches(&self.value) {
             let message = matcher.failure_message("not to", &self.value);

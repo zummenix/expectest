@@ -42,7 +42,7 @@ fn emptiness_of_array() {
 #[ignore]
 #[should_panic]
 fn emptiness_of_vec_should_panic() {
-    let v: Vec<u32> = vec![1, 2];
+    let v = vec![1, 2];
     expect!(v).to(be_empty());
 }
 

@@ -87,7 +87,7 @@ mod tests {
     #[test]
     #[should_panic]
     fn be_empty_vec_should_panic() {
-        let v: Vec<u8> = vec![1, 2, 3];
+        let v = vec![1, 2, 3];
         assert!(be_empty().matches(&v));
     }
 

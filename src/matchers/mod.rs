@@ -5,7 +5,7 @@ pub use self::partial_ord::{
     be_greater_than, be_greater_or_equal_to,
 };
 pub use self::bool::{ be_true, be_false };
-pub use self::option::{ be_some, BeSome, be_none, BeNone };
+pub use self::option::{ be_some, BeSome, be_none };
 pub use self::floats::{ be_close_to, BeCloseTo };
 pub use self::empty::be_empty;
 

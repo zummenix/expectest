@@ -15,7 +15,7 @@ pub mod prelude {
         be_less_than, be_less_or_equal_to,
         be_greater_than, be_greater_or_equal_to,
         be_true, be_false,
-        be_some, BeSome, be_none, BeNone,
+        be_some, BeSome, be_none,
         be_close_to, BeCloseTo,
         be_empty,
     };

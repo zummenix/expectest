@@ -12,6 +12,8 @@ pub mod prelude {
     pub use core::{ expect, ActualValue, Matcher };
     pub use matchers::{
         be_equal_to,
+        be_less_than, be_less_or_equal_to,
+        be_greater_than, be_greater_or_equal_to,
         be_true, be_false,
         be_some, BeSome, be_none, BeNone,
         be_close_to, BeCloseTo,

@@ -43,12 +43,12 @@ fn greater_than_should_panic() {
 
 #[test]
 fn greater_or_equal_to_zero() {
-    expect!(0).to(be_greater_or_equal_to(0))
+    expect!(0).to(be_greater_or_equal_to(0));
 }
 
 #[test]
 fn greater_or_equal_to_minus_one() {
-    expect!(0).to(be_greater_or_equal_to(-1))
+    expect!(0).to(be_greater_or_equal_to(-1));
 }
 
 #[test]

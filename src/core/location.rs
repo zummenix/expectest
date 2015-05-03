@@ -1,13 +1,17 @@
 
 use std::fmt;
 
+/// Represents location in a source code.
 #[derive(Clone, Copy)]
 pub struct SourceLocation {
+    /// Name of a file.
     pub file: &'static str,
+    /// Number of line in the file.
     pub line: u32,
 }
 
 impl SourceLocation {
+    /// Creates new `SourceLocation` using `file` and `line`.
     pub fn new(file: &'static str, line: u32) -> SourceLocation {
         SourceLocation {
             file: file,

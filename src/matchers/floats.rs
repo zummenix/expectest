@@ -61,8 +61,8 @@ mod tests {
 
     #[test]
     fn close_to_one_failure_message() {
-        let message = be_close_to(1.0_f32).failure_message(Join::To, &0.0);
-        assert!(message == "expected to be close to <1> ±0.001, got <0>");
+        let m = be_close_to(1.0_f32).failure_message(Join::To, &0.0);
+        assert!(m == "expected to be close to <1> ±0.001, got <0>");
     }
 
     #[test]
@@ -83,8 +83,8 @@ mod tests {
 
     #[test]
     fn close_to_one_delta_failure_message() {
-        let message = be_close_to(1.0_f32).delta(0.1).failure_message(Join::To, &0.0);
-        assert!(message == "expected to be close to <1> ±0.1, got <0>");
+        let m = be_close_to(1.0_f32).delta(0.1).failure_message(Join::To, &0.0);
+        assert!(m == "expected to be close to <1> ±0.1, got <0>");
     }
 
     #[test]

@@ -49,8 +49,8 @@ mod tests {
 
     #[test]
     fn test_be_true_message() {
-        let message = be_true().failure_message(Join::To, &false);
-        assert!(message == "expected to be true");
+        let m = be_true().failure_message(Join::To, &false);
+        assert!(m == "expected to be true");
     }
 
     #[test]
@@ -66,8 +66,8 @@ mod tests {
 
     #[test]
     fn test_be_false_message() {
-        let message = be_false().failure_message(Join::To, &true);
-        assert!(message == "expected to be false");
+        let m = be_false().failure_message(Join::To, &true);
+        assert!(m == "expected to be false");
     }
 
     #[test]

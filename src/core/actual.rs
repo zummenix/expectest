@@ -31,8 +31,8 @@ impl<A> ActualValue<A> {
     /// if an actual value does not match with an expected value.
     pub fn to<M, E>(self, matcher: M) where M: Matcher<A, E> {
         if !matcher.matches(&self.value) {
-            let message = matcher.failure_message(Join::To, &self.value);
-            failure(message, self.location);
+            let m = matcher.failure_message(Join::To, &self.value);
+            failure(m, self.location);
         }
     }
 
@@ -40,8 +40,8 @@ impl<A> ActualValue<A> {
     /// panics if an actual value matches with an expected value.
     pub fn to_not<M, E>(self, matcher: M) where M: Matcher<A, E> {
         if matcher.matches(&self.value) {
-            let message = matcher.failure_message(Join::ToNot, &self.value);
-            failure(message, self.location);
+            let m = matcher.failure_message(Join::ToNot, &self.value);
+            failure(m, self.location);
         }
     }
 
@@ -49,8 +49,8 @@ impl<A> ActualValue<A> {
     /// panics if an actual value matches with an expected value.
     pub fn not_to<M, E>(self, matcher: M) where M: Matcher<A, E> {
         if matcher.matches(&self.value) {
-            let message = matcher.failure_message(Join::NotTo, &self.value);
-            failure(message, self.location);
+            let m = matcher.failure_message(Join::NotTo, &self.value);
+            failure(m, self.location);
         }
     }
 }

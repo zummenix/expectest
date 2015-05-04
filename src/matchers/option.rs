@@ -57,7 +57,7 @@ pub fn be_none() -> BeNone {
     BeNone
 }
 
-impl<A> Matcher<Option<A>, Option<A>> for BeNone
+impl<A> Matcher<Option<A>, bool> for BeNone
     where
         A: fmt::Debug {
 
@@ -87,14 +87,14 @@ mod tests {
 
     #[test]
     fn be_some_failure_message() {
-        let message = be_some().failure_message(Join::To, &None::<u8>);
-        assert!(message == "expected to be Some, got <None>");
+        let m = be_some().failure_message(Join::To, &None::<u8>);
+        assert!(m == "expected to be Some, got <None>");
     }
 
     #[test]
     fn be_some_value_failure_message() {
-        let message = be_some().value(1).failure_message(Join::To, &None::<u8>);
-        assert!(message == "expected to be equal to <Some(1)>, got <None>");
+        let m = be_some().value(1).failure_message(Join::To, &None::<u8>);
+        assert!(m == "expected to be equal to <Some(1)>, got <None>");
     }
 
     #[test]
@@ -122,8 +122,8 @@ mod tests {
 
     #[test]
     fn be_none_failure_message() {
-        let message = be_none().failure_message(Join::To, &Some(2));
-        assert!(message == "expected to be None, got <Some(2)>");
+        let m = be_none().failure_message(Join::To, &Some(2));
+        assert!(m == "expected to be None, got <Some(2)>");
     }
 
     #[test]

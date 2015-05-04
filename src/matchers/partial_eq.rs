@@ -42,8 +42,8 @@ mod tests {
 
     #[test]
     fn be_equal_to_failure_message() {
-        let message = be_equal_to(1).failure_message(Join::To, &2);
-        assert!(message == "expected to be equal to <1>, got <2>");
+        let m = be_equal_to(1).failure_message(Join::To, &2);
+        assert!(m == "expected to be equal to <1>, got <2>");
     }
 
     #[test]

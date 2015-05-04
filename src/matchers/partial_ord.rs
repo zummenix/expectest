@@ -138,8 +138,8 @@ mod tests {
 
     #[test]
     fn be_less_than_one_failure_message() {
-        let message = be_less_than(1).failure_message(Join::To, &1);
-        assert!(message == "expected to be less than <1>, got <1>");
+        let m = be_less_than(1).failure_message(Join::To, &1);
+        assert!(m == "expected to be less than <1>, got <1>");
     }
 
     #[test]
@@ -160,8 +160,8 @@ mod tests {
 
     #[test]
     fn be_less_or_equal_to_one_failure_message() {
-        let message = be_less_or_equal_to(1).failure_message(Join::To, &2);
-        assert!(message == "expected to be less or equal to <1>, got <2>");
+        let m = be_less_or_equal_to(1).failure_message(Join::To, &2);
+        assert!(m == "expected to be less or equal to <1>, got <2>");
     }
 
     #[test]
@@ -177,8 +177,8 @@ mod tests {
 
     #[test]
     fn be_greater_than_zero_failure_message() {
-        let message = be_greater_than(0).failure_message(Join::To, &0);
-        assert!(message == "expected to be greater than <0>, got <0>");
+        let m = be_greater_than(0).failure_message(Join::To, &0);
+        assert!(m == "expected to be greater than <0>, got <0>");
     }
 
     #[test]
@@ -199,7 +199,7 @@ mod tests {
 
     #[test]
     fn be_greater_or_equal_to_zero_failure_message() {
-        let message = be_greater_or_equal_to(0).failure_message(Join::To, &-1);
-        assert!(message == "expected to be greater or equal to <0>, got <-1>");
+        let m = be_greater_or_equal_to(0).failure_message(Join::To, &-1);
+        assert!(m == "expected to be greater or equal to <0>, got <-1>");
     }
 }

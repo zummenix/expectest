@@ -2,10 +2,12 @@
 use std::fmt;
 use core::{ Matcher, Join };
 
+/// A matcher for `be_some` assertions for `Option<T>` types.
 pub struct BeSome<E> {
     expected: Option<E>,
 }
 
+/// Returns new `BeSome` matcher.
 pub fn be_some<E>() -> BeSome<E> {
     BeSome {
         expected: None,
@@ -13,6 +15,7 @@ pub fn be_some<E>() -> BeSome<E> {
 }
 
 impl<E> BeSome<E> {
+    /// Sets new value.
     pub fn value(mut self, v: E) -> BeSome<E> {
         self.expected = Some(v);
         self
@@ -46,8 +49,10 @@ impl<A, E> Matcher<Option<A>, Option<E>> for BeSome<E>
     }
 }
 
+/// A matcher for `be_none` assertions for `Option<T>` types.
 pub struct BeNone;
 
+/// Returns new `BeNone` matcher.
 pub fn be_none() -> BeNone {
     BeNone
 }

@@ -2,8 +2,10 @@
 use std::fmt;
 use core::{ Matcher, Join };
 
+/// A matcher for `be_empty` assertions.
 pub struct BeEmpty;
 
+/// Returns new `BeEmpty` matcher.
 pub fn be_empty() -> BeEmpty {
     BeEmpty
 }

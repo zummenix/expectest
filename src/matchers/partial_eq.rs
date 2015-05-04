@@ -2,10 +2,13 @@
 use std::fmt;
 use core::{ Matcher, Join };
 
+/// A matcher for `be_equal_to` assertions for types that conforms to
+/// `PartialEq` trait.
 pub struct BeEqualTo<E> {
     expected: E,
 }
 
+/// Returns new `BeEqualTo` matcher.
 pub fn be_equal_to<E>(expected: E) -> BeEqualTo<E> {
     BeEqualTo {
         expected: expected,

@@ -1,4 +1,6 @@
 
+//! A module contains matchers.
+
 pub use self::partial_eq::{ be_equal_to, BeEqualTo };
 pub use self::partial_ord::{
     be_less_than, BeLessThan,

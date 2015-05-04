@@ -2,10 +2,13 @@
 use std::fmt;
 use core::{ Matcher, Join };
 
+/// A matcher for `be_less_than` assertions for types that conforms to
+/// `PartialOrd` trait.
 pub struct BeLessThan<E> {
     expected: E,
 }
 
+/// Returns new `BeLessThan` matcher.
 pub fn be_less_than<E>(expected: E) -> BeLessThan<E> {
     BeLessThan {
         expected: expected,
@@ -28,10 +31,13 @@ impl<A, E> Matcher<A, E> for BeLessThan<E>
 }
 
 
+/// A matcher for `be_less_or_equal_to` assertions for types that conforms to
+/// `PartialOrd` trait.
 pub struct BeLessOrEqualTo<E> {
     expected: E,
 }
 
+/// Returns new `BeLessOrEqualTo` matcher.
 pub fn be_less_or_equal_to<E>(expected: E) -> BeLessOrEqualTo<E> {
     BeLessOrEqualTo {
         expected: expected,
@@ -54,10 +60,13 @@ impl<A, E> Matcher<A, E> for BeLessOrEqualTo<E>
 }
 
 
+/// A matcher for `be_greater_than` assertions for types that conforms to
+/// `PartialOrd` trait.
 pub struct BeGreaterThan<E> {
     expected: E,
 }
 
+/// Returns new `BeGreaterThan` matcher.
 pub fn be_greater_than<E>(expected: E) -> BeGreaterThan<E> {
     BeGreaterThan {
         expected: expected,
@@ -80,10 +89,13 @@ impl<A, E> Matcher<A, E> for BeGreaterThan<E>
 }
 
 
+/// A matcher for `be_greater_or_equal_to` assertions for types that conforms to
+/// `PartialOrd` trait.
 pub struct BeGreaterOrEqualTo<E> {
     expected: E,
 }
 
+/// Returns new `BeGreaterOrEqualTo` matcher.
 pub fn be_greater_or_equal_to<E>(expected: E) -> BeGreaterOrEqualTo<E> {
     BeGreaterOrEqualTo {
         expected: expected,

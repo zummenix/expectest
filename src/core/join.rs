@@ -4,8 +4,11 @@ use std::fmt;
 /// An enum used to join two parts of a failure message.
 #[derive(PartialEq, Debug)]
 pub enum Join {
+    /// "to" join.
     To,
+    /// "to not" join.
     ToNot,
+    /// "not to" join.
     NotTo,
 }
 

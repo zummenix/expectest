@@ -6,7 +6,7 @@ pub fn expect<A>(value: A) -> ActualValue<A> {
     ActualValue::new(value)
 }
 
-/// Wrapps an actual value and location in a source code.
+/// Wrapps an actual value and a location in a source code.
 pub struct ActualValue<A> {
     value: A,
     location: Option<SourceLocation>,
@@ -55,6 +55,7 @@ impl<A> ActualValue<A> {
     }
 }
 
+/// Prints a failure message and panics.
 pub fn failure(message: String, location: Option<SourceLocation>) {
     if let Some(l) = location {
         println!("\n{}\n{}\n", l, message);

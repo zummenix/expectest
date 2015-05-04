@@ -1,7 +1,7 @@
 
 use std::fmt;
 
-/// Represents location in a source code.
+/// Represents a location in a source code.
 #[derive(Clone, Copy)]
 pub struct SourceLocation {
     /// Name of a file.

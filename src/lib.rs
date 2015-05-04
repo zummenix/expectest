@@ -1,6 +1,11 @@
 
+//! A crate provides matchers for unit testing.
+
 extern crate num;
 
+/// A macro used to simplify usage of this library.
+///
+/// You can also use `expect` function instead.
 #[macro_export]
 macro_rules! expect {
     ($e: expr) => (
@@ -9,6 +14,8 @@ macro_rules! expect {
 }
 
 pub mod prelude {
+    //! A module contains reexport of all useful types and functions.
+
     pub use core::{ expect, ActualValue, Matcher };
     pub use matchers::{
         be_equal_to,

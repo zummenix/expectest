@@ -1,8 +1,10 @@
 
 use core::{ Matcher, Join };
 
+/// A matcher for `be_true` assertions.
 pub struct BeTrue;
 
+/// Returns new `BeTrue` matcher.
 pub fn be_true() -> BeTrue {
     BeTrue
 }
@@ -17,8 +19,10 @@ impl Matcher<bool, bool> for BeTrue {
     }
 }
 
+/// A matcher for `be_false` assertions.
 pub struct BeFalse;
 
+/// Returns new `BeFalse` matcher.
 pub fn be_false() -> BeFalse {
     BeFalse
 }

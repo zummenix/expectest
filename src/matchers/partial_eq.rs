@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::Matcher;
+use core::{ Matcher, Join };
 
 pub struct BeEqualTo<E> {
     expected: E,
@@ -17,7 +17,7 @@ impl<A, E> Matcher<A, E> for BeEqualTo<E>
         A: PartialEq<E> + fmt::Debug,
         E: fmt::Debug {
 
-    fn failure_message(&self, join: &'static str, actual: &A) -> String {
+    fn failure_message(&self, join: Join, actual: &A) -> String {
         format!("expected {} be equal to <{:?}>, got <{:?}>",
             join, self.expected, actual)
     }
@@ -30,7 +30,7 @@ impl<A, E> Matcher<A, E> for BeEqualTo<E>
 #[cfg(test)]
 mod tests {
     use super::be_equal_to;
-    use core::Matcher;
+    use core::{ Matcher, Join };
 
     #[test]
     fn be_equal_to_one_matches_one() {
@@ -39,7 +39,7 @@ mod tests {
 
     #[test]
     fn be_equal_to_failure_message() {
-        let message = be_equal_to(1).failure_message("to", &2);
+        let message = be_equal_to(1).failure_message(Join::To, &2);
         assert!(message == "expected to be equal to <1>, got <2>");
     }
 

@@ -1,5 +1,5 @@
 
-use core::Matcher;
+use core::{ Matcher, Join };
 
 pub struct BeTrue;
 
@@ -8,7 +8,7 @@ pub fn be_true() -> BeTrue {
 }
 
 impl Matcher<bool, bool> for BeTrue {
-    fn failure_message(&self, join: &'static str, _: &bool) -> String {
+    fn failure_message(&self, join: Join, _: &bool) -> String {
         format!("expected {} be true", join)
     }
 
@@ -24,7 +24,7 @@ pub fn be_false() -> BeFalse {
 }
 
 impl Matcher<bool, bool> for BeFalse {
-    fn failure_message(&self, join: &'static str, _: &bool) -> String {
+    fn failure_message(&self, join: Join, _: &bool) -> String {
         format!("expected {} be false", join)
     }
 
@@ -36,7 +36,7 @@ impl Matcher<bool, bool> for BeFalse {
 #[cfg(test)]
 mod tests {
     use super::{ be_true, be_false };
-    use core::Matcher;
+    use core::{ Matcher, Join };
 
     #[test]
     fn test_be_true() {
@@ -45,7 +45,7 @@ mod tests {
 
     #[test]
     fn test_be_true_message() {
-        let message = be_true().failure_message("to", &false);
+        let message = be_true().failure_message(Join::To, &false);
         assert!(message == "expected to be true");
     }
 
@@ -62,7 +62,7 @@ mod tests {
 
     #[test]
     fn test_be_false_message() {
-        let message = be_false().failure_message("to", &true);
+        let message = be_false().failure_message(Join::To, &true);
         assert!(message == "expected to be false");
     }
 

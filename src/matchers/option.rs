@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::Matcher;
+use core::{ Matcher, Join };
 
 pub struct BeSome<E> {
     expected: Option<E>,
@@ -24,7 +24,7 @@ impl<A, E> Matcher<Option<A>, Option<E>> for BeSome<E>
         A: PartialEq<E> + fmt::Debug,
         E: fmt::Debug {
 
-    fn failure_message(&self, join: &'static str, actual: &Option<A>) -> String {
+    fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
         if self.expected.is_none() {
             format!("expected {} be Some, got <{:?}>", join, actual)
         } else {
@@ -56,7 +56,7 @@ impl<A> Matcher<Option<A>, Option<A>> for BeNone
     where
         A: fmt::Debug {
 
-    fn failure_message(&self, join: &'static str, actual: &Option<A>) -> String {
+    fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
         format!("expected {} be None, got <{:?}>", join, actual)
     }
 
@@ -68,7 +68,7 @@ impl<A> Matcher<Option<A>, Option<A>> for BeNone
 #[cfg(test)]
 mod tests {
     use super::{ be_some, be_none };
-    use core::Matcher;
+    use core::{ Matcher, Join };
 
     #[test]
     fn be_some_value_matches_some_value() {
@@ -82,13 +82,13 @@ mod tests {
 
     #[test]
     fn be_some_failure_message() {
-        let message = be_some().failure_message("to", &None::<u8>);
+        let message = be_some().failure_message(Join::To, &None::<u8>);
         assert!(message == "expected to be Some, got <None>");
     }
 
     #[test]
     fn be_some_value_failure_message() {
-        let message = be_some().value(1).failure_message("to", &None::<u8>);
+        let message = be_some().value(1).failure_message(Join::To, &None::<u8>);
         assert!(message == "expected to be equal to <Some(1)>, got <None>");
     }
 
@@ -117,7 +117,7 @@ mod tests {
 
     #[test]
     fn be_none_failure_message() {
-        let message = be_none().failure_message("to", &Some(2));
+        let message = be_none().failure_message(Join::To, &Some(2));
         assert!(message == "expected to be None, got <Some(2)>");
     }
 

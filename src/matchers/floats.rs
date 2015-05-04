@@ -1,5 +1,5 @@
 
-use core::Matcher;
+use core::{ Matcher, Join };
 use std::fmt;
 use num::{ self, Float };
 
@@ -26,7 +26,7 @@ impl<E> Matcher<E, E> for BeCloseTo<E>
     where
         E: Float + fmt::Debug {
 
-    fn failure_message(&self, join: &'static str, actual: &E) -> String {
+    fn failure_message(&self, join: Join, actual: &E) -> String {
         format!("expected {} be close to <{:?}> ±{:?}, got <{:?}>",
             join, self.expected, self.delta, actual)
     }
@@ -43,7 +43,7 @@ impl<E> Matcher<E, E> for BeCloseTo<E>
 #[cfg(test)]
 mod tests {
     use super::be_close_to;
-    use core::Matcher;
+    use core::{ Matcher, Join };
     use num::Float;
 
     #[test]
@@ -58,7 +58,7 @@ mod tests {
 
     #[test]
     fn close_to_one_failure_message() {
-        let message = be_close_to(1.0_f32).failure_message("to", &0.0);
+        let message = be_close_to(1.0_f32).failure_message(Join::To, &0.0);
         assert!(message == "expected to be close to <1> ±0.001, got <0>");
     }
 
@@ -80,7 +80,7 @@ mod tests {
 
     #[test]
     fn close_to_one_delta_failure_message() {
-        let message = be_close_to(1.0_f32).delta(0.1).failure_message("to", &0.0);
+        let message = be_close_to(1.0_f32).delta(0.1).failure_message(Join::To, &0.0);
         assert!(message == "expected to be close to <1> ±0.1, got <0>");
     }
 

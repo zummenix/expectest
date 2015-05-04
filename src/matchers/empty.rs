@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::Matcher;
+use core::{ Matcher, Join };
 
 pub struct BeEmpty;
 
@@ -9,7 +9,7 @@ pub fn be_empty() -> BeEmpty {
 }
 
 impl<'a> Matcher<&'a str, bool> for BeEmpty {
-    fn failure_message(&self, join: &'static str, actual: &&str) -> String {
+    fn failure_message(&self, join: Join, actual: &&str) -> String {
         format!("expected {} be empty, got <{:?}>", join, actual)
     }
 
@@ -19,7 +19,7 @@ impl<'a> Matcher<&'a str, bool> for BeEmpty {
 }
 
 impl Matcher<String, bool> for BeEmpty {
-    fn failure_message(&self, join: &'static str, actual: &String) -> String {
+    fn failure_message(&self, join: Join, actual: &String) -> String {
         format!("expected {} be empty, got <{:?}>", join, actual)
     }
 
@@ -29,7 +29,7 @@ impl Matcher<String, bool> for BeEmpty {
 }
 
 impl<T> Matcher<Vec<T>, bool> for BeEmpty where T: fmt::Debug {
-    fn failure_message(&self, join: &'static str, actual: &Vec<T>) -> String {
+    fn failure_message(&self, join: Join, actual: &Vec<T>) -> String {
         format!("expected {} be empty, got <{:?}>", join, actual)
     }
 
@@ -40,7 +40,7 @@ impl<T> Matcher<Vec<T>, bool> for BeEmpty where T: fmt::Debug {
 
 
 impl<'a, T> Matcher<&'a [T], bool> for BeEmpty where T: fmt::Debug {
-    fn failure_message(&self, join: &'static str, actual: &&[T]) -> String {
+    fn failure_message(&self, join: Join, actual: &&[T]) -> String {
         format!("expected {} be empty, got <{:?}>", join, actual)
     }
 

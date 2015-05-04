@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::Matcher;
+use core::{ Matcher, Join };
 
 pub struct BeLessThan<E> {
     expected: E,
@@ -17,7 +17,7 @@ impl<A, E> Matcher<A, E> for BeLessThan<E>
         A: PartialOrd<E> + fmt::Debug,
         E: fmt::Debug {
 
-    fn failure_message(&self, join: &'static str, actual: &A) -> String {
+    fn failure_message(&self, join: Join, actual: &A) -> String {
         format!("expected {} be less than <{:?}>, got <{:?}>",
             join, self.expected, actual)
     }
@@ -43,7 +43,7 @@ impl<A, E> Matcher<A, E> for BeLessOrEqualTo<E>
         A: PartialOrd<E> + fmt::Debug,
         E: fmt::Debug {
 
-    fn failure_message(&self, join: &'static str, actual: &A) -> String {
+    fn failure_message(&self, join: Join, actual: &A) -> String {
         format!("expected {} be less or equal to <{:?}>, got <{:?}>",
             join, self.expected, actual)
     }
@@ -69,7 +69,7 @@ impl<A, E> Matcher<A, E> for BeGreaterThan<E>
         A: PartialOrd<E> + fmt::Debug,
         E: fmt::Debug {
 
-    fn failure_message(&self, join: &'static str, actual: &A) -> String {
+    fn failure_message(&self, join: Join, actual: &A) -> String {
         format!("expected {} be greater than <{:?}>, got <{:?}>",
             join, self.expected, actual)
     }
@@ -95,7 +95,7 @@ impl<A, E> Matcher<A, E> for BeGreaterOrEqualTo<E>
         A: PartialOrd<E> + fmt::Debug,
         E: fmt::Debug {
 
-    fn failure_message(&self, join: &'static str, actual: &A) -> String {
+    fn failure_message(&self, join: Join, actual: &A) -> String {
         format!("expected {} be greater or equal to <{:?}>, got <{:?}>",
             join, self.expected, actual)
     }
@@ -111,7 +111,7 @@ mod tests {
         be_less_than, be_less_or_equal_to,
         be_greater_than, be_greater_or_equal_to,
     };
-    use core::Matcher;
+    use core::{ Matcher, Join };
 
     #[test]
     fn be_less_than_one_matches() {
@@ -126,7 +126,7 @@ mod tests {
 
     #[test]
     fn be_less_than_one_failure_message() {
-        let message = be_less_than(1).failure_message("to", &1);
+        let message = be_less_than(1).failure_message(Join::To, &1);
         assert!(message == "expected to be less than <1>, got <1>");
     }
 
@@ -148,7 +148,7 @@ mod tests {
 
     #[test]
     fn be_less_or_equal_to_one_failure_message() {
-        let message = be_less_or_equal_to(1).failure_message("to", &2);
+        let message = be_less_or_equal_to(1).failure_message(Join::To, &2);
         assert!(message == "expected to be less or equal to <1>, got <2>");
     }
 
@@ -165,7 +165,7 @@ mod tests {
 
     #[test]
     fn be_greater_than_zero_failure_message() {
-        let message = be_greater_than(0).failure_message("to", &0);
+        let message = be_greater_than(0).failure_message(Join::To, &0);
         assert!(message == "expected to be greater than <0>, got <0>");
     }
 
@@ -187,7 +187,7 @@ mod tests {
 
     #[test]
     fn be_greater_or_equal_to_zero_failure_message() {
-        let message = be_greater_or_equal_to(0).failure_message("to", &-1);
+        let message = be_greater_or_equal_to(0).failure_message(Join::To, &-1);
         assert!(message == "expected to be greater or equal to <0>, got <-1>");
     }
 }

@@ -40,6 +40,28 @@ Simple unit test:
 ```rust
 expect!(Some(6)).to(be_some());
 ```
+#### Expectations
+Use basic syntax to express expectations:
+```rust
+expect!(...).to(...);
+expect!(...).to_not(...);
+expect!(...).not_to(...);
+```
+> Note: You can use `expect` function instead of `expect!` macro in that case you will not
+see file and line where the test fails.
+
+#### Equality
+For types that implement the `PartialEq` trait:
+```rust
+expect!("hello".to_string()).to(be_equal_to("hello"));
+```
+
+#### Order
+For types that implement the `PartialOrd` trait:
+```rust
+expect!(1).to(be_greater_than(0));
+```
+Use following matchers: `be_less_than`, `be_less_or_equal_to`, `be_greater_than`, `be_greater_or_equal_to`
 
 ### Alternative crates
 - [rustspec-assertions](https://github.com/uorbe001/rustspec-assertions)

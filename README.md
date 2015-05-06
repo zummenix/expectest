@@ -36,10 +36,6 @@ You can export all needed functions and types from `prelude` module:
 use expectest::prelude::*;
 ```
 
-Simple unit test:
-```rust
-expect!(Some(6)).to(be_some());
-```
 #### Expectations
 Use basic syntax to express expectations:
 ```rust

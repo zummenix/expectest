@@ -13,8 +13,8 @@ pub enum Join {
 }
 
 impl fmt::Display for Join {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.text())
+    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+        fmt.write_str(self.text())
     }
 }
 

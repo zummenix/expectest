@@ -5,13 +5,13 @@
 
 Library provides functions for unit testing with human-readable syntax. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
 
-One of main purposes of this library is to show what data was used in a broken test. Consider this example:
+Using this library you will receive nice messages with data that used in test case, example:
 ```rust
-let result = ...;
+let result = vec![1, 2, 2];
 expect!(result).to(be_equal_to([1, 2, 3]));
 ```
-Assume that 'result' contains vec: `[1, 2, 2]`. Of course test fails and gives us a message:
-```bash
+Test fails and gives us a message:
+```
 expected to be equal to <[1, 2, 3]>, got <[1, 2, 2]>
 ```
 > Note: You need to use `cargo test -- --nocapture` to see output from tests.
@@ -36,10 +36,28 @@ You can export all needed functions and types from `prelude` module:
 use expectest::prelude::*;
 ```
 
-Simple unit test:
+#### Expectations
+Use basic syntax to express expectations:
 ```rust
-expect!(Some(6)).to(be_some());
+expect!(...).to(...);
+expect!(...).to_not(...);
+expect!(...).not_to(...);
 ```
+> Note: You can use `expect` function instead of `expect!` macro in that case you will not
+see file and line where the test fails.
+
+#### Equality
+For types that implement the `PartialEq` trait:
+```rust
+expect!("hello".to_string()).to(be_equal_to("hello"));
+```
+
+#### Order
+For types that implement the `PartialOrd` trait:
+```rust
+expect!(1).to(be_greater_than(0));
+```
+Use following matchers: `be_less_than`, `be_less_or_equal_to`, `be_greater_than`, `be_greater_or_equal_to`
 
 ### Alternative crates
 - [rustspec-assertions](https://github.com/uorbe001/rustspec-assertions)

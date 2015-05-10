@@ -59,6 +59,12 @@ expect!(1).to(be_greater_than(0));
 ```
 Use following matchers: `be_less_than`, `be_less_or_equal_to`, `be_greater_than`, `be_greater_or_equal_to`
 
+#### Boolean
+```rust
+expect!(9 == 9).to(be_true());
+```
+Use following matchers: `be_true`, `be_false`
+
 ### Alternative crates
 - [rustspec-assertions](https://github.com/uorbe001/rustspec-assertions)
 - [hamcrest-rust](https://github.com/carllerche/hamcrest-rust)

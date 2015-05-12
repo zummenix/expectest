@@ -52,6 +52,16 @@ For types that implement the `PartialEq` trait:
 expect!("hello".to_string()).to(be_equal_to("hello"));
 ```
 
+#### Closeness of float numbers
+There is a way to check if two float numbers are close each other:
+```rust
+expect!(12.1_f64).to(be_close_to(12.0).delta(0.1));
+```
+With default `delta` equal `0.001`:
+```rust
+expect!(12.001_f64).to(be_close_to(12.0));
+```
+
 #### Order
 For types that implement the `PartialOrd` trait:
 ```rust

@@ -1,4 +1,6 @@
 # expectest
+[![Build Status](https://travis-ci.org/zummenix/expectest.svg?branch=master)]
+(https://travis-ci.org/zummenix/expectest)
 [![](http://meritbadge.herokuapp.com/expectest)](https://crates.io/crates/expectest)
 
 *Work In Progress*

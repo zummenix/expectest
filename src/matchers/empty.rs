@@ -13,7 +13,11 @@ pub fn be_empty() -> BeEmpty {
 
 impl<A> Matcher<A, bool> for BeEmpty where A: IsEmpty + fmt::Debug {
     fn failure_message(&self, join: Join, actual: &A) -> String {
-        format!("expected {} be empty, got <{:?}>", join, actual)
+        if join.is_assertion() {
+            format!("expected {} be empty, got <{:?}>", join, actual)
+        } else {
+            format!("expected {} be empty", join)
+        }
     }
 
     fn matches(&self, actual: &A) -> bool {
@@ -24,7 +28,7 @@ impl<A> Matcher<A, bool> for BeEmpty where A: IsEmpty + fmt::Debug {
 #[cfg(test)]
 mod tests {
     use super::be_empty;
-    use core::Matcher;
+    use core::{ Matcher, Join };
 
     #[test]
     fn be_empty_string() {
@@ -48,6 +52,18 @@ mod tests {
     #[should_panic]
     fn be_empty_str_should_panic() {
         assert!(be_empty().matches(&"0"));
+    }
+
+    #[test]
+    fn be_empty_str_failure_message() {
+        let m = be_empty().failure_message(Join::To, &"hello");
+        assert!(m == "expected to be empty, got <\"hello\">")
+    }
+
+    #[test]
+    fn to_not_be_empty_str_failure_message() {
+        let m = be_empty().failure_message(Join::ToNot, &"");
+        assert!(m == "expected to not be empty")
     }
 
     #[test]

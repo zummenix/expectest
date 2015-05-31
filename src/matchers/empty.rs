@@ -1,6 +1,7 @@
 
 use std::fmt;
 use core::{ Matcher, Join };
+use traits::IsEmpty;
 
 /// A matcher for `be_empty` assertions.
 pub struct BeEmpty;
@@ -10,43 +11,12 @@ pub fn be_empty() -> BeEmpty {
     BeEmpty
 }
 
-impl<'a> Matcher<&'a str, bool> for BeEmpty {
-    fn failure_message(&self, join: Join, actual: &&str) -> String {
+impl<A> Matcher<A, bool> for BeEmpty where A: IsEmpty + fmt::Debug {
+    fn failure_message(&self, join: Join, actual: &A) -> String {
         format!("expected {} be empty, got <{:?}>", join, actual)
     }
 
-    fn matches(&self, actual: &&str) -> bool {
-        actual.is_empty()
-    }
-}
-
-impl Matcher<String, bool> for BeEmpty {
-    fn failure_message(&self, join: Join, actual: &String) -> String {
-        format!("expected {} be empty, got <{:?}>", join, actual)
-    }
-
-    fn matches(&self, actual: &String) -> bool {
-        actual.is_empty()
-    }
-}
-
-impl<T> Matcher<Vec<T>, bool> for BeEmpty where T: fmt::Debug {
-    fn failure_message(&self, join: Join, actual: &Vec<T>) -> String {
-        format!("expected {} be empty, got <{:?}>", join, actual)
-    }
-
-    fn matches(&self, actual: &Vec<T>) -> bool {
-        actual.is_empty()
-    }
-}
-
-
-impl<'a, T> Matcher<&'a [T], bool> for BeEmpty where T: fmt::Debug {
-    fn failure_message(&self, join: Join, actual: &&[T]) -> String {
-        format!("expected {} be empty, got <{:?}>", join, actual)
-    }
-
-    fn matches(&self, actual: &&[T]) -> bool {
+    fn matches(&self, actual: &A) -> bool {
         actual.is_empty()
     }
 }

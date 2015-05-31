@@ -11,4 +11,4 @@ keywords = ["unit", "test", "matcher", "expect"]
 license = "MIT"
 
 [dependencies]
-num = "*"
+num = "0.1.*"

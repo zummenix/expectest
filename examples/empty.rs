@@ -1,4 +1,7 @@
 
+//! Example that shows how to implement an `IsEmpty` trait and use a `BeEmpty`
+//! matcher.
+
 extern crate expectest;
 
 use expectest::core::expect;

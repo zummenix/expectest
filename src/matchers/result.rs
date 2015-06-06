@@ -38,23 +38,14 @@ impl<A, E, T> Matcher<Result<A, T>, E> for BeOk<E>
     }
 
     fn matches(&self, actual: &Result<A, T>) -> bool {
-        if let Some(ref expected) = self.expected {
-            if let Ok(ref a) = *actual {
-                a == expected
-            } else {
-                false
-            }
-        } else {
-            actual.is_ok()
-        }
+        ::utils::is_some_value(actual.as_ref().ok(), self.expected.as_ref())
     }
 }
-
 
 #[cfg(test)]
 mod tests {
     use super::{ be_ok };
-    use core::{ Matcher, Join };
+    use core::{ Matcher };
 
     fn ok_result(value: u32) -> Result<u32, &'static str> {
         Ok(value)
@@ -69,5 +60,4 @@ mod tests {
     fn be_ok_value_matches_ok() {
         assert!(be_ok().value(1).matches(&ok_result(1)));
     }
-
 }

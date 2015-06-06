@@ -37,15 +37,7 @@ impl<A, E> Matcher<Option<A>, Option<E>> for BeSome<E>
     }
 
     fn matches(&self, actual: &Option<A>) -> bool {
-        if let Some(ref expected) = self.expected {
-            if let Some(ref a) = *actual {
-                a == expected
-            } else {
-                false
-            }
-        } else {
-            actual.is_some()
-        }
+        ::utils::is_some_value(actual.as_ref(), self.expected.as_ref())
     }
 }
 

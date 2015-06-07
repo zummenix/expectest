@@ -71,6 +71,27 @@ expect!(1).to(be_greater_than(0));
 ```
 Use following matchers: `be_less_than`, `be_less_or_equal_to`, `be_greater_than`, `be_greater_or_equal_to`
 
+#### Option
+There are matchers for the `Option<T>` type:
+```rust
+expect!(Some(9)).to(be_some().value(9));
+```
+Use following matchers: `be_some`, `be_none`
+
+#### Result
+There are matchers for the `Result<T, E>` type:
+```rust
+expect!("4".parse::<u32>()).to(be_ok().value(4));
+```
+Use following matchers: `be_ok`, `be_err`
+
+#### Emptyness
+There is `be_empty` matcher for types that implement `IsEmpty` trait:
+```rust
+expect!("").to(be_empty());
+```
+> Note: following types implemented by library: `String`, `&str`, `Vec<T>`, `&[T]`.
+
 #### Boolean
 ```rust
 expect!(9 == 9).to(be_true());

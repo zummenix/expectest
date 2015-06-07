@@ -9,7 +9,7 @@ pub use self::partial_ord::{
 };
 pub use self::bool::{ be_true, BeTrue, be_false, BeFalse };
 pub use self::option::{ be_some, BeSome, be_none, BeNone };
-pub use self::result::{ be_ok, BeOk };
+pub use self::result::{ be_ok, BeOk, be_err, BeErr };
 pub use self::floats::{ be_close_to, BeCloseTo };
 pub use self::empty::{ be_empty, BeEmpty };
 

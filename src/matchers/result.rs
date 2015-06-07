@@ -29,12 +29,7 @@ impl<A, E, T> Matcher<Result<A, T>, E> for BeOk<E>
         T: fmt::Debug {
 
     fn failure_message(&self, join: Join, actual: &Result<A, T>) -> String {
-        if self.expected.is_none() {
-            format!("expected {} be Ok, got <{:?}>", join, actual)
-        } else {
-            format!("expected {} be equal to <{:?}>, got <{:?}>",
-                join, self.expected, actual)
-        }
+        format!("expected {} be Ok, got <{:?}>", join, actual)
     }
 
     fn matches(&self, actual: &Result<A, T>) -> bool {
@@ -42,13 +37,52 @@ impl<A, E, T> Matcher<Result<A, T>, E> for BeOk<E>
     }
 }
 
+/// A matcher for `be_err` assertions for `Result<T, E>` type.
+pub struct BeErr<E> {
+    expected: Option<E>,
+}
+
+/// Returns new `BeErr` matcher.
+pub fn be_err<E>() -> BeErr<E> {
+    BeErr {
+        expected: None,
+    }
+}
+
+impl<E> BeErr<E> {
+    /// Sets new `err` value.
+    pub fn value(mut self, v: E) -> BeErr<E> {
+        self.expected = Some(v);
+        self
+    }
+}
+
+impl<A, E, T> Matcher<Result<T, A>, E> for BeErr<E>
+    where
+        A: PartialEq<E> + fmt::Debug,
+        E: fmt::Debug,
+        T: fmt::Debug {
+
+    fn failure_message(&self, join: Join, actual: &Result<T, A>) -> String {
+        format!("expected {} be Err, got <{:?}>", join, actual)
+    }
+
+    fn matches(&self, actual: &Result<T, A>) -> bool {
+        ::utils::is_some_value(actual.as_ref().err(), self.expected.as_ref())
+    }
+}
+
 #[cfg(test)]
 mod tests {
-    use super::{ be_ok };
+    use super::{ be_ok, be_err };
     use core::{ Matcher };
 
     fn ok_result(value: u32) -> Result<u32, &'static str> {
         Ok(value)
+    }
+
+    fn err_result(value: &'static str) -> Result<u32, &'static str> {
+        Err(value)
     }
 
     #[test]
@@ -59,5 +93,15 @@ mod tests {
     #[test]
     fn be_ok_value_matches_ok() {
         assert!(be_ok().value(1).matches(&ok_result(1)));
+    }
+
+    #[test]
+    fn be_err_matches_err() {
+        assert!(be_err::<&'static str>().matches(&err_result("error")));
+    }
+
+    #[test]
+    fn be_err_value_matches_err() {
+        assert!(be_err().value("error").matches(&err_result("error")));
     }
 }

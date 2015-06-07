@@ -1,6 +1,6 @@
 [package]
 name = "expectest"
-version = "0.1.8"
+version = "0.2.0"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
 description = "Library provides matchers and matcher functions for unit testing. (WIP)"

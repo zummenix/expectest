@@ -96,6 +96,24 @@ mod tests {
     }
 
     #[test]
+    #[should_panic]
+    fn be_ok_matches_err_should_panic() {
+        assert!(be_ok().matches(&err_result("error")));
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_ok_value_matches_ok_should_panic() {
+        assert!(be_ok().value(1).matches(&ok_result(2)));
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_ok_value_matches_err_should_panic() {
+        assert!(be_ok().value(1).matches(&err_result("error")));
+    }
+
+    #[test]
     fn be_err_matches_err() {
         assert!(be_err::<&'static str>().matches(&err_result("error")));
     }
@@ -103,5 +121,23 @@ mod tests {
     #[test]
     fn be_err_value_matches_err() {
         assert!(be_err().value("error").matches(&err_result("error")));
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_err_matches_ok_should_panic() {
+        assert!(be_err::<&'static str>().matches(&ok_result(1)));
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_err_value_matches_err_should_panic() {
+        assert!(be_err().value("error").matches(&err_result("error!")));
+    }
+
+    #[test]
+    #[should_panic]
+    fn be_err_value_matches_ok_should_panic() {
+        assert!(be_err().value("error").matches(&ok_result(1)));
     }
 }

@@ -90,7 +90,8 @@ There is `be_empty` matcher for types that implement `IsEmpty` trait:
 ```rust
 expect!("").to(be_empty());
 ```
-> Note: following types implemented by library: `String`, `&str`, `Vec<T>`, `&[T]`.
+> Note: `IsEmpty` trait implemented by library for following types:
+`String`, `&str`, `Vec<T>`, `&[T]`.
 
 #### Boolean
 ```rust

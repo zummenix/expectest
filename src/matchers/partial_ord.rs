@@ -2,118 +2,77 @@
 use std::fmt;
 use core::{ Matcher, Join };
 
-/// A matcher for `be_less_than` assertions for types that conforms to
-/// `PartialOrd` trait.
-pub struct BeLessThan<E> {
+/// A matcher for types that conforms to `PartialOrd` trait.
+pub struct PartialOrder<E> {
     expected: E,
+    order: Order,
 }
 
-/// Returns new `BeLessThan` matcher.
-pub fn be_less_than<E>(expected: E) -> BeLessThan<E> {
-    BeLessThan {
-        expected: expected,
+impl<E> PartialOrder<E> {
+    fn new(expected: E, order: Order) -> PartialOrder<E> {
+        PartialOrder {
+            expected: expected,
+            order: order,
+        }
     }
 }
 
-impl<A, E> Matcher<A, E> for BeLessThan<E>
+impl<A, E> Matcher<A, E> for PartialOrder<E>
     where
         A: PartialOrd<E> + fmt::Debug,
         E: fmt::Debug {
 
     fn failure_message(&self, join: Join, actual: &A) -> String {
-        format!("expected {} be less than <{:?}>, got <{:?}>",
-            join, self.expected, actual)
+        format!("expected {} be {} <{:?}>, got <{:?}>",
+            join, self.order, self.expected, actual)
     }
 
     fn matches(&self, actual: &A) -> bool {
-        *actual < self.expected
+        match self.order {
+            Order::LessThan => *actual < self.expected,
+            Order::LessOrEqualTo => *actual <= self.expected,
+            Order::GreaterThan => *actual > self.expected,
+            Order::GreaterOrEqualTo => *actual >= self.expected,
+        }
     }
 }
 
-
-/// A matcher for `be_less_or_equal_to` assertions for types that conforms to
-/// `PartialOrd` trait.
-pub struct BeLessOrEqualTo<E> {
-    expected: E,
+/// Returns new `PartialOrder` (less than) matcher.
+pub fn be_less_than<E>(expected: E) -> PartialOrder<E> {
+    PartialOrder::new(expected, Order::LessThan)
 }
 
-/// Returns new `BeLessOrEqualTo` matcher.
-pub fn be_less_or_equal_to<E>(expected: E) -> BeLessOrEqualTo<E> {
-    BeLessOrEqualTo {
-        expected: expected,
-    }
+/// Returns new `PartialOrder` (less or equal to) matcher.
+pub fn be_less_or_equal_to<E>(expected: E) -> PartialOrder<E> {
+    PartialOrder::new(expected, Order::LessOrEqualTo)
 }
 
-impl<A, E> Matcher<A, E> for BeLessOrEqualTo<E>
-    where
-        A: PartialOrd<E> + fmt::Debug,
-        E: fmt::Debug {
-
-    fn failure_message(&self, join: Join, actual: &A) -> String {
-        format!("expected {} be less or equal to <{:?}>, got <{:?}>",
-            join, self.expected, actual)
-    }
-
-    fn matches(&self, actual: &A) -> bool {
-        *actual <= self.expected
-    }
+//// Returns new `PartialOrder` (greater than) matcher.
+pub fn be_greater_than<E>(expected: E) -> PartialOrder<E> {
+    PartialOrder::new(expected, Order::GreaterThan)
 }
 
-
-/// A matcher for `be_greater_than` assertions for types that conforms to
-/// `PartialOrd` trait.
-pub struct BeGreaterThan<E> {
-    expected: E,
+/// Returns new `PartialOrder` (greater or equal to) matcher.
+pub fn be_greater_or_equal_to<E>(expected: E) -> PartialOrder<E> {
+    PartialOrder::new(expected, Order::GreaterOrEqualTo)
 }
 
-/// Returns new `BeGreaterThan` matcher.
-pub fn be_greater_than<E>(expected: E) -> BeGreaterThan<E> {
-    BeGreaterThan {
-        expected: expected,
-    }
+enum Order {
+    LessThan,
+    LessOrEqualTo,
+    GreaterThan,
+    GreaterOrEqualTo,
 }
 
-impl<A, E> Matcher<A, E> for BeGreaterThan<E>
-    where
-        A: PartialOrd<E> + fmt::Debug,
-        E: fmt::Debug {
-
-    fn failure_message(&self, join: Join, actual: &A) -> String {
-        format!("expected {} be greater than <{:?}>, got <{:?}>",
-            join, self.expected, actual)
-    }
-
-    fn matches(&self, actual: &A) -> bool {
-        *actual > self.expected
-    }
-}
-
-
-/// A matcher for `be_greater_or_equal_to` assertions for types that conforms to
-/// `PartialOrd` trait.
-pub struct BeGreaterOrEqualTo<E> {
-    expected: E,
-}
-
-/// Returns new `BeGreaterOrEqualTo` matcher.
-pub fn be_greater_or_equal_to<E>(expected: E) -> BeGreaterOrEqualTo<E> {
-    BeGreaterOrEqualTo {
-        expected: expected,
-    }
-}
-
-impl<A, E> Matcher<A, E> for BeGreaterOrEqualTo<E>
-    where
-        A: PartialOrd<E> + fmt::Debug,
-        E: fmt::Debug {
-
-    fn failure_message(&self, join: Join, actual: &A) -> String {
-        format!("expected {} be greater or equal to <{:?}>, got <{:?}>",
-            join, self.expected, actual)
-    }
-
-    fn matches(&self, actual: &A) -> bool {
-        *actual >= self.expected
+impl fmt::Display for Order {
+    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+        let text = match self {
+            &Order::LessThan => "less than",
+            &Order::LessOrEqualTo => "less or equal to",
+            &Order::GreaterThan => "greater than",
+            &Order::GreaterOrEqualTo => "greater or equal to",
+        };
+        fmt.write_str(text)
     }
 }
 

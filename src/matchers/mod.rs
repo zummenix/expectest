@@ -3,10 +3,9 @@
 
 pub use self::partial_eq::{ be_equal_to, BeEqualTo };
 pub use self::partial_ord::{
-    be_less_than, BeLessThan,
-    be_less_or_equal_to, BeLessOrEqualTo,
-    be_greater_than, BeGreaterThan,
-    be_greater_or_equal_to, BeGreaterOrEqualTo,
+    PartialOrder,
+    be_less_than, be_less_or_equal_to,
+    be_greater_than, be_greater_or_equal_to,
 };
 pub use self::bool::{ be_true, BeTrue, be_false, BeFalse };
 pub use self::option::{ be_some, BeSome, be_none, BeNone };

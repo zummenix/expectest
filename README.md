@@ -5,7 +5,7 @@
 
 *Work In Progress*
 
-Library provides functions for unit testing with human-readable syntax. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
+Library provides matchers and matcher functions for unit testing. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
 
 Using this library you will receive nice messages with data that used in test case, example:
 ```rust

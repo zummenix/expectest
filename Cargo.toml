@@ -3,7 +3,7 @@ name = "expectest"
 version = "0.1.8"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
-description = "Library provides functions for unit testing with human-readable syntax. (WIP)"
+description = "Library provides matchers and matcher functions for unit testing. (WIP)"
 repository = "https://github.com/zummenix/expectest"
 readme = "./README.md"
 keywords = ["unit", "test", "matcher", "expect"]

@@ -66,13 +66,13 @@ enum Order {
 
 impl fmt::Display for Order {
     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
-        let text = match self {
+        let order = match self {
             &Order::LessThan => "less than",
             &Order::LessOrEqualTo => "less or equal to",
             &Order::GreaterThan => "greater than",
             &Order::GreaterOrEqualTo => "greater or equal to",
         };
-        fmt.write_str(text)
+        fmt.write_str(order)
     }
 }
 

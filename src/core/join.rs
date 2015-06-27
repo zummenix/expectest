@@ -14,7 +14,12 @@ pub enum Join {
 
 impl fmt::Display for Join {
     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
-        fmt.write_str(self.text())
+        let join = match *self {
+            Join::To => "to",
+            Join::ToNot => "to not",
+            Join::NotTo => "not to",
+        };
+        fmt.write_str(join)
     }
 }
 
@@ -22,14 +27,6 @@ impl Join {
     /// Checks if `Join` is assertion.
     pub fn is_assertion(&self) -> bool {
         *self == Join::To
-    }
-
-    fn text(&self) -> &'static str {
-        match *self {
-            Join::To => "to",
-            Join::ToNot => "to not",
-            Join::NotTo => "not to",
-        }
     }
 }
 

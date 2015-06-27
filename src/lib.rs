@@ -1,5 +1,5 @@
 
-//! A crate provides matchers for unit testing.
+//! Crate provides matchers and matcher functions for unit testing.
 
 extern crate num;
 

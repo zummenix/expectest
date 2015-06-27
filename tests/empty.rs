@@ -14,7 +14,6 @@ fn emptiness_of_str() {
 }
 
 #[test]
-#[ignore]
 #[should_panic]
 fn emptiness_of_string_should_panic() {
     expect!("s".to_string()).to(be_empty());
@@ -39,7 +38,6 @@ fn emptiness_of_array() {
 }
 
 #[test]
-#[ignore]
 #[should_panic]
 fn emptiness_of_vec_should_panic() {
     let v = vec![1, 2];

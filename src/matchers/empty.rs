@@ -11,7 +11,7 @@ pub fn be_empty() -> BeEmpty {
     BeEmpty
 }
 
-impl<A> Matcher<A, bool> for BeEmpty where A: IsEmpty + fmt::Debug {
+impl<A> Matcher<A, ()> for BeEmpty where A: IsEmpty + fmt::Debug {
     fn failure_message(&self, join: Join, actual: &A) -> String {
         if join.is_assertion() {
             format!("expected {} be empty, got <{:?}>", join, actual)

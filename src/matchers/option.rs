@@ -49,7 +49,7 @@ pub fn be_none() -> BeNone {
     BeNone
 }
 
-impl<A> Matcher<Option<A>, bool> for BeNone
+impl<A> Matcher<Option<A>, ()> for BeNone
     where
         A: fmt::Debug {
 

@@ -9,7 +9,7 @@ pub fn be_true() -> BeTrue {
     BeTrue
 }
 
-impl Matcher<bool, bool> for BeTrue {
+impl Matcher<bool, ()> for BeTrue {
     fn failure_message(&self, join: Join, _: &bool) -> String {
         format!("expected {} be true", join)
     }
@@ -27,7 +27,7 @@ pub fn be_false() -> BeFalse {
     BeFalse
 }
 
-impl Matcher<bool, bool> for BeFalse {
+impl Matcher<bool, ()> for BeFalse {
     fn failure_message(&self, join: Join, _: &bool) -> String {
         format!("expected {} be false", join)
     }

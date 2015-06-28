@@ -36,6 +36,11 @@ You can export all needed functions and types from `prelude` module:
 use expectest::prelude::*;
 ```
 
+### Examples
+
+Check out the [tests](/tests) directory!
+
+
 #### Expectations
 Use basic syntax to express expectations:
 ```rust

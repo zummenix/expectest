@@ -5,7 +5,7 @@
 
 Crate provides matchers and matcher functions for unit testing. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
 
-Using this library you will receive nice messages with data that used in test case, example:
+Using this library you will receive helpful messages with data that is used in test case, example:
 ```rust
 let result = vec![1, 2, 2];
 expect!(result).to(be_equal_to([1, 2, 3]));
@@ -49,7 +49,7 @@ expect!(...).to_not(...);
 expect!(...).not_to(...);
 ```
 > Note: You can use `expect` function instead of `expect!` macro in that case you will not
-see file and line where the test fails.
+see file and line where the test will fail.
 
 #### Equality
 For types that implement the `PartialEq` trait:
@@ -72,21 +72,21 @@ For types that implement the `PartialOrd` trait:
 ```rust
 expect!(1).to(be_greater_than(0));
 ```
-Use following matchers: `be_less_than`, `be_less_or_equal_to`, `be_greater_than`, `be_greater_or_equal_to`
+Use any of the following matchers: `be_less_than`, `be_less_or_equal_to`, `be_greater_than`, `be_greater_or_equal_to`
 
 #### Option
 There are matchers for the `Option<T>` type:
 ```rust
 expect!(Some(9)).to(be_some().value(9));
 ```
-Use following matchers: `be_some`, `be_none`
+Use any of the following matchers: `be_some`, `be_none`
 
 #### Result
 There are matchers for the `Result<T, E>` type:
 ```rust
 expect!("4".parse::<u32>()).to(be_ok().value(4));
 ```
-Use following matchers: `be_ok`, `be_err`
+Use any of the following matchers: `be_ok`, `be_err`
 
 #### Emptyness
 There is `be_empty` matcher for types that implement `IsEmpty` trait:
@@ -100,7 +100,7 @@ expect!("").to(be_empty());
 ```rust
 expect!(9 == 9).to(be_true());
 ```
-Use following matchers: `be_true`, `be_false`
+Use any of the following matchers: `be_true`, `be_false`
 
 ### Alternative crates
 - [rustspec-assertions](https://github.com/uorbe001/rustspec-assertions)

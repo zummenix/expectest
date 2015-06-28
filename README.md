@@ -41,7 +41,7 @@ use expectest::prelude::*;
 Check out the [tests](/tests) directory!
 
 
-#### Expectations
+### Expectations
 Use basic syntax to express expectations:
 ```rust
 expect!(...).to(...);

@@ -21,7 +21,7 @@ expected to be equal to <[1, 2, 3]>, got <[1, 2, 2]>
 In Cargo.toml:
 ```toml
 [dev-dependencies]
-expectest = "*"
+expectest = "~0.2.1"
 ```
 
 In your crate:

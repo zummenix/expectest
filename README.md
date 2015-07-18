@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/zummenix/expectest.svg?branch=master)]
 (https://travis-ci.org/zummenix/expectest)
 [![Crates.io](http://meritbadge.herokuapp.com/expectest)](https://crates.io/crates/expectest)
+[![Crates.io](https://img.shields.io/crates/d/expectest.svg)](https://crates.io/crates/expectest)
 
 Crate provides matchers and matcher functions for unit testing. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
 

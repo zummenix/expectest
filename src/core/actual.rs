@@ -1,4 +1,5 @@
 
+use std::io;
 use core::{ SourceLocation, Matcher, Join };
 
 /// A function that intended to replace an `expect!` macro if desired.
@@ -57,10 +58,12 @@ impl<A> ActualValue<A> {
 
 /// Prints a failure message and panics.
 pub fn failure(message: String, location: Option<SourceLocation>) {
+    let mut text = "\n".to_owned();
     if let Some(l) = location {
-        println!("\n{}\n{}\n", l, message);
-    } else {
-        println!("\n{}\n", message);
+        text.push_str(&format!("{}\n", l));
     }
+    text.push_str(&message);
+    text.push_str("\n\n");
+    io::copy(&mut text.as_bytes(), &mut io::stdout()).unwrap();
     panic!("test failure");
 }

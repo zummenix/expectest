@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::{ Matcher, Join };
+use core::{Matcher, Join};
 
 /// A matcher for `be_ok` assertions for `Result<T, E>` type.
 pub struct BeOk<E> {
@@ -9,9 +9,7 @@ pub struct BeOk<E> {
 
 /// Returns new `BeOk` matcher.
 pub fn be_ok<E>() -> BeOk<E> {
-    BeOk {
-        expected: None,
-    }
+    BeOk { expected: None }
 }
 
 impl<E> BeOk<E> {
@@ -44,9 +42,7 @@ pub struct BeErr<E> {
 
 /// Returns new `BeErr` matcher.
 pub fn be_err<E>() -> BeErr<E> {
-    BeErr {
-        expected: None,
-    }
+    BeErr { expected: None }
 }
 
 impl<E> BeErr<E> {
@@ -74,8 +70,8 @@ impl<A, E, T> Matcher<Result<T, A>, E> for BeErr<E>
 
 #[cfg(test)]
 mod tests {
-    use super::{ be_ok, be_err };
-    use core::{ Matcher };
+    use super::{be_ok, be_err};
+    use core::Matcher;
 
     fn ok_result(value: u32) -> Result<u32, &'static str> {
         Ok(value)

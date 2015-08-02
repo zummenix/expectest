@@ -1,7 +1,7 @@
 
-use core::{ Matcher, Join };
+use core::{Matcher, Join};
 use std::fmt;
-use num::{ self, Float };
+use num::{self, Float};
 
 /// A matcher for `be_close_to` assertions for float numbers.
 pub struct BeCloseTo<E> {
@@ -10,11 +10,10 @@ pub struct BeCloseTo<E> {
 }
 
 /// Returns new `BeCloseTo` matcher with default `delta` equal to `0.001`.
-pub fn be_close_to<E>(expected: E) -> BeCloseTo<E> where E: Float {
-    BeCloseTo {
-        expected: expected,
-        delta: num::traits::cast(0.001).unwrap(),
-    }
+pub fn be_close_to<E>(expected: E) -> BeCloseTo<E>
+    where E: Float
+{
+    BeCloseTo { expected: expected, delta: num::traits::cast(0.001).unwrap() }
 }
 
 impl<E> BeCloseTo<E> {
@@ -46,7 +45,7 @@ impl<E> Matcher<E, E> for BeCloseTo<E>
 #[cfg(test)]
 mod tests {
     use super::be_close_to;
-    use core::{ Matcher, Join };
+    use core::{Matcher, Join};
     use num::Float;
 
     #[test]

@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::{ Matcher, Join };
+use core::{Matcher, Join};
 use traits::IsEmpty;
 
 /// A matcher for `be_empty` assertions.
@@ -28,7 +28,7 @@ impl<A> Matcher<A, ()> for BeEmpty where A: IsEmpty + fmt::Debug {
 #[cfg(test)]
 mod tests {
     use super::be_empty;
-    use core::{ Matcher, Join };
+    use core::{Matcher, Join};
 
     #[test]
     fn be_empty_string() {

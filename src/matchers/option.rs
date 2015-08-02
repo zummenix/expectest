@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::{ Matcher, Join };
+use core::{Matcher, Join};
 
 /// A matcher for `be_some` assertions for `Option<T>` types.
 pub struct BeSome<E> {
@@ -9,9 +9,7 @@ pub struct BeSome<E> {
 
 /// Returns new `BeSome` matcher.
 pub fn be_some<E>() -> BeSome<E> {
-    BeSome {
-        expected: None,
-    }
+    BeSome { expected: None }
 }
 
 impl<E> BeSome<E> {
@@ -64,8 +62,8 @@ impl<A> Matcher<Option<A>, ()> for BeNone
 
 #[cfg(test)]
 mod tests {
-    use super::{ be_some, be_none };
-    use core::{ Matcher, Join };
+    use super::{be_some, be_none};
+    use core::{Matcher, Join};
 
     #[test]
     fn be_some_value_matches_some_value() {

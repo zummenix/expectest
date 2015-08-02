@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::{ Matcher, Join };
+use core::{Matcher, Join};
 
 /// A matcher for types that conforms to `PartialOrd` trait.
 pub struct PartialOrder<E> {
@@ -10,10 +10,7 @@ pub struct PartialOrder<E> {
 
 impl<E> PartialOrder<E> {
     fn new(expected: E, order: Order) -> PartialOrder<E> {
-        PartialOrder {
-            expected: expected,
-            order: order,
-        }
+        PartialOrder { expected: expected, order: order }
     }
 }
 
@@ -78,11 +75,8 @@ impl fmt::Display for Order {
 
 #[cfg(test)]
 mod tests {
-    use super::{
-        be_less_than, be_less_or_equal_to,
-        be_greater_than, be_greater_or_equal_to,
-    };
-    use core::{ Matcher, Join };
+    use super::{be_less_than, be_less_or_equal_to, be_greater_than, be_greater_or_equal_to};
+    use core::{Matcher, Join};
 
     #[test]
     fn be_less_than_one_matches() {

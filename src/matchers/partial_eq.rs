@@ -1,6 +1,6 @@
 
 use std::fmt;
-use core::{ Matcher, Join };
+use core::{Matcher, Join};
 
 /// A matcher for `be_equal_to` assertions for types that conforms to
 /// `PartialEq` trait.
@@ -10,9 +10,7 @@ pub struct BeEqualTo<E> {
 
 /// Returns new `BeEqualTo` matcher.
 pub fn be_equal_to<E>(expected: E) -> BeEqualTo<E> {
-    BeEqualTo {
-        expected: expected,
-    }
+    BeEqualTo { expected: expected }
 }
 
 impl<A, E> Matcher<A, E> for BeEqualTo<E>
@@ -33,7 +31,7 @@ impl<A, E> Matcher<A, E> for BeEqualTo<E>
 #[cfg(test)]
 mod tests {
     use super::be_equal_to;
-    use core::{ Matcher, Join };
+    use core::{Matcher, Join};
 
     #[test]
     fn be_equal_to_one_matches_one() {

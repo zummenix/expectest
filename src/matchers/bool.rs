@@ -1,5 +1,5 @@
 
-use core::{ Matcher, Join };
+use core::{Matcher, Join};
 
 /// A matcher for `be_true` assertions.
 pub struct BeTrue;
@@ -39,8 +39,8 @@ impl Matcher<bool, ()> for BeFalse {
 
 #[cfg(test)]
 mod tests {
-    use super::{ be_true, be_false };
-    use core::{ Matcher, Join };
+    use super::{be_true, be_false};
+    use core::{Matcher, Join};
 
     #[test]
     fn test_be_true() {

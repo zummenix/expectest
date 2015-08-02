@@ -16,17 +16,10 @@ macro_rules! expect {
 pub mod prelude {
     //! A module contains reexport of all useful types and functions.
 
-    pub use core::{ expect, ActualValue, Matcher };
-    pub use matchers::{
-        be_equal_to,
-        be_less_than, be_less_or_equal_to,
-        be_greater_than, be_greater_or_equal_to,
-        be_true, be_false,
-        be_some, BeSome, be_none,
-        be_ok, BeOk, be_err, BeErr,
-        be_close_to, BeCloseTo,
-        be_empty,
-    };
+    pub use core::{expect, ActualValue, Matcher};
+    pub use matchers::{be_equal_to, be_less_than, be_less_or_equal_to, be_greater_than,
+                       be_greater_or_equal_to, be_true, be_false, be_some, BeSome, be_none, be_ok,
+                       BeOk, be_err, BeErr, be_close_to, BeCloseTo, be_empty};
 }
 
 pub mod core;

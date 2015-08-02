@@ -4,8 +4,8 @@
 /// Checks equality of inner values of `some` and `value`. If `value` is
 /// `Option::None` checks that `some` is `Option::Some`.
 pub fn is_some_value<T, U>(some: Option<&T>, value: Option<&U>) -> bool
-    where
-        T: PartialEq<U> {
+    where T: PartialEq<U>
+{
 
     match (some, value) {
         (Some(s), Some(v)) => s == v,

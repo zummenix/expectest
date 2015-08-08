@@ -36,17 +36,17 @@ mod tests {
 
     #[test]
     fn join_display_to() {
-        assert!(format!("{}", Join::To) == "to");
+        assert!(Join::To.to_string() == "to");
     }
 
     #[test]
     fn join_display_to_not() {
-        assert!(format!("{}", Join::ToNot) == "to not");
+        assert!(Join::ToNot.to_string() == "to not");
     }
 
     #[test]
     fn join_display_not_to() {
-        assert!(format!("{}", Join::NotTo) == "not to");
+        assert!(Join::NotTo.to_string() == "not to");
     }
 
     #[test]

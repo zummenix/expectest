@@ -30,6 +30,6 @@ mod tests {
     #[test]
     fn location_string() {
         let location = SourceLocation::new("path/to/file.rs", 9);
-        assert!(format!("{}", location) == "path/to/file.rs:9");
+        assert!(location.to_string() == "path/to/file.rs:9");
     }
 }

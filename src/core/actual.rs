@@ -63,7 +63,8 @@ impl<A> ActualValue<A> {
 pub fn failure(message: String, location: Option<SourceLocation>) {
     let mut text = "\n".to_owned();
     if let Some(l) = location {
-        text.push_str(&format!("{}\n", l));
+        text.push_str(&l.to_string());
+        text.push_str("\n");
     }
     text.push_str(&message);
     text.push_str("\n\n");

@@ -9,6 +9,7 @@ pub use self::option::{be_some, BeSome, be_none, BeNone};
 pub use self::result::{be_ok, BeOk, be_err, BeErr};
 pub use self::floats::{be_close_to, BeCloseTo};
 pub use self::empty::{be_empty, BeEmpty};
+pub use self::count::{have_count, HaveCount};
 
 mod partial_eq;
 mod partial_ord;
@@ -17,3 +18,4 @@ mod option;
 mod result;
 mod floats;
 mod empty;
+mod count;

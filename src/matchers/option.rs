@@ -34,8 +34,8 @@ impl<A, E> Matcher<Option<A>, Option<E>> for BeSome<E>
         }
     }
 
-    fn matches(&self, actual: Option<A>) -> bool {
-        ::utils::is_some_value(actual.as_ref(), self.expected.as_ref())
+    fn matches(&self, actual: Option<A>) -> (bool, Option<A>) {
+        (::utils::is_some_value(actual.as_ref(), self.expected.as_ref()), actual)
     }
 }
 
@@ -55,8 +55,8 @@ impl<A> Matcher<Option<A>, ()> for BeNone
         format!("expected {} be None, got <{:?}>", join, actual)
     }
 
-    fn matches(&self, actual: Option<A>) -> bool {
-        actual.is_none()
+    fn matches(&self, actual: Option<A>) -> (bool, Option<A>) {
+        (actual.is_none(), actual)
     }
 }
 
@@ -64,16 +64,6 @@ impl<A> Matcher<Option<A>, ()> for BeNone
 mod tests {
     use super::{be_some, be_none};
     use core::{Matcher, Join};
-
-    #[test]
-    fn be_some_value_matches_some_value() {
-        assert!(be_some().value(5).matches(Some(5)));
-    }
-
-    #[test]
-    fn be_some_matches_some_value() {
-        assert!(be_some().matches(Some(5)));
-    }
 
     #[test]
     fn be_some_failure_message() {
@@ -88,37 +78,8 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
-    fn be_some_value_matches_some_value_should_panic() {
-        assert!(be_some().value(5).matches(Some(4)));
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_some_value_matches_none_should_panic() {
-        assert!(be_some().value(5).matches(None::<u8>));
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_some_matches_none_should_panic() {
-        assert!(be_some().matches(None::<u8>));
-    }
-
-    #[test]
-    fn be_none_matches_none() {
-        assert!(be_none().matches(None::<u8>));
-    }
-
-    #[test]
     fn be_none_failure_message() {
         let m = be_none().failure_message(Join::To, Some(2));
         assert!(m == "expected to be None, got <Some(2)>");
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_none_matches_some_should_panic() {
-        assert!(be_none().matches(Some(6)));
     }
 }

@@ -23,8 +23,8 @@ impl<A, E> Matcher<A, E> for BeEqualTo<E>
             join, self.expected, actual)
     }
 
-    fn matches(&self, actual: A) -> bool {
-        actual == self.expected
+    fn matches(&self, actual: A) -> (bool, A) {
+        (actual == self.expected, actual)
     }
 }
 
@@ -34,19 +34,8 @@ mod tests {
     use core::{Matcher, Join};
 
     #[test]
-    fn be_equal_to_one_matches_one() {
-        assert!(be_equal_to(1).matches(1));
-    }
-
-    #[test]
     fn be_equal_to_failure_message() {
         let m = be_equal_to(1).failure_message(Join::To, 2);
         assert!(m == "expected to be equal to <1>, got <2>");
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_equal_to_one_matches_four_should_panic() {
-        assert!(be_equal_to(1).matches(4));
     }
 }

@@ -3,20 +3,20 @@ use std::io;
 use core::{SourceLocation, Matcher, Join};
 
 /// A function that intended to replace an `expect!` macro if desired.
-pub fn expect<A>(value: A) -> ActualValue<A> where A: Clone {
+pub fn expect<A>(value: A) -> ActualValue<A> {
     ActualValue::new(value)
 }
 
 /// Wrapps an actual value and a location in a source code.
 pub struct ActualValue<A> {
-    value: A,
+    actual: A,
     location: Option<SourceLocation>,
 }
 
-impl<A> ActualValue<A> where A: Clone {
+impl<A> ActualValue<A> {
     /// Creates new `ActualValue`.
     fn new(value: A) -> ActualValue<A> {
-        ActualValue { value: value, location: None }
+        ActualValue { actual: value, location: None }
     }
 
     /// Sets new `SourceLocation`.
@@ -30,8 +30,8 @@ impl<A> ActualValue<A> where A: Clone {
     pub fn to<M, E>(self, matcher: M)
         where M: Matcher<A, E>
     {
-        if !matcher.matches(self.value.clone()) {
-            let m = matcher.failure_message(Join::To, self.value.clone());
+        if let (false, actual) = matcher.matches(self.actual) {
+            let m = matcher.failure_message(Join::To, actual);
             failure(m, self.location);
         }
     }
@@ -41,8 +41,8 @@ impl<A> ActualValue<A> where A: Clone {
     pub fn to_not<M, E>(self, matcher: M)
         where M: Matcher<A, E>
     {
-        if matcher.matches(self.value.clone()) {
-            let m = matcher.failure_message(Join::ToNot, self.value.clone());
+        if let (true, actual) = matcher.matches(self.actual) {
+            let m = matcher.failure_message(Join::ToNot, actual);
             failure(m, self.location);
         }
     }
@@ -52,8 +52,8 @@ impl<A> ActualValue<A> where A: Clone {
     pub fn not_to<M, E>(self, matcher: M)
         where M: Matcher<A, E>
     {
-        if matcher.matches(self.value.clone()) {
-            let m = matcher.failure_message(Join::NotTo, self.value.clone());
+        if let (true, actual) = matcher.matches(self.actual) {
+            let m = matcher.failure_message(Join::ToNot, actual);
             failure(m, self.location);
         }
     }

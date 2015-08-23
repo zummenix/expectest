@@ -15,5 +15,5 @@ pub trait Matcher<A, E> {
     fn failure_message(&self, join: Join, actual: A) -> String;
 
     /// Checks if an actual value matches an expected value.
-    fn matches(&self, actual: A) -> bool;
+    fn matches(&self, actual: A) -> (bool, A);
 }

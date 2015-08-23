@@ -24,13 +24,14 @@ impl<A, E> Matcher<A, E> for PartialOrder<E>
             join, self.order, self.expected, actual)
     }
 
-    fn matches(&self, actual: A) -> bool {
-        match self.order {
+    fn matches(&self, actual: A) -> (bool, A) {
+        let result = match self.order {
             Order::LessThan => actual < self.expected,
             Order::LessOrEqualTo => actual <= self.expected,
             Order::GreaterThan => actual > self.expected,
             Order::GreaterOrEqualTo => actual >= self.expected,
-        }
+        };
+        (result, actual)
     }
 }
 
@@ -79,36 +80,9 @@ mod tests {
     use core::{Matcher, Join};
 
     #[test]
-    fn be_less_than_one_matches() {
-        assert!(be_less_than(1).matches(0));
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_less_than_one_should_panic() {
-        assert!(be_less_than(1).matches(1));
-    }
-
-    #[test]
     fn be_less_than_one_failure_message() {
         let m = be_less_than(1).failure_message(Join::To, 1);
         assert!(m == "expected to be less than <1>, got <1>");
-    }
-
-    #[test]
-    fn be_less_or_equal_to_one_matches() {
-        assert!(be_less_or_equal_to(1).matches(1));
-    }
-
-    #[test]
-    fn be_less_or_equal_to_one_matches_zero() {
-        assert!(be_less_or_equal_to(1).matches(0));
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_less_or_equal_to_one_should_panic() {
-        assert!(be_less_or_equal_to(1).matches(2));
     }
 
     #[test]
@@ -118,36 +92,9 @@ mod tests {
     }
 
     #[test]
-    fn be_greater_than_zero_matches() {
-        assert!(be_greater_than(0).matches(1));
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_greater_than_zero_should_panic() {
-        assert!(be_greater_than(0).matches(0));
-    }
-
-    #[test]
     fn be_greater_than_zero_failure_message() {
         let m = be_greater_than(0).failure_message(Join::To, 0);
         assert!(m == "expected to be greater than <0>, got <0>");
-    }
-
-    #[test]
-    fn be_greater_or_equal_to_zero_matches() {
-        assert!(be_greater_or_equal_to(0).matches(0));
-    }
-
-    #[test]
-    fn be_greater_or_equal_to_zero_matches_one() {
-        assert!(be_greater_or_equal_to(0).matches(1));
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_greater_or_equal_to_zero_should_panic() {
-        assert!(be_greater_or_equal_to(0).matches(-1));
     }
 
     #[test]

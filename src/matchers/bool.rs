@@ -14,8 +14,8 @@ impl Matcher<bool, ()> for BeTrue {
         format!("expected {} be true", join)
     }
 
-    fn matches(&self, actual: bool) -> bool {
-        actual == true
+    fn matches(&self, actual: bool) -> (bool, bool) {
+        (actual == true, actual)
     }
 }
 
@@ -32,8 +32,8 @@ impl Matcher<bool, ()> for BeFalse {
         format!("expected {} be false", join)
     }
 
-    fn matches(&self, actual: bool) -> bool {
-        actual == false
+    fn matches(&self, actual: bool) -> (bool, bool) {
+        (actual == false, actual)
     }
 }
 
@@ -43,36 +43,14 @@ mod tests {
     use core::{Matcher, Join};
 
     #[test]
-    fn test_be_true() {
-        assert!(be_true().matches(true));
-    }
-
-    #[test]
     fn test_be_true_message() {
         let m = be_true().failure_message(Join::To, false);
         assert!(m == "expected to be true");
     }
 
     #[test]
-    #[should_panic]
-    fn test_be_true_should_panic() {
-        assert!(be_true().matches(false));
-    }
-
-    #[test]
-    fn test_be_false() {
-        assert!(be_false().matches(false));
-    }
-
-    #[test]
     fn test_be_false_message() {
         let m = be_false().failure_message(Join::To, true);
         assert!(m == "expected to be false");
-    }
-
-    #[test]
-    #[should_panic]
-    fn test_be_false_should_panic() {
-        assert!(be_false().matches(true));
     }
 }

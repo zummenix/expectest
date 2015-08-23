@@ -4,13 +4,23 @@ extern crate expectest;
 use expectest::prelude::*;
 
 #[test]
-fn equality_of_vecs() {
+fn vec_to_be_equal_to() {
     expect!(vec![1, 2, 3]).to(be_equal_to([1, 2, 3]));
 }
 
 #[test]
-fn equality_of_strings() {
+fn vec_to_not_be_equal_to() {
+    expect!(vec![1, 2, 3]).to_not(be_equal_to([1, 2, 2]));
+}
+
+#[test]
+fn string_to_be_equal_to() {
     expect!("hello".to_string()).to(be_equal_to("hello"));
+}
+
+#[test]
+fn string_to_not_be_equal_to() {
+    expect!("hello".to_string()).to_not(be_equal_to("hell0"));
 }
 
 #[test]

@@ -10,12 +10,12 @@ pub fn be_true() -> BeTrue {
 }
 
 impl Matcher<bool, ()> for BeTrue {
-    fn failure_message(&self, join: Join, _: &bool) -> String {
+    fn failure_message(&self, join: Join, _: bool) -> String {
         format!("expected {} be true", join)
     }
 
-    fn matches(&self, actual: &bool) -> bool {
-        *actual == true
+    fn matches(&self, actual: bool) -> bool {
+        actual == true
     }
 }
 
@@ -28,12 +28,12 @@ pub fn be_false() -> BeFalse {
 }
 
 impl Matcher<bool, ()> for BeFalse {
-    fn failure_message(&self, join: Join, _: &bool) -> String {
+    fn failure_message(&self, join: Join, _: bool) -> String {
         format!("expected {} be false", join)
     }
 
-    fn matches(&self, actual: &bool) -> bool {
-        *actual == false
+    fn matches(&self, actual: bool) -> bool {
+        actual == false
     }
 }
 
@@ -44,35 +44,35 @@ mod tests {
 
     #[test]
     fn test_be_true() {
-        assert!(be_true().matches(&true));
+        assert!(be_true().matches(true));
     }
 
     #[test]
     fn test_be_true_message() {
-        let m = be_true().failure_message(Join::To, &false);
+        let m = be_true().failure_message(Join::To, false);
         assert!(m == "expected to be true");
     }
 
     #[test]
     #[should_panic]
     fn test_be_true_should_panic() {
-        assert!(be_true().matches(&false));
+        assert!(be_true().matches(false));
     }
 
     #[test]
     fn test_be_false() {
-        assert!(be_false().matches(&false));
+        assert!(be_false().matches(false));
     }
 
     #[test]
     fn test_be_false_message() {
-        let m = be_false().failure_message(Join::To, &true);
+        let m = be_false().failure_message(Join::To, true);
         assert!(m == "expected to be false");
     }
 
     #[test]
     #[should_panic]
     fn test_be_false_should_panic() {
-        assert!(be_false().matches(&true));
+        assert!(be_false().matches(true));
     }
 }

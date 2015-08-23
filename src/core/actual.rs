@@ -3,7 +3,7 @@ use std::io;
 use core::{SourceLocation, Matcher, Join};
 
 /// A function that intended to replace an `expect!` macro if desired.
-pub fn expect<A>(value: A) -> ActualValue<A> {
+pub fn expect<A>(value: A) -> ActualValue<A> where A: Clone {
     ActualValue::new(value)
 }
 
@@ -13,7 +13,7 @@ pub struct ActualValue<A> {
     location: Option<SourceLocation>,
 }
 
-impl<A> ActualValue<A> {
+impl<A> ActualValue<A> where A: Clone {
     /// Creates new `ActualValue`.
     fn new(value: A) -> ActualValue<A> {
         ActualValue { value: value, location: None }
@@ -30,8 +30,8 @@ impl<A> ActualValue<A> {
     pub fn to<M, E>(self, matcher: M)
         where M: Matcher<A, E>
     {
-        if !matcher.matches(&self.value) {
-            let m = matcher.failure_message(Join::To, &self.value);
+        if !matcher.matches(self.value.clone()) {
+            let m = matcher.failure_message(Join::To, self.value.clone());
             failure(m, self.location);
         }
     }
@@ -41,8 +41,8 @@ impl<A> ActualValue<A> {
     pub fn to_not<M, E>(self, matcher: M)
         where M: Matcher<A, E>
     {
-        if matcher.matches(&self.value) {
-            let m = matcher.failure_message(Join::ToNot, &self.value);
+        if matcher.matches(self.value.clone()) {
+            let m = matcher.failure_message(Join::ToNot, self.value.clone());
             failure(m, self.location);
         }
     }
@@ -52,8 +52,8 @@ impl<A> ActualValue<A> {
     pub fn not_to<M, E>(self, matcher: M)
         where M: Matcher<A, E>
     {
-        if matcher.matches(&self.value) {
-            let m = matcher.failure_message(Join::NotTo, &self.value);
+        if matcher.matches(self.value.clone()) {
+            let m = matcher.failure_message(Join::NotTo, self.value.clone());
             failure(m, self.location);
         }
     }

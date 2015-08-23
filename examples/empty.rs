@@ -13,7 +13,7 @@ fn main() {
     expect(a).to(be_empty());
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct Empty;
 
 impl IsEmpty for Empty {

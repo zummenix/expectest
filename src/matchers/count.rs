@@ -11,13 +11,17 @@ pub fn have_count(c: usize) -> HaveCount {
     HaveCount { count: c }
 }
 
-impl<A, T> Matcher<A, ()> for HaveCount where A: ExactSizeIterator<Item = T> {
+impl<A, T> Matcher<A, ()> for HaveCount where A: Iterator<Item = T> + Clone {
     fn failure_message(&self, join: Join, actual: &A) -> String {
-        format!("expected {} have count {}, got {}", join, self.count, actual.len())
+        if join.is_assertion() {
+            format!("expected {} have count <{}>, got <{}>", join, self.count, actual.clone().count())
+        } else {
+            format!("expected {} have count <{}>", join, self.count)
+        }
     }
 
     fn matches(&self, actual: &A) -> bool {
-        actual.len() == self.count
+        actual.clone().count() == self.count
     }
 }
 
@@ -27,7 +31,14 @@ mod tests {
     use core::{Matcher, Join};
 
     #[test]
-    fn test_have_count() {
-        assert!(have_count(3).matches(&vec![0, 0, 0].iter()));
+    fn test_to_have_count_2_message() {
+        let m = have_count(2).failure_message(Join::To, &"abc".chars());
+        assert!(m == "expected to have count <2>, got <3>");
+    }
+
+    #[test]
+    fn test_not_to_have_count_3_message() {
+        let m = have_count(3).failure_message(Join::NotTo, &"abc".chars());
+        assert!(m == "expected not to have count <3>");
     }
 }

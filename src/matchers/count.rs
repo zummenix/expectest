@@ -14,7 +14,8 @@ pub fn have_count(c: usize) -> HaveCount {
 impl<A, T> Matcher<A, ()> for HaveCount where A: Iterator<Item = T> + Clone {
     fn failure_message(&self, join: Join, actual: &A) -> String {
         if join.is_assertion() {
-            format!("expected {} have count <{}>, got <{}>", join, self.count, actual.clone().count())
+            format!("expected {} have count <{}>, got <{}>",
+                join, self.count, actual.clone().count())
         } else {
             format!("expected {} have count <{}>", join, self.count)
         }

@@ -6,7 +6,6 @@
 pub fn is_some_value<T, U>(some: Option<&T>, value: Option<&U>) -> bool
     where T: PartialEq<U>
 {
-
     match (some, value) {
         (Some(s), Some(v)) => s == v,
         (Some(_), None) => true,

@@ -12,8 +12,8 @@ mod join;
 /// A Matcher trait.
 pub trait Matcher<A, E> {
     /// Returns a failure message.
-    fn failure_message(&self, join: Join, actual: &A) -> String;
+    fn failure_message(&self, join: Join, actual: A) -> String;
 
     /// Checks if an actual value matches an expected value.
-    fn matches(&self, actual: &A) -> bool;
+    fn matches(&self, actual: A) -> (bool, A);
 }

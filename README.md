@@ -96,6 +96,12 @@ expect!("").to(be_empty());
 > Note: `IsEmpty` trait implemented by library for following types:
 `String`, `&str`, `Vec<T>`, `&[T]`.
 
+#### Count of elements in a collection
+There is `have_count` matcher for types that implement `Iterator + Clone` trait:
+```rust
+expect!("abc".chars()).to(have_count(3));
+```
+
 #### Boolean
 ```rust
 expect!(9 == 9).to(be_true());

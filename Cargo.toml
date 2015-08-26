@@ -1,6 +1,6 @@
 [package]
 name = "expectest"
-version = "0.2.3"
+version = "0.2.4"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
 description = "Crate provides matchers and matcher functions for unit testing."
@@ -11,5 +11,5 @@ keywords = ["unit", "test", "matcher", "expect"]
 license = "MIT"
 
 [dependencies.num]
-version = "~0.1.25"
+version = "~0.1.27"
 default-features = false

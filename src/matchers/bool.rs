@@ -43,25 +43,15 @@ mod tests {
     use core::{Matcher, Join};
 
     #[test]
-    fn test_be_true() {
-        assert!(be_true().matches(&true));
-    }
-
-    #[test]
     fn test_be_true_message() {
         let m = be_true().failure_message(Join::To, &false);
         assert!(m == "expected to be true");
     }
 
     #[test]
-    #[should_panic]
-    fn test_be_true_should_panic() {
-        assert!(be_true().matches(&false));
-    }
-
-    #[test]
-    fn test_be_false() {
-        assert!(be_false().matches(&false));
+    fn test_not_to_be_true_message() {
+        let m = be_true().failure_message(Join::NotTo, &true);
+        assert!(m == "expected not to be true");
     }
 
     #[test]
@@ -71,8 +61,8 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
-    fn test_be_false_should_panic() {
-        assert!(be_false().matches(&true));
+    fn test_not_to_be_false_message() {
+        let m = be_false().failure_message(Join::NotTo, &false);
+        assert!(m == "expected not to be false");
     }
 }

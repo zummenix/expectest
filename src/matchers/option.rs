@@ -66,59 +66,26 @@ mod tests {
     use core::{Matcher, Join};
 
     #[test]
-    fn be_some_value_matches_some_value() {
-        assert!(be_some().value(5).matches(&Some(5)));
-    }
-
-    #[test]
-    fn be_some_matches_some_value() {
-        assert!(be_some().matches(&Some(5)));
-    }
-
-    #[test]
     fn be_some_failure_message() {
         let m = be_some().failure_message(Join::To, &None::<u8>);
         assert!(m == "expected to be Some, got <None>");
     }
 
     #[test]
-    fn be_some_value_failure_message() {
+    fn be_some_value_failure_message_1() {
         let m = be_some().value(1).failure_message(Join::To, &None::<u8>);
         assert!(m == "expected to be equal to <Some(1)>, got <None>");
     }
 
     #[test]
-    #[should_panic]
-    fn be_some_value_matches_some_value_should_panic() {
-        assert!(be_some().value(5).matches(&Some(4)));
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_some_value_matches_none_should_panic() {
-        assert!(be_some().value(5).matches(&None::<u8>));
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_some_matches_none_should_panic() {
-        assert!(be_some().matches(&None::<u8>));
-    }
-
-    #[test]
-    fn be_none_matches_none() {
-        assert!(be_none().matches(&None::<u8>));
+    fn be_some_value_failure_message_2() {
+        let m = be_some().value(1).failure_message(Join::To, &Some(2));
+        assert!(m == "expected to be equal to <Some(1)>, got <Some(2)>");
     }
 
     #[test]
     fn be_none_failure_message() {
         let m = be_none().failure_message(Join::To, &Some(2));
         assert!(m == "expected to be None, got <Some(2)>");
-    }
-
-    #[test]
-    #[should_panic]
-    fn be_none_matches_some_should_panic() {
-        assert!(be_none().matches(&Some(6)));
     }
 }

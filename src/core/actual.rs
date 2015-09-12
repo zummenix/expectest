@@ -1,6 +1,5 @@
 
-use std::io;
-use core::{SourceLocation, Matcher, Join};
+use core::{SourceLocation, Matcher, Join, Failure};
 
 /// A function that intended to replace an `expect!` macro if desired.
 pub fn expect<A>(value: A) -> ActualValue<A> {
@@ -8,6 +7,7 @@ pub fn expect<A>(value: A) -> ActualValue<A> {
 }
 
 /// Wrapps an actual value and a location in a source code.
+#[derive(Debug)]
 pub struct ActualValue<A> {
     value: A,
     location: Option<SourceLocation>,
@@ -15,7 +15,7 @@ pub struct ActualValue<A> {
 
 impl<A> ActualValue<A> {
     /// Creates new `ActualValue`.
-    fn new(value: A) -> ActualValue<A> {
+    pub fn new(value: A) -> Self {
         ActualValue { value: value, location: None }
     }
 
@@ -27,47 +27,40 @@ impl<A> ActualValue<A> {
 
     /// Performs assertion with "to" word. Prints a failure message and panics
     /// if an actual value does not match with an expected value.
-    pub fn to<M, E>(self, matcher: M)
+    pub fn to<M, E>(self, matcher: M) -> Option<Failure>
         where M: Matcher<A, E>
     {
         if !matcher.matches(&self.value) {
             let m = matcher.failure_message(Join::To, &self.value);
-            failure(m, self.location);
+            Some(Failure::new(m, self.location))
+        } else {
+            None
         }
     }
 
     /// Performs negation with "to not" words. Prints a failure message and
     /// panics if an actual value matches with an expected value.
-    pub fn to_not<M, E>(self, matcher: M)
+    pub fn to_not<M, E>(self, matcher: M) -> Option<Failure>
         where M: Matcher<A, E>
     {
         if matcher.matches(&self.value) {
             let m = matcher.failure_message(Join::ToNot, &self.value);
-            failure(m, self.location);
+            Some(Failure::new(m, self.location))
+        } else {
+            None
         }
     }
 
     /// Performs negation with "not to" words. Prints a failure message and
     /// panics if an actual value matches with an expected value.
-    pub fn not_to<M, E>(self, matcher: M)
+    pub fn not_to<M, E>(self, matcher: M) -> Option<Failure>
         where M: Matcher<A, E>
     {
         if matcher.matches(&self.value) {
             let m = matcher.failure_message(Join::NotTo, &self.value);
-            failure(m, self.location);
+            Some(Failure::new(m, self.location))
+        } else {
+            None
         }
     }
-}
-
-/// Prints a failure message and panics.
-pub fn failure(message: String, location: Option<SourceLocation>) {
-    let mut text = "\n".to_owned();
-    if let Some(l) = location {
-        text.push_str(&l.to_string());
-        text.push_str("\n");
-    }
-    text.push_str(&message);
-    text.push_str("\n\n");
-    io::copy(&mut text.as_bytes(), &mut io::stdout()).unwrap();
-    panic!("test failure");
 }

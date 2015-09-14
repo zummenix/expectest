@@ -1,5 +1,5 @@
 
-use core::{SourceLocation, Matcher, Join, Failure};
+use core::{SourceLocation, Matcher, Join, TestResult};
 
 /// A function that intended to replace an `expect!` macro if desired.
 pub fn expect<A>(value: A) -> ActualValue<A> {
@@ -27,40 +27,40 @@ impl<A> ActualValue<A> {
 
     /// Performs assertion with "to" word. Prints a failure message and panics
     /// if an actual value does not match with an expected value.
-    pub fn to<M, E>(self, matcher: M) -> Option<Failure>
+    pub fn to<M, E>(self, matcher: M) -> TestResult
         where M: Matcher<A, E>
     {
         if !matcher.matches(&self.value) {
             let m = matcher.failure_message(Join::To, &self.value);
-            Some(Failure::new(m, self.location))
+            TestResult::new_failure(m, self.location)
         } else {
-            None
+            TestResult::Success
         }
     }
 
     /// Performs negation with "to not" words. Prints a failure message and
     /// panics if an actual value matches with an expected value.
-    pub fn to_not<M, E>(self, matcher: M) -> Option<Failure>
+    pub fn to_not<M, E>(self, matcher: M) -> TestResult
         where M: Matcher<A, E>
     {
         if matcher.matches(&self.value) {
             let m = matcher.failure_message(Join::ToNot, &self.value);
-            Some(Failure::new(m, self.location))
+            TestResult::new_failure(m, self.location)
         } else {
-            None
+            TestResult::Success
         }
     }
 
     /// Performs negation with "not to" words. Prints a failure message and
     /// panics if an actual value matches with an expected value.
-    pub fn not_to<M, E>(self, matcher: M) -> Option<Failure>
+    pub fn not_to<M, E>(self, matcher: M) -> TestResult
         where M: Matcher<A, E>
     {
         if matcher.matches(&self.value) {
             let m = matcher.failure_message(Join::NotTo, &self.value);
-            Some(Failure::new(m, self.location))
+            TestResult::new_failure(m, self.location)
         } else {
-            None
+            TestResult::Success
         }
     }
 }

@@ -4,7 +4,7 @@
 pub use self::location::SourceLocation;
 pub use self::actual::{expect, ActualValue};
 pub use self::join::Join;
-pub use self::result::{TestResult, panics_with_message};
+pub use self::result::{TestResult, Failure};
 
 mod location;
 mod actual;

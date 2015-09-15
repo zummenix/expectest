@@ -34,7 +34,7 @@ impl<A> ActualValue<A> {
             let m = matcher.failure_message(Join::To, &self.value);
             TestResult::new_failure(m, self.location)
         } else {
-            TestResult::Success
+            TestResult::new_success()
         }
     }
 
@@ -47,7 +47,7 @@ impl<A> ActualValue<A> {
             let m = matcher.failure_message(Join::ToNot, &self.value);
             TestResult::new_failure(m, self.location)
         } else {
-            TestResult::Success
+            TestResult::new_success()
         }
     }
 
@@ -60,7 +60,7 @@ impl<A> ActualValue<A> {
             let m = matcher.failure_message(Join::NotTo, &self.value);
             TestResult::new_failure(m, self.location)
         } else {
-            TestResult::Success
+            TestResult::new_success()
         }
     }
 }

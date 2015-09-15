@@ -46,9 +46,9 @@ impl TestResult {
     }
 }
 
-/// Represents metadata for `Failure` variant of a `TestResult`.
+/// Represents data for `Failure` variant of a `TestResult`.
 ///
-/// There is no public constructor for this sctruct. To create a new instance you should
+/// There is no public constructor for this struct. To create a new instance you should
 /// use `TestResult::new_failure` method.
 ///
 /// This struct implements the `Drop` trait to print failure message and panic.

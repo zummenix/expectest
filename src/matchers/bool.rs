@@ -40,29 +40,29 @@ impl Matcher<bool, ()> for BeFalse {
 #[cfg(test)]
 mod tests {
     use super::{be_true, be_false};
-    use core::{Matcher, Join};
+    use core::expect;
 
     #[test]
     fn test_be_true_message() {
-        let m = be_true().failure_message(Join::To, &false);
-        assert!(m == "expected to be true");
+        expect(1 == 0).to(be_true())
+            .assert_eq_message("expected to be true");
     }
 
     #[test]
     fn test_not_to_be_true_message() {
-        let m = be_true().failure_message(Join::NotTo, &true);
-        assert!(m == "expected not to be true");
+        expect(0 == 0).not_to(be_true())
+            .assert_eq_message("expected not to be true");
     }
 
     #[test]
     fn test_be_false_message() {
-        let m = be_false().failure_message(Join::To, &true);
-        assert!(m == "expected to be false");
+        expect(0 == 0).to(be_false())
+            .assert_eq_message("expected to be false");
     }
 
     #[test]
     fn test_not_to_be_false_message() {
-        let m = be_false().failure_message(Join::NotTo, &false);
-        assert!(m == "expected not to be false");
+        expect(0 == 1).not_to(be_false())
+            .assert_eq_message("expected not to be false")
     }
 }

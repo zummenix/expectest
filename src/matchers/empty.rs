@@ -28,17 +28,17 @@ impl<A> Matcher<A, ()> for BeEmpty where A: IsEmpty + fmt::Debug {
 #[cfg(test)]
 mod tests {
     use super::be_empty;
-    use core::{Matcher, Join};
+    use core::expect;
 
     #[test]
     fn be_empty_str_failure_message() {
-        let m = be_empty().failure_message(Join::To, &"hello");
-        assert!(m == "expected to be empty, got <\"hello\">")
+        expect("hello").to(be_empty())
+            .assert_eq_message("expected to be empty, got <\"hello\">");
     }
 
     #[test]
     fn to_not_be_empty_str_failure_message() {
-        let m = be_empty().failure_message(Join::ToNot, &"");
-        assert!(m == "expected to not be empty")
+        expect("").to_not(be_empty())
+            .assert_eq_message("expected to not be empty");
     }
 }

@@ -88,7 +88,7 @@ impl<A, E, T> Matcher<Result<T, A>, E> for BeErr<E>
 #[cfg(test)]
 mod tests {
     use super::{be_ok, be_err};
-    use core::{Matcher, Join};
+    use core::expect;
 
     fn ok_result(value: u32) -> Result<u32, &'static str> {
         Ok(value)
@@ -100,49 +100,49 @@ mod tests {
 
     #[test]
     fn be_ok_failure_message() {
-        let m = be_ok().failure_message(Join::To, &err_result("error"));
-        assert_eq!(m, "expected to be <Ok>, got <Err(\"error\")>");
+        expect(err_result("error")).to(be_ok())
+            .assert_eq_message("expected to be <Ok>, got <Err(\"error\")>");
     }
 
     #[test]
     fn be_ok_value_failure_message() {
-        let m = be_ok().value(5).failure_message(Join::To, &err_result("error"));
-        assert_eq!(m, "expected to be <Ok(5)>, got <Err(\"error\")>");
+        expect(err_result("error")).to(be_ok().value(5))
+            .assert_eq_message("expected to be <Ok(5)>, got <Err(\"error\")>");
     }
 
     #[test]
     fn to_not_be_ok_value_failure_message() {
-        let m = be_ok().value(5).failure_message(Join::ToNot, &ok_result(5));
-        assert_eq!(m, "expected to not be <Ok(5)>");
+        expect(ok_result(5)).to_not(be_ok().value(5))
+            .assert_eq_message("expected to not be <Ok(5)>");
     }
 
     #[test]
     fn to_not_be_ok_failure_message() {
-        let m = be_ok().failure_message(Join::ToNot, &ok_result(5));
-        assert_eq!(m, "expected to not be <Ok>, got <Ok(5)>");
+        expect(ok_result(5)).to_not(be_ok())
+            .assert_eq_message("expected to not be <Ok>, got <Ok(5)>");
     }
 
     #[test]
     fn be_err_failure_message() {
-        let m = be_err::<&str>().failure_message(Join::To, &ok_result(2));
-        assert_eq!(m, "expected to be <Err>, got <Ok(2)>");
+        expect(ok_result(2)).to(be_err::<&str>())
+            .assert_eq_message("expected to be <Err>, got <Ok(2)>");
     }
 
     #[test]
     fn be_err_value_failure_message() {
-        let m = be_err().value("error").failure_message(Join::To, &ok_result(2));
-        assert_eq!(m, "expected to be <Err(\"error\")>, got <Ok(2)>");
+        expect(ok_result(2)).to(be_err().value("error"))
+            .assert_eq_message("expected to be <Err(\"error\")>, got <Ok(2)>");
     }
 
     #[test]
     fn to_not_be_err_value_failure_message() {
-        let m = be_err().value("error").failure_message(Join::ToNot, &err_result("error"));
-        assert_eq!(m, "expected to not be <Err(\"error\")>");
+        expect(err_result("error")).to_not(be_err().value("error"))
+            .assert_eq_message("expected to not be <Err(\"error\")>");
     }
 
     #[test]
     fn to_not_be_err_failure_message() {
-        let m = be_err::<&str>().failure_message(Join::ToNot, &err_result("error"));
-        assert_eq!(m, "expected to not be <Err>, got <Err(\"error\")>");
+        expect(err_result("error")).to_not(be_err::<&str>())
+            .assert_eq_message("expected to not be <Err>, got <Err(\"error\")>");
     }
 }

@@ -34,17 +34,17 @@ impl<A, E> Matcher<A, E> for BeEqualTo<E>
 #[cfg(test)]
 mod tests {
     use super::be_equal_to;
-    use core::{Matcher, Join};
+    use core::expect;
 
     #[test]
     fn be_equal_to_failure_message() {
-        let m = be_equal_to(1).failure_message(Join::To, &2);
-        assert!(m == "expected to be equal to <1>, got <2>");
+        expect(2).to(be_equal_to(1))
+            .assert_eq_message("expected to be equal to <1>, got <2>");
     }
 
     #[test]
     fn to_not_be_equal_to_failure_message() {
-        let m = be_equal_to(1).failure_message(Join::ToNot, &1);
-        assert!(m == "expected to not be equal to <1>");
+        expect(1).to_not(be_equal_to(1))
+            .assert_eq_message("expected to not be equal to <1>");
     }
 }

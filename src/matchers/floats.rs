@@ -42,23 +42,23 @@ impl<E> Matcher<E, E> for BeCloseTo<E> where E: Float + fmt::Debug {
 #[cfg(test)]
 mod tests {
     use super::be_close_to;
-    use core::{Matcher, Join};
+    use core::expect;
 
     #[test]
     fn close_to_one_failure_message() {
-        let m = be_close_to(1.0_f32).failure_message(Join::To, &0.0);
-        assert!(m == "expected to be close to <1> ±0.001, got <0>");
+        expect(0.0).to(be_close_to(1.0))
+            .assert_eq_message("expected to be close to <1> ±0.001, got <0>");
     }
 
     #[test]
     fn to_not_be_close_to_one_failure_message() {
-        let m = be_close_to(1.0_f32).failure_message(Join::NotTo, &0.999);
-        assert!(m == "expected not to be close to <1> ±0.001, got <0.999>");
+        expect(0.9991).not_to(be_close_to(1.0))
+            .assert_eq_message("expected not to be close to <1> ±0.001, got <0.9991>");
     }
 
     #[test]
     fn close_to_one_delta_failure_message() {
-        let m = be_close_to(1.0_f32).delta(0.1).failure_message(Join::To, &0.0);
-        assert!(m == "expected to be close to <1> ±0.1, got <0>");
+        expect(0.0).to(be_close_to(1.0).delta(0.1))
+            .assert_eq_message("expected to be close to <1> ±0.1, got <0>");
     }
 }

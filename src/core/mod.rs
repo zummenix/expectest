@@ -2,12 +2,14 @@
 //! A module contains core types of this library.
 
 pub use self::location::SourceLocation;
-pub use self::actual::{expect, ActualValue, failure};
+pub use self::actual::{expect, ActualValue};
 pub use self::join::Join;
+pub use self::result::{TestResult, Failure};
 
 mod location;
 mod actual;
 mod join;
+mod result;
 
 /// A Matcher trait.
 pub trait Matcher<A, E> {

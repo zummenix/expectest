@@ -76,29 +76,29 @@ impl fmt::Display for Order {
 #[cfg(test)]
 mod tests {
     use super::{be_less_than, be_less_or_equal_to, be_greater_than, be_greater_or_equal_to};
-    use core::{Matcher, Join};
+    use core::expect;
 
     #[test]
     fn be_less_than_one_failure_message() {
-        let m = be_less_than(1).failure_message(Join::To, &1);
-        assert!(m == "expected to be less than <1>, got <1>");
+        expect(1).to(be_less_than(1))
+            .assert_eq_message("expected to be less than <1>, got <1>");
     }
 
     #[test]
     fn be_less_or_equal_to_one_failure_message() {
-        let m = be_less_or_equal_to(1).failure_message(Join::To, &2);
-        assert!(m == "expected to be less or equal to <1>, got <2>");
+        expect(2).to(be_less_or_equal_to(1))
+            .assert_eq_message("expected to be less or equal to <1>, got <2>");
     }
 
     #[test]
     fn be_greater_than_zero_failure_message() {
-        let m = be_greater_than(0).failure_message(Join::To, &0);
-        assert!(m == "expected to be greater than <0>, got <0>");
+        expect(0).to(be_greater_than(0))
+            .assert_eq_message("expected to be greater than <0>, got <0>");
     }
 
     #[test]
     fn be_greater_or_equal_to_zero_failure_message() {
-        let m = be_greater_or_equal_to(0).failure_message(Join::To, &-1);
-        assert!(m == "expected to be greater or equal to <0>, got <-1>");
+        expect(-1).to(be_greater_or_equal_to(0))
+            .assert_eq_message("expected to be greater or equal to <0>, got <-1>");
     }
 }

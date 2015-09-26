@@ -23,6 +23,12 @@ impl fmt::Display for SourceLocation {
     }
 }
 
+impl fmt::Debug for SourceLocation {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        fmt::Display::fmt(self, f)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::SourceLocation;

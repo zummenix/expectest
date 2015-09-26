@@ -29,17 +29,17 @@ impl<A, T> Matcher<A, ()> for HaveCount where A: Iterator<Item = T> + Clone {
 #[cfg(test)]
 mod tests {
     use super::have_count;
-    use core::{Matcher, Join};
+    use core::expect;
 
     #[test]
     fn test_to_have_count_2_message() {
-        let m = have_count(2).failure_message(Join::To, &"abc".chars());
-        assert!(m == "expected to have count <2>, got <3>");
+        expect("abc".chars()).to(have_count(2))
+            .assert_eq_message("expected to have count <2>, got <3>");
     }
 
     #[test]
     fn test_not_to_have_count_3_message() {
-        let m = have_count(3).failure_message(Join::NotTo, &"abc".chars());
-        assert!(m == "expected not to have count <3>");
+        expect("abc".chars()).not_to(have_count(3))
+            .assert_eq_message("expected not to have count <3>")
     }
 }

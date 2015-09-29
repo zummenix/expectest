@@ -6,7 +6,7 @@ pub struct HaveCount {
     count: usize,
 }
 
-/// Returns new `HaveCount` matcher.
+/// Returns a new `HaveCount` matcher.
 pub fn have_count(c: usize) -> HaveCount {
     HaveCount { count: c }
 }

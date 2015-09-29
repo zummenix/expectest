@@ -7,7 +7,7 @@ pub struct BeOk<E> {
     expected: Option<E>,
 }
 
-/// Returns new `BeOk` matcher.
+/// Returns a new `BeOk` matcher.
 pub fn be_ok<E>() -> BeOk<E> {
     BeOk { expected: None }
 }
@@ -49,7 +49,7 @@ pub struct BeErr<E> {
     expected: Option<E>,
 }
 
-/// Returns new `BeErr` matcher.
+/// Returns a new `BeErr` matcher.
 pub fn be_err<E>() -> BeErr<E> {
     BeErr { expected: None }
 }

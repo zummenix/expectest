@@ -34,22 +34,22 @@ impl<A, E> Matcher<A, E> for PartialOrder<E>
     }
 }
 
-/// Returns new `PartialOrder` (less than) matcher.
+/// Returns a new `PartialOrder` (less than) matcher.
 pub fn be_less_than<E>(expected: E) -> PartialOrder<E> {
     PartialOrder::new(expected, Order::LessThan)
 }
 
-/// Returns new `PartialOrder` (less or equal to) matcher.
+/// Returns a new `PartialOrder` (less or equal to) matcher.
 pub fn be_less_or_equal_to<E>(expected: E) -> PartialOrder<E> {
     PartialOrder::new(expected, Order::LessOrEqualTo)
 }
 
-//// Returns new `PartialOrder` (greater than) matcher.
+//// Returns a new `PartialOrder` (greater than) matcher.
 pub fn be_greater_than<E>(expected: E) -> PartialOrder<E> {
     PartialOrder::new(expected, Order::GreaterThan)
 }
 
-/// Returns new `PartialOrder` (greater or equal to) matcher.
+/// Returns a new `PartialOrder` (greater or equal to) matcher.
 pub fn be_greater_or_equal_to<E>(expected: E) -> PartialOrder<E> {
     PartialOrder::new(expected, Order::GreaterOrEqualTo)
 }

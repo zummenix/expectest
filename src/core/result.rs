@@ -25,7 +25,8 @@ impl TestResult {
 
     /// Asserts that `message` is equal to the failure message.
     ///
-    /// Purpose of this method is the unit testing of failure messages.
+    /// Purpose of this method is the unit testing of failure messages. Convenient for
+    /// development.
     ///
     /// # Example
     /// ```

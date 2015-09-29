@@ -7,7 +7,7 @@ pub struct BeSome<E> {
     expected: Option<E>,
 }
 
-/// Returns new `BeSome` matcher.
+/// Returns a new `BeSome` matcher.
 pub fn be_some<E>() -> BeSome<E> {
     BeSome { expected: None }
 }
@@ -42,7 +42,7 @@ impl<A, E> Matcher<Option<A>, Option<E>> for BeSome<E>
 /// A matcher for `be_none` assertions for `Option<T>` types.
 pub struct BeNone;
 
-/// Returns new `BeNone` matcher.
+/// Returns a new `BeNone` matcher.
 pub fn be_none() -> BeNone {
     BeNone
 }

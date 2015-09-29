@@ -8,7 +8,7 @@ pub struct BeEqualTo<E> {
     expected: E,
 }
 
-/// Returns new `BeEqualTo` matcher.
+/// Returns a new `BeEqualTo` matcher.
 pub fn be_equal_to<E>(expected: E) -> BeEqualTo<E> {
     BeEqualTo { expected: expected }
 }

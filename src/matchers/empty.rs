@@ -6,7 +6,7 @@ use traits::IsEmpty;
 /// A matcher for `be_empty` assertions.
 pub struct BeEmpty;
 
-/// Returns new `BeEmpty` matcher.
+/// Returns a new `BeEmpty` matcher.
 pub fn be_empty() -> BeEmpty {
     BeEmpty
 }

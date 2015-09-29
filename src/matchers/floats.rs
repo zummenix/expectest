@@ -9,7 +9,7 @@ pub struct BeCloseTo<E> {
     delta: E,
 }
 
-/// Returns new `BeCloseTo` matcher with default `delta` equal to `0.001`.
+/// Returns a new `BeCloseTo` matcher with default `delta` equal to `0.001`.
 pub fn be_close_to<E>(expected: E) -> BeCloseTo<E>
     where E: Float
 {

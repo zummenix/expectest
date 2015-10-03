@@ -33,34 +33,20 @@ impl Join {
 #[cfg(test)]
 mod tests {
     use super::Join;
+    use core::expect;
+    use matchers::{be_equal_to, be_true, be_false};
 
     #[test]
-    fn join_display_to() {
-        assert!(Join::To.to_string() == "to");
+    fn join_should_display_correct_text() {
+        expect!(Join::To.to_string()).to(be_equal_to("to"));
+        expect!(Join::ToNot.to_string()).to(be_equal_to("to not"));
+        expect!(Join::NotTo.to_string()).to(be_equal_to("not to"));
     }
 
     #[test]
-    fn join_display_to_not() {
-        assert!(Join::ToNot.to_string() == "to not");
-    }
-
-    #[test]
-    fn join_display_not_to() {
-        assert!(Join::NotTo.to_string() == "not to");
-    }
-
-    #[test]
-    fn join_to_is_assertion() {
-        assert!(Join::To.is_assertion());
-    }
-
-    #[test]
-    fn join_to_not_is_not_assertion() {
-        assert!(!Join::ToNot.is_assertion());
-    }
-
-    #[test]
-    fn join_not_to_is_not_assertion() {
-        assert!(!Join::NotTo.is_assertion());
+    fn join_might_be_assertion_or_negation() {
+        expect!(Join::To.is_assertion()).to(be_true());
+        expect!(Join::ToNot.is_assertion()).to(be_false());
+        expect!(Join::NotTo.is_assertion()).to(be_false());
     }
 }

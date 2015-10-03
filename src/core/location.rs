@@ -32,10 +32,12 @@ impl fmt::Debug for SourceLocation {
 #[cfg(test)]
 mod tests {
     use super::SourceLocation;
+    use core::expect;
+    use matchers::be_equal_to;
 
     #[test]
-    fn location_string() {
+    fn location_should_display_correct_text() {
         let location = SourceLocation::new("path/to/file.rs", 9);
-        assert!(location.to_string() == "path/to/file.rs:9");
+        expect!(location.to_string()).to(be_equal_to("path/to/file.rs:9"));
     }
 }

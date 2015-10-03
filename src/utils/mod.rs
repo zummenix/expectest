@@ -16,32 +16,15 @@ pub fn is_some_value<T, U>(some: Option<&T>, value: Option<&U>) -> bool
 #[cfg(test)]
 mod tests {
     use super::*;
+    use core::expect;
+    use matchers::{be_true, be_false};
 
     #[test]
-    fn is_some_value_value() {
-        assert!(is_some_value(Some(&5), Some(&5)));
-    }
-
-    #[test]
-    #[should_panic]
-    fn is_some_value_value_should_panic() {
-        assert!(is_some_value(Some(&5), Some(&4)));
-    }
-
-    #[test]
-    fn is_some_value_some() {
-        assert!(is_some_value(Some(&5), None));
-    }
-
-    #[test]
-    #[should_panic]
-    fn is_some_value_some_should_panic1() {
-        assert!(is_some_value(None::<&u32>, None));
-    }
-
-    #[test]
-    #[should_panic]
-    fn is_some_value_some_should_panic2() {
-        assert!(is_some_value(None::<&u32>, Some(&1)));
+    fn test_is_some_value() {
+        expect!(is_some_value(Some(&5), Some(&5))).to(be_true());
+        expect!(is_some_value(Some(&5), Some(&4))).to(be_false());
+        expect!(is_some_value(Some(&5), None)).to(be_true());
+        expect!(is_some_value(None::<&u32>, None)).to(be_false());
+        expect!(is_some_value(None::<&u32>, Some(&1))).to(be_false());
     }
 }

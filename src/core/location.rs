@@ -32,7 +32,6 @@ impl fmt::Debug for SourceLocation {
 #[cfg(test)]
 mod tests {
     use super::SourceLocation;
-    use core::expect;
     use matchers::be_equal_to;
 
     #[test]

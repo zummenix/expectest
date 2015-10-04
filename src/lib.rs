@@ -9,7 +9,7 @@ extern crate num;
 #[macro_export]
 macro_rules! expect {
     ($e: expr) => (
-        expect($e).location($crate::core::SourceLocation::new(file!(), line!()))
+        $crate::core::expect($e).location($crate::core::SourceLocation::new(file!(), line!()))
     );
 }
 

@@ -33,7 +33,6 @@ impl Join {
 #[cfg(test)]
 mod tests {
     use super::Join;
-    use core::expect;
     use matchers::{be_equal_to, be_true, be_false};
 
     #[test]

@@ -16,7 +16,6 @@ pub fn is_some_value<T, U>(some: Option<&T>, value: Option<&U>) -> bool
 #[cfg(test)]
 mod tests {
     use super::*;
-    use core::expect;
     use matchers::{be_true, be_false};
 
     #[test]

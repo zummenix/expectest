@@ -100,49 +100,57 @@ mod tests {
 
     #[test]
     fn be_ok_failure_message() {
-        expect(err_result("error")).to(be_ok())
+        expect(err_result("error"))
+            .to(be_ok())
             .assert_eq_message("expected to be <Ok>, got <Err(\"error\")>");
     }
 
     #[test]
     fn be_ok_value_failure_message() {
-        expect(err_result("error")).to(be_ok().value(5))
+        expect(err_result("error"))
+            .to(be_ok().value(5))
             .assert_eq_message("expected to be <Ok(5)>, got <Err(\"error\")>");
     }
 
     #[test]
     fn to_not_be_ok_value_failure_message() {
-        expect(ok_result(5)).to_not(be_ok().value(5))
+        expect(ok_result(5))
+            .to_not(be_ok().value(5))
             .assert_eq_message("expected to not be <Ok(5)>");
     }
 
     #[test]
     fn to_not_be_ok_failure_message() {
-        expect(ok_result(5)).to_not(be_ok())
+        expect(ok_result(5))
+            .to_not(be_ok())
             .assert_eq_message("expected to not be <Ok>, got <Ok(5)>");
     }
 
     #[test]
     fn be_err_failure_message() {
-        expect(ok_result(2)).to(be_err::<&str>())
+        expect(ok_result(2))
+            .to(be_err::<&str>())
             .assert_eq_message("expected to be <Err>, got <Ok(2)>");
     }
 
     #[test]
     fn be_err_value_failure_message() {
-        expect(ok_result(2)).to(be_err().value("error"))
+        expect(ok_result(2))
+            .to(be_err().value("error"))
             .assert_eq_message("expected to be <Err(\"error\")>, got <Ok(2)>");
     }
 
     #[test]
     fn to_not_be_err_value_failure_message() {
-        expect(err_result("error")).to_not(be_err().value("error"))
+        expect(err_result("error"))
+            .to_not(be_err().value("error"))
             .assert_eq_message("expected to not be <Err(\"error\")>");
     }
 
     #[test]
     fn to_not_be_err_failure_message() {
-        expect(err_result("error")).to_not(be_err::<&str>())
+        expect(err_result("error"))
+            .to_not(be_err::<&str>())
             .assert_eq_message("expected to not be <Err>, got <Err(\"error\")>");
     }
 }

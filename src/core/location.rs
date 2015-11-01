@@ -13,7 +13,10 @@ pub struct SourceLocation {
 impl SourceLocation {
     /// Creates a new instance of `SourceLocation` using `file` and `line`.
     pub fn new(file: &'static str, line: u32) -> SourceLocation {
-        SourceLocation { file: file, line: line }
+        SourceLocation {
+            file: file,
+            line: line,
+        }
     }
 }
 

@@ -20,7 +20,11 @@ impl TestResult {
     /// Creates a new instance of `TestResult` with a `Failure` variant using message
     /// and location.
     pub fn new_failure(message: String, location: Option<SourceLocation>) -> Self {
-        TestResult::Failure(Failure { should_panic: true, message: message, location: location })
+        TestResult::Failure(Failure {
+            should_panic: true,
+            message: message,
+            location: location,
+        })
     }
 
     /// Asserts that `message` is equal to the failure message.

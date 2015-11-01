@@ -44,25 +44,29 @@ mod tests {
 
     #[test]
     fn test_be_true_message() {
-        expect(1 == 0).to(be_true())
+        expect(1 == 0)
+            .to(be_true())
             .assert_eq_message("expected to be true");
     }
 
     #[test]
     fn test_not_to_be_true_message() {
-        expect(0 == 0).not_to(be_true())
+        expect(0 == 0)
+            .not_to(be_true())
             .assert_eq_message("expected not to be true");
     }
 
     #[test]
     fn test_be_false_message() {
-        expect(0 == 0).to(be_false())
+        expect(0 == 0)
+            .to(be_false())
             .assert_eq_message("expected to be false");
     }
 
     #[test]
     fn test_not_to_be_false_message() {
-        expect(0 == 1).not_to(be_false())
+        expect(0 == 1)
+            .not_to(be_false())
             .assert_eq_message("expected not to be false")
     }
 }

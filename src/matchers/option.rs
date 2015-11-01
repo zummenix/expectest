@@ -30,7 +30,9 @@ impl<A, E> Matcher<Option<A>, Option<E>> for BeSome<E>
             format!("expected {} be Some, got <{:?}>", join, actual)
         } else {
             format!("expected {} be equal to <{:?}>, got <{:?}>",
-                join, self.expected, actual)
+                    join,
+                    self.expected,
+                    actual)
         }
     }
 
@@ -67,25 +69,29 @@ mod tests {
 
     #[test]
     fn be_some_failure_message() {
-        expect(None::<u8>).to(be_some())
+        expect(None::<u8>)
+            .to(be_some())
             .assert_eq_message("expected to be Some, got <None>");
     }
 
     #[test]
     fn be_some_value_failure_message_1() {
-        expect(None::<u8>).to(be_some().value(1))
+        expect(None::<u8>)
+            .to(be_some().value(1))
             .assert_eq_message("expected to be equal to <Some(1)>, got <None>");
     }
 
     #[test]
     fn be_some_value_failure_message_2() {
-        expect(Some(2)).to(be_some().value(1))
+        expect(Some(2))
+            .to(be_some().value(1))
             .assert_eq_message("expected to be equal to <Some(1)>, got <Some(2)>");
     }
 
     #[test]
     fn be_none_failure_message() {
-        expect(Some(2)).to(be_none())
+        expect(Some(2))
+            .to(be_none())
             .assert_eq_message("expected to be None, got <Some(2)>");
     }
 }

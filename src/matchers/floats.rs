@@ -13,7 +13,10 @@ pub struct BeCloseTo<E> {
 pub fn be_close_to<E>(expected: E) -> BeCloseTo<E>
     where E: Float
 {
-    BeCloseTo { expected: expected, delta: num::traits::cast(0.001).unwrap() }
+    BeCloseTo {
+        expected: expected,
+        delta: num::traits::cast(0.001).unwrap(),
+    }
 }
 
 impl<E> BeCloseTo<E> {
@@ -27,7 +30,10 @@ impl<E> BeCloseTo<E> {
 impl<E> Matcher<E, E> for BeCloseTo<E> where E: Float + fmt::Debug {
     fn failure_message(&self, join: Join, actual: &E) -> String {
         format!("expected {} be close to <{:?}> ±{:?}, got <{:?}>",
-            join, self.expected, self.delta, actual)
+                join,
+                self.expected,
+                self.delta,
+                actual)
     }
 
     fn matches(&self, actual: &E) -> bool {
@@ -46,19 +52,22 @@ mod tests {
 
     #[test]
     fn close_to_one_failure_message() {
-        expect(0.0).to(be_close_to(1.0))
+        expect(0.0)
+            .to(be_close_to(1.0))
             .assert_eq_message("expected to be close to <1> ±0.001, got <0>");
     }
 
     #[test]
     fn to_not_be_close_to_one_failure_message() {
-        expect(0.9991).not_to(be_close_to(1.0))
+        expect(0.9991)
+            .not_to(be_close_to(1.0))
             .assert_eq_message("expected not to be close to <1> ±0.001, got <0.9991>");
     }
 
     #[test]
     fn close_to_one_delta_failure_message() {
-        expect(0.0).to(be_close_to(1.0).delta(0.1))
+        expect(0.0)
+            .to(be_close_to(1.0).delta(0.1))
             .assert_eq_message("expected to be close to <1> ±0.1, got <0>");
     }
 }

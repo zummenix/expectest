@@ -32,13 +32,15 @@ mod tests {
 
     #[test]
     fn be_empty_str_failure_message() {
-        expect("hello").to(be_empty())
+        expect("hello")
+            .to(be_empty())
             .assert_eq_message("expected to be empty, got <\"hello\">");
     }
 
     #[test]
     fn to_not_be_empty_str_failure_message() {
-        expect("").to_not(be_empty())
+        expect("")
+            .to_not(be_empty())
             .assert_eq_message("expected to not be empty");
     }
 }

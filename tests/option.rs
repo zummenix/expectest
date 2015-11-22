@@ -35,3 +35,17 @@ fn to_be_none() {
 fn to_be_none_should_panic() {
     expect!(Some(4)).to(be_none());
 }
+
+#[test]
+fn to_be_some_for_type_without_partial_eq() {
+    #[derive(Debug)]
+    struct Foo;
+    expect!(Some(Foo)).to(be_some());
+}
+
+#[test]
+fn to_be_some_value_for_type_with_partial_eq() {
+    #[derive(Debug, PartialEq)]
+    struct Foo;
+    expect!(Some(Foo)).to(be_some().value(Foo));
+}

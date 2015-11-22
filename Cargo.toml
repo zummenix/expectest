@@ -11,5 +11,5 @@ keywords = ["unit", "test", "matcher", "expect"]
 license = "MIT"
 
 [dependencies]
-num = { version = "~0.1.27", default-features = false }
+num = { version = "0.1.28", default-features = false }
 

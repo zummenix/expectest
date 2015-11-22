@@ -3,41 +3,56 @@ use std::fmt;
 use core::{Matcher, Join};
 
 /// A matcher for `be_some` assertions for `Option<T>` types.
-pub struct BeSome<E> {
-    expected: Option<E>,
-}
+pub struct BeSome;
 
 /// Returns a new `BeSome` matcher.
-pub fn be_some<E>() -> BeSome<E> {
-    BeSome { expected: None }
+pub fn be_some() -> BeSome {
+    BeSome
 }
 
-impl<E> BeSome<E> {
-    /// Sets new value.
-    pub fn value(mut self, v: E) -> BeSome<E> {
-        self.expected = Some(v);
-        self
+impl BeSome {
+    /// Returns a new `BeSomeValue` matcher.
+    pub fn value<E>(self, v: E) -> BeSomeValue<E> {
+        BeSomeValue { value: v }
     }
 }
 
-impl<A, E> Matcher<Option<A>, Option<E>> for BeSome<E>
+impl<A> Matcher<Option<A>, ()> for BeSome
+    where
+        A: fmt::Debug {
+
+    fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
+        format!("expected {} be Some, got <{:?}>", join, actual)
+    }
+
+    fn matches(&self, actual: &Option<A>) -> bool {
+        actual.is_some()
+    }
+}
+
+/// A matcher for `be_some` assertions with value for `Option<T>` types.
+pub struct BeSomeValue<E> {
+    value: E,
+}
+
+impl<A, E> Matcher<Option<A>, E> for BeSomeValue<E>
     where
         A: PartialEq<E> + fmt::Debug,
         E: fmt::Debug {
 
     fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
-        if self.expected.is_none() {
-            format!("expected {} be Some, got <{:?}>", join, actual)
-        } else {
-            format!("expected {} be equal to <{:?}>, got <{:?}>",
-                    join,
-                    self.expected,
-                    actual)
-        }
+        format!("expected {} be equal to <Some({:?})>, got <{:?}>",
+                join,
+                self.value,
+                actual)
     }
 
     fn matches(&self, actual: &Option<A>) -> bool {
-        ::utils::is_some_value(actual.as_ref(), self.expected.as_ref())
+        if let Some(a) = actual.as_ref() {
+            a == &self.value
+        } else {
+            false
+        }
     }
 }
 

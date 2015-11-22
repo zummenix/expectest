@@ -63,43 +63,62 @@ impl<A, E, T> Matcher<Result<A, T>, E> for BeOkValue<E>
 }
 
 /// A matcher for `be_err` assertions for `Result<T, E>` type.
-pub struct BeErr<E> {
-    expected: Option<E>,
-}
+pub struct BeErr;
 
 /// Returns a new `BeErr` matcher.
-pub fn be_err<E>() -> BeErr<E> {
-    BeErr { expected: None }
+pub fn be_err() -> BeErr {
+    BeErr
 }
 
-impl<E> BeErr<E> {
-    /// Sets new `err` value.
-    pub fn value(mut self, v: E) -> BeErr<E> {
-        self.expected = Some(v);
-        self
+impl BeErr {
+    /// Returns a new `BeErrValue` matcher.
+    pub fn value<E>(self, v: E) -> BeErrValue<E> {
+        BeErrValue { value: v }
     }
 }
 
-impl<A, E, T> Matcher<Result<T, A>, E> for BeErr<E>
+impl<A, T> Matcher<Result<T, A>, ()> for BeErr
+    where
+        A: fmt::Debug,
+        T: fmt::Debug {
+
+    fn failure_message(&self, join: Join, actual: &Result<T, A>) -> String {
+        format!("expected {} be <Err>, got <{:?}>", join, actual)
+    }
+
+    fn matches(&self, actual: &Result<T, A>) -> bool {
+        actual.is_err()
+    }
+}
+
+/// A matcher for `be_err` assertions with value for `Result<T, E>` type.
+pub struct BeErrValue<E> {
+    value: E,
+}
+
+impl<A, E, T> Matcher<Result<T, A>, E> for BeErrValue<E>
     where
         A: PartialEq<E> + fmt::Debug,
         E: fmt::Debug,
         T: fmt::Debug {
 
     fn failure_message(&self, join: Join, actual: &Result<T, A>) -> String {
-        if let Some(ref v) = self.expected.as_ref() {
-            if join.is_assertion() {
-                format!("expected {} be <Err({:?})>, got <{:?}>", join, v, actual)
-            } else {
-                format!("expected {} be <{:?}>", join, actual)
-            }
+        if join.is_assertion() {
+            format!("expected {} be <Err({:?})>, got <{:?}>",
+                    join,
+                    self.value,
+                    actual)
         } else {
-            format!("expected {} be <Err>, got <{:?}>", join, actual)
+            format!("expected {} be <{:?}>", join, actual)
         }
     }
 
     fn matches(&self, actual: &Result<T, A>) -> bool {
-        ::utils::is_some_value(actual.as_ref().err(), self.expected.as_ref())
+        if let Err(a) = actual.as_ref() {
+            a == &self.value
+        } else {
+            false
+        }
     }
 }
 
@@ -147,7 +166,7 @@ mod tests {
     #[test]
     fn be_err_failure_message() {
         expect(ok_result(2))
-            .to(be_err::<&str>())
+            .to(be_err())
             .assert_eq_message("expected to be <Err>, got <Ok(2)>");
     }
 
@@ -168,7 +187,7 @@ mod tests {
     #[test]
     fn to_not_be_err_failure_message() {
         expect(err_result("error"))
-            .to_not(be_err::<&str>())
+            .to_not(be_err())
             .assert_eq_message("expected to not be <Err>, got <Err(\"error\")>");
     }
 }

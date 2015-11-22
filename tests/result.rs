@@ -67,3 +67,16 @@ fn to_be_err_should_panic() {
 fn to_be_err_value_should_panic() {
     expect!(ok_result(1.0)).to(be_err().value(9));
 }
+
+#[test]
+fn to_be_err_for_type_without_partial_eq() {
+    #[derive(Debug)]
+    struct Foo;
+    #[derive(Debug)]
+    struct Bar;
+
+    fn err_result(v: Bar) -> Result<Foo, Bar> {
+        Err(v)
+    }
+    expect!(err_result(Bar)).to(be_err());
+}

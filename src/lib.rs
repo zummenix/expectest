@@ -3,9 +3,9 @@
 
 extern crate num;
 
-/// A macro used to simplify usage of this library.
+/// A macro intended to use instead of `expect` function.
 ///
-/// You can also use `expect` function instead.
+/// Provides a file name and a line number for a failed test case.
 #[macro_export]
 macro_rules! expect {
     ($e: expr) => (
@@ -14,12 +14,12 @@ macro_rules! expect {
 }
 
 pub mod prelude {
-    //! A module contains reexport of all useful types and functions.
+    //! A module contains reexport of all useful functions.
 
-    pub use core::{expect, ActualValue, Matcher};
+    pub use core::expect;
     pub use matchers::{be_equal_to, be_less_than, be_less_or_equal_to, be_greater_than,
-                       be_greater_or_equal_to, be_true, be_false, be_some, BeSome, be_none, be_ok,
-                       BeOk, be_err, BeErr, be_close_to, BeCloseTo, be_empty, have_count};
+                       be_greater_or_equal_to, be_true, be_false, be_some, be_none, be_ok, be_err,
+                       be_close_to, be_empty, have_count};
 }
 
 pub mod core;

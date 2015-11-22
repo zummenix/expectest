@@ -25,6 +25,19 @@ fn to_be_ok_value_should_panic() {
     expect!("4".parse::<u32>()).to(be_ok().value(3));
 }
 
+#[test]
+fn to_be_ok_for_type_without_partial_eq() {
+    #[derive(Debug)]
+    struct Foo;
+    #[derive(Debug)]
+    struct Bar;
+
+    fn ok_result(v: Foo) -> Result<Foo, Bar> {
+        Ok(v)
+    }
+    expect!(ok_result(Foo)).to(be_ok());
+}
+
 fn err_result(v: u32) -> Result<f32, u32> {
     Err(v)
 }

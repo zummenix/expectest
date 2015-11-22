@@ -3,44 +3,62 @@ use std::fmt;
 use core::{Matcher, Join};
 
 /// A matcher for `be_ok` assertions for `Result<T, E>` type.
-pub struct BeOk<E> {
-    expected: Option<E>,
-}
+pub struct BeOk;
 
 /// Returns a new `BeOk` matcher.
-pub fn be_ok<E>() -> BeOk<E> {
-    BeOk { expected: None }
+pub fn be_ok() -> BeOk {
+    BeOk
 }
 
-impl<E> BeOk<E> {
-    /// Sets new `ok` value.
-    pub fn value(mut self, v: E) -> BeOk<E> {
-        self.expected = Some(v);
-        self
+impl BeOk {
+    /// Returns a new `BeOkValue` matcher.
+    pub fn value<E>(self, v: E) -> BeOkValue<E> {
+        BeOkValue { value: v }
     }
 }
 
-impl<A, E, T> Matcher<Result<A, T>, E> for BeOk<E>
+impl<A, T> Matcher<Result<A, T>, ()> for BeOk
+    where
+        A: fmt::Debug,
+        T: fmt::Debug {
+
+    fn failure_message(&self, join: Join, actual: &Result<A, T>) -> String {
+        format!("expected {} be <Ok>, got <{:?}>", join, actual)
+    }
+
+    fn matches(&self, actual: &Result<A, T>) -> bool {
+        actual.is_ok()
+    }
+}
+
+/// A matcher for `be_ok` assertions with value for `Result<T, E>` type.
+pub struct BeOkValue<E> {
+    value: E,
+}
+
+impl<A, E, T> Matcher<Result<A, T>, E> for BeOkValue<E>
     where
         A: PartialEq<E> + fmt::Debug,
         E: fmt::Debug,
         T: fmt::Debug {
 
     fn failure_message(&self, join: Join, actual: &Result<A, T>) -> String {
-        if let Some(ref v) = self.expected.as_ref() {
-            if join.is_assertion() {
-                format!("expected {} be <Ok({:?})>, got <{:?}>", join, v, actual)
-            } else {
-                format!("expected {} be <{:?}>", join, actual)
-            }
+        if join.is_assertion() {
+            format!("expected {} be <Ok({:?})>, got <{:?}>",
+                    join,
+                    self.value,
+                    actual)
         } else {
-            format!("expected {} be <Ok>, got <{:?}>", join, actual)
+            format!("expected {} be <{:?}>", join, actual)
         }
-
     }
 
     fn matches(&self, actual: &Result<A, T>) -> bool {
-        ::utils::is_some_value(actual.as_ref().ok(), self.expected.as_ref())
+        if let Ok(a) = actual.as_ref() {
+            a == &self.value
+        } else {
+            false
+        }
     }
 }
 

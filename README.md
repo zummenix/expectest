@@ -22,7 +22,7 @@ expected to be equal to <[1, 2, 3]>, got <[1, 2, 2]>
 In Cargo.toml:
 ```toml
 [dev-dependencies]
-expectest = "~0.3.0"
+expectest = "0.4.0"
 ```
 
 In your crate:

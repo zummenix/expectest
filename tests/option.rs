@@ -42,10 +42,3 @@ fn to_be_some_for_type_without_partial_eq() {
     struct Foo;
     expect!(Some(Foo)).to(be_some());
 }
-
-#[test]
-fn to_be_some_value_for_type_with_partial_eq() {
-    #[derive(Debug, PartialEq)]
-    struct Foo;
-    expect!(Some(Foo)).to(be_some().value(Foo));
-}

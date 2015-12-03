@@ -40,6 +40,9 @@ use expectest::prelude::*;
 
 Check out the [tests](/tests) directory!
 
+### Changes
+
+Take a look at [change log](CHANGELOG.md).
 
 ### Expectations
 Use basic syntax to express expectations:

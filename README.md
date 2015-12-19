@@ -51,8 +51,7 @@ expect!(...).to(...);
 expect!(...).to_not(...);
 expect!(...).not_to(...);
 ```
-> Note: You can use `expect` function instead of `expect!` macro in that case you will not
-see file and line where the test will fail.
+> Note: `expect!` macro provides a file name and a line number for a failed test case.
 
 #### Equality
 For types that implement the `PartialEq` trait:
@@ -65,7 +64,7 @@ There is a way to check if two float numbers are close each other:
 ```rust
 expect!(12.1_f64).to(be_close_to(12.0).delta(0.1));
 ```
-With default `delta` equal `0.001`:
+With default `delta` equal to `0.001`:
 ```rust
 expect!(12.001_f64).to(be_close_to(12.0));
 ```

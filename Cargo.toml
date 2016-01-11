@@ -8,7 +8,7 @@ repository = "https://github.com/zummenix/expectest"
 readme = "./README.md"
 keywords = ["unit", "test", "matcher", "expect"]
 
-license = "MIT"
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 num = { version = "0.1.28", default-features = false }

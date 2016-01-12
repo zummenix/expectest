@@ -114,8 +114,6 @@ Use any of the following matchers: `be_true`, `be_false`
 - [rustspec-assertions](https://github.com/uorbe001/rustspec-assertions)
 - [hamcrest-rust](https://github.com/carllerche/hamcrest-rust)
 
-## License
-MIT
 
 ## License
 

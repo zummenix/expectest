@@ -1,11 +1,11 @@
 [package]
 name = "expectest"
-version = "0.4.0"
+version = "0.4.1"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
 description = "Crate provides matchers and matcher functions for unit testing."
 repository = "https://github.com/zummenix/expectest"
-readme = "./README.md"
+readme = "README.md"
 keywords = ["unit", "test", "matcher", "expect"]
 
 license = "MIT OR Apache-2.0"

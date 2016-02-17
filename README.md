@@ -7,7 +7,7 @@
 Crate provides matchers and matcher functions for unit testing. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
 
 Using this library you will receive helpful messages with data that is used in test case, example:
-```rust,ignore
+```rust,should_panic
 let result = vec![1, 2, 2];
 expect!(result).to(be_equal_to([1, 2, 3]));
 ```
@@ -134,8 +134,8 @@ conditions.
 
 ## Skeptic Template
 
-Blocks of code in this document tested by [skeptic](https://crates.io/crates/skeptic)
-using the following template:
+Examples in this document were tested using
+[skeptic](https://crates.io/crates/skeptic) with the following template:
 
 ```rust,skeptic-template
 #[macro_use(expect)]

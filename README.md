@@ -7,7 +7,7 @@
 Crate provides matchers and matcher functions for unit testing. Inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
 
 Using this library you will receive helpful messages with data that is used in test case, example:
-```rust
+```rust,should_panic
 let result = vec![1, 2, 2];
 expect!(result).to(be_equal_to([1, 2, 3]));
 ```
@@ -25,14 +25,14 @@ expectest = "0.4.0"
 ```
 
 In your crate:
-```rust
+```rust,ignore
 #[cfg(test)]
 #[macro_use(expect)]
 extern crate expectest;
 ```
 
 You can export all needed functions and types from `prelude` module:
-```rust
+```rust,ignore
 use expectest::prelude::*;
 ```
 
@@ -46,7 +46,7 @@ Take a look at [change log](CHANGELOG.md).
 
 ### Expectations
 Use basic syntax to express expectations:
-```rust
+```rust,ignore
 expect!(...).to(...);
 expect!(...).to_not(...);
 expect!(...).not_to(...);
@@ -130,3 +130,20 @@ Unless you explicitly state otherwise, any contribution intentionally
 submitted for inclusion in the work by you, as defined in the Apache-2.0
 license, shall be dual licensed as above, without any additional terms or
 conditions.
+
+
+## Skeptic Template
+
+Examples in this document were tested using
+[skeptic](https://crates.io/crates/skeptic) with the following template:
+
+```rust,skeptic-template
+#[macro_use(expect)]
+extern crate expectest;
+
+use expectest::prelude::*;
+
+fn main() {{
+   {}
+}}
+```

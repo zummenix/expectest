@@ -24,4 +24,3 @@ pub mod prelude {
 
 pub mod core;
 pub mod matchers;
-pub mod traits;

@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [0.5.0] - 2016-04-24
+## [0.5.1] - 2016-04-24
 - Almost all examples in the readme are tested using [skeptic](https://crates.io/crates/skeptic)
 - The `num` crate was replaced by `num-traits`
 - The `be_empty` matcher now uses the `Iterator` trait analogically to the `have_count` matcher

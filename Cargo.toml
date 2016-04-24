@@ -1,6 +1,6 @@
 [package]
 name = "expectest"
-version = "0.5.0"
+version = "0.5.1"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
 description = "Crate provides matchers and matcher functions for unit testing."

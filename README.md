@@ -91,12 +91,10 @@ expect!("4".parse::<u32>()).to(be_ok().value(4));
 Use any of the following matchers: `be_ok`, `be_err`
 
 #### Emptyness
-There is `be_empty` matcher for types that implement `IsEmpty` trait:
+There is `be_empty` matcher for types that implement `Iterator + Clone` trait:
 ```rust
-expect!("").to(be_empty());
+expect!("".chars()).to(be_empty());
 ```
-> Note: `IsEmpty` trait implemented by library for following types:
-`String`, `&str`, `Vec<T>`, `&[T]`.
 
 #### Count of elements in a collection
 There is `have_count` matcher for types that implement `Iterator + Clone` trait:

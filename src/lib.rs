@@ -1,7 +1,7 @@
 
 //! Crate provides matchers and matcher functions for unit testing.
 
-extern crate num;
+extern crate num_traits;
 
 /// A macro intended to use instead of `expect` function.
 ///

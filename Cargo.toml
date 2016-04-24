@@ -13,7 +13,7 @@ license = "MIT OR Apache-2.0"
 build = "build.rs"
 
 [dependencies]
-num = { version = "0.1.28", default-features = false }
+num-traits = "0.1.32"
 
 [build-dependencies]
 skeptic = "0.4.0"

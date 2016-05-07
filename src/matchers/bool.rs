@@ -15,7 +15,7 @@ impl Matcher<bool, ()> for BeTrue {
     }
 
     fn matches(&self, actual: &bool) -> bool {
-        *actual == true
+        *actual
     }
 }
 
@@ -33,7 +33,7 @@ impl Matcher<bool, ()> for BeFalse {
     }
 
     fn matches(&self, actual: &bool) -> bool {
-        *actual == false
+        !*actual
     }
 }
 

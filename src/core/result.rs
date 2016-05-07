@@ -67,7 +67,7 @@ pub struct Failure {
 impl Drop for Failure {
     fn drop(&mut self) {
         if self.should_panic {
-            let location = self.location.map(|l| format!("{}\n", l)).unwrap_or("".into());
+            let location = self.location.map_or("".into(), |l| format!("{}\n", l));
             let text = format!("\n{}{}\n\n", location, self.message);
             io::copy(&mut text.as_bytes(), &mut io::stdout()).unwrap();
             panic!("test failure");

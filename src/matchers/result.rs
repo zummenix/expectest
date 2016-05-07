@@ -18,10 +18,9 @@ impl BeOk {
 }
 
 impl<A, T> Matcher<Result<A, T>, ()> for BeOk
-    where
-        A: fmt::Debug,
-        T: fmt::Debug {
-
+    where A: fmt::Debug,
+          T: fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &Result<A, T>) -> String {
         format!("expected {} be <Ok>, got <{:?}>", join, actual)
     }
@@ -37,11 +36,10 @@ pub struct BeOkValue<E> {
 }
 
 impl<A, E, T> Matcher<Result<A, T>, E> for BeOkValue<E>
-    where
-        A: PartialEq<E> + fmt::Debug,
-        E: fmt::Debug,
-        T: fmt::Debug {
-
+    where A: PartialEq<E> + fmt::Debug,
+          E: fmt::Debug,
+          T: fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &Result<A, T>) -> String {
         if join.is_assertion() {
             format!("expected {} be <Ok({:?})>, got <{:?}>",
@@ -78,10 +76,9 @@ impl BeErr {
 }
 
 impl<A, T> Matcher<Result<T, A>, ()> for BeErr
-    where
-        A: fmt::Debug,
-        T: fmt::Debug {
-
+    where A: fmt::Debug,
+          T: fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &Result<T, A>) -> String {
         format!("expected {} be <Err>, got <{:?}>", join, actual)
     }
@@ -97,11 +94,10 @@ pub struct BeErrValue<E> {
 }
 
 impl<A, E, T> Matcher<Result<T, A>, E> for BeErrValue<E>
-    where
-        A: PartialEq<E> + fmt::Debug,
-        E: fmt::Debug,
-        T: fmt::Debug {
-
+    where A: PartialEq<E> + fmt::Debug,
+          E: fmt::Debug,
+          T: fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &Result<T, A>) -> String {
         if join.is_assertion() {
             format!("expected {} be <Err({:?})>, got <{:?}>",

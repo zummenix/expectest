@@ -14,10 +14,9 @@ pub fn be_equal_to<E>(expected: E) -> BeEqualTo<E> {
 }
 
 impl<A, E> Matcher<A, E> for BeEqualTo<E>
-    where
-        A: PartialEq<E> + fmt::Debug,
-        E: fmt::Debug {
-
+    where A: PartialEq<E> + fmt::Debug,
+          E: fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &A) -> String {
         if join.is_assertion() {
             format!("expected {} be equal to <{:?}>, got <{:?}>",

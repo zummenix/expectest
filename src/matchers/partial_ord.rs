@@ -18,10 +18,9 @@ impl<E> PartialOrder<E> {
 }
 
 impl<A, E> Matcher<A, E> for PartialOrder<E>
-    where
-        A: PartialOrd<E> + fmt::Debug,
-        E: fmt::Debug {
-
+    where A: PartialOrd<E> + fmt::Debug,
+          E: fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &A) -> String {
         format!("expected {} be {} <{:?}>, got <{:?}>",
                 join,

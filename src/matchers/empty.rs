@@ -9,7 +9,9 @@ pub fn be_empty() -> BeEmpty {
     BeEmpty
 }
 
-impl<A, T> Matcher<A, ()> for BeEmpty where A: Iterator<Item = T> + Clone {
+impl<A, T> Matcher<A, ()> for BeEmpty
+    where A: Iterator<Item = T> + Clone
+{
     fn failure_message(&self, join: Join, actual: &A) -> String {
         if join.is_assertion() {
             let count = actual.clone().count();

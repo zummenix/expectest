@@ -18,9 +18,8 @@ impl BeSome {
 }
 
 impl<A> Matcher<Option<A>, ()> for BeSome
-    where
-        A: fmt::Debug {
-
+    where A: fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
         format!("expected {} be Some, got <{:?}>", join, actual)
     }
@@ -36,10 +35,9 @@ pub struct BeSomeValue<E> {
 }
 
 impl<A, E> Matcher<Option<A>, E> for BeSomeValue<E>
-    where
-        A: PartialEq<E> + fmt::Debug,
-        E: fmt::Debug {
-
+    where A: PartialEq<E> + fmt::Debug,
+          E: fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
         format!("expected {} be equal to <Some({:?})>, got <{:?}>",
                 join,
@@ -65,9 +63,8 @@ pub fn be_none() -> BeNone {
 }
 
 impl<A> Matcher<Option<A>, ()> for BeNone
-    where
-        A: fmt::Debug {
-
+    where A: fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
         format!("expected {} be None, got <{:?}>", join, actual)
     }

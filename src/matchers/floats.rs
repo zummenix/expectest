@@ -27,7 +27,9 @@ impl<E> BeCloseTo<E> {
     }
 }
 
-impl<E> Matcher<E, E> for BeCloseTo<E> where E: Float + fmt::Debug {
+impl<E> Matcher<E, E> for BeCloseTo<E>
+    where E: Float + fmt::Debug
+{
     fn failure_message(&self, join: Join, actual: &E) -> String {
         format!("expected {} be close to <{:?}> ±{:?}, got <{:?}>",
                 join,

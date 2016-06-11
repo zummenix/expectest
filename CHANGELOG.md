@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.6.0] - 2016-06-11
+- Implement panic using 'panic_fmt' (only for nightly rust).
+
 ## [0.5.1] - 2016-04-24
 - Almost all examples in the readme are tested using [skeptic](https://crates.io/crates/skeptic)
 - The `num` crate was replaced by `num-traits`

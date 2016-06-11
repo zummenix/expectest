@@ -1,6 +1,6 @@
 [package]
 name = "expectest"
-version = "0.5.1"
+version = "0.6.0"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
 description = "Crate provides matchers and matcher functions for unit testing."
@@ -16,10 +16,10 @@ build = "build.rs"
 num-traits = "0.1.32"
 
 [build-dependencies]
-skeptic = "0.4.0"
+skeptic = "0.5.0"
 
 [dev-dependencies]
-skeptic = "0.4.0"
+skeptic = "0.5.0"
 
 [features]
 nightly = []

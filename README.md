@@ -18,11 +18,18 @@ expected to be equal to <[1, 2, 3]>, got <[1, 2, 2]>
 
 ### Usage
 
-In Cargo.toml:
+In your Cargo.toml:
 ```toml
 [dev-dependencies]
 expectest = "0.5.1"
 ```
+
+> Note: If you're using nightly rust you can use `nightly` feature:
+> ```toml
+> [dev-dependencies]
+> expectest = { version = "0.5.1", features = ["nightly"] }
+> ```
+> In this case failure messages will be integrated in rust's standard panic message.
 
 In your crate:
 ```rust,ignore

@@ -1,5 +1,4 @@
 
-use std::io;
 use core::SourceLocation;
 
 /// Represents result of unit testing.
@@ -64,13 +63,31 @@ pub struct Failure {
     location: Option<SourceLocation>,
 }
 
+impl Failure {
+    #[cfg(feature="nightly")]
+    fn panic(&self) {
+        use rust_core::panicking;
+
+        let location = self.location.unwrap_or_else(|| SourceLocation::new("", 0));
+        let file_line = &(location.file, location.line);
+        panicking::panic_fmt(format_args!("{}", self.message), file_line);
+    }
+
+    #[cfg(not(feature="nightly"))]
+    fn panic(&self) {
+        use std::io;
+
+        let location = self.location.map_or("".into(), |l| format!("{}\n", l));
+        let text = format!("\n{}{}\n\n", location, self.message);
+        io::copy(&mut text.as_bytes(), &mut io::stdout()).unwrap();
+        panic!("test failure");
+    }
+}
+
 impl Drop for Failure {
     fn drop(&mut self) {
         if self.should_panic {
-            let location = self.location.map_or("".into(), |l| format!("{}\n", l));
-            let text = format!("\n{}{}\n\n", location, self.message);
-            io::copy(&mut text.as_bytes(), &mut io::stdout()).unwrap();
-            panic!("test failure");
+            self.panic();
         }
     }
 }

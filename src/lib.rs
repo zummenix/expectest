@@ -1,7 +1,12 @@
 
 //! Crate provides matchers and matcher functions for unit testing.
 
+#![cfg_attr(feature = "nightly", feature(core_panic))]
+
 extern crate num_traits;
+
+#[cfg(feature="nightly")]
+extern crate core as rust_core;
 
 /// A macro intended to use instead of `expect` function.
 ///

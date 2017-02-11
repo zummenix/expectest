@@ -16,10 +16,10 @@ build = "build.rs"
 num-traits = "0.1.32"
 
 [build-dependencies]
-skeptic = "0.5.0"
+skeptic = "0.6.1"
 
 [dev-dependencies]
-skeptic = "0.5.0"
+skeptic = "0.6.1"
 
 [features]
 nightly = []

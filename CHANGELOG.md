@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.7.0] - 2017-02-11
+- Update dependecies
+- Add `development-tools::testing` category for crates.io
+- Add travis-ci badge for crates.io
+
 ## [0.6.0] - 2016-06-11
 - Implement panic using 'panic_fmt' (only for nightly rust).
 

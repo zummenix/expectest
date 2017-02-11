@@ -1,16 +1,20 @@
 [package]
 name = "expectest"
-version = "0.6.0"
+version = "0.7.0"
 authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
 description = "Crate provides matchers and matcher functions for unit testing."
 repository = "https://github.com/zummenix/expectest"
 readme = "README.md"
-keywords = ["unit", "test", "matcher", "expect"]
+keywords = ["testing", "tests", "matcher", "expect"]
+categories = ["development-tools::testing"]
+
+build = "build.rs"
 
 license = "MIT OR Apache-2.0"
 
-build = "build.rs"
+[badges]
+travis-ci = { repository = "zummenix/expectest" }
 
 [dependencies]
 num-traits = "0.1.36"

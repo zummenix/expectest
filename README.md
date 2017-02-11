@@ -21,13 +21,13 @@ expected to be equal to <[1, 2, 3]>, got <[1, 2, 2]>
 In your Cargo.toml:
 ```toml
 [dev-dependencies]
-expectest = "0.6.0"
+expectest = "0.7.0"
 ```
 
 > Note: If you're using nightly rust you can use `nightly` feature:
 > ```toml
 > [dev-dependencies]
-> expectest = { version = "0.6.0", features = ["nightly"] }
+> expectest = { version = "0.7.0", features = ["nightly"] }
 > ```
 > In this case failure messages will be integrated in rust's standard panic message.
 

@@ -1,6 +1,5 @@
 # expectest
-[![Build Status](https://travis-ci.org/zummenix/expectest.svg?branch=master)]
-(https://travis-ci.org/zummenix/expectest)
+[![Build Status](https://travis-ci.org/zummenix/expectest.svg?branch=master)](https://travis-ci.org/zummenix/expectest)
 [![Crates.io](https://img.shields.io/crates/v/expectest.svg)](https://crates.io/crates/expectest)
 [![Crates.io](https://img.shields.io/crates/d/expectest.svg)](https://crates.io/crates/expectest)
 

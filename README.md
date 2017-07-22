@@ -1,14 +1,12 @@
-[![Build Status](https://travis-ci.org/zummenix/expectest.svg?branch=master)](https://travis-ci.org/zummenix/expectest)
-[![Crates.io](https://img.shields.io/crates/v/expectest.svg)](https://crates.io/crates/expectest)
-[![Crates.io](https://img.shields.io/crates/d/expectest.svg)](https://crates.io/crates/expectest)
 
 # expectest
 
-[Docs](https://docs.rs/expectest/) | [Examples](/tests) | [Changelog](CHANGELOG.md)
+[Docs](https://docs.rs/expectest/) | [Examples](/tests) | [Changelog](CHANGELOG.md) | 
+[Crates.io](https://crates.io/crates/expectest)
 
 This project is inspired by [Nimble](https://github.com/Quick/Nimble) for Swift. It provides matchers and matcher 
-functions to express expectations in tests for common cases and instruments to implement matchers for a domain 
-of your project.
+functions to express expectations in tests for common cases and instruments to implement matchers for your project's
+domain.
 
 ### Alternative crates
 - [spectral](https://github.com/cfrancia/spectral)

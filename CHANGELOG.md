@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 - Rework readme and docs
+- Remove `skeptic` dependency
 
 ## [0.7.0] - 2017-02-11
 - Update dependecies

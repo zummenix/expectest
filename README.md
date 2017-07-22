@@ -15,33 +15,6 @@ Test fails and gives us a message:
 expected to be equal to <[1, 2, 3]>, got <[1, 2, 2]>
 ```
 
-### Usage
-
-In your Cargo.toml:
-```toml
-[dev-dependencies]
-expectest = "0.7.0"
-```
-
-> Note: If you're using nightly rust you can use `nightly` feature:
-> ```toml
-> [dev-dependencies]
-> expectest = { version = "0.7.0", features = ["nightly"] }
-> ```
-> In this case failure messages will be integrated in rust's standard panic message.
-
-In your crate:
-```rust,ignore
-#[cfg(test)]
-#[macro_use(expect)]
-extern crate expectest;
-```
-
-You can export all needed functions and types from `prelude` module:
-```rust,ignore
-use expectest::prelude::*;
-```
-
 ### Examples
 
 Check out the [tests](/tests) directory!
@@ -49,70 +22,6 @@ Check out the [tests](/tests) directory!
 ### Changes
 
 Take a look at [change log](CHANGELOG.md).
-
-### Expectations
-Use basic syntax to express expectations:
-```rust,ignore
-expect!(...).to(...);
-expect!(...).to_not(...);
-expect!(...).not_to(...);
-```
-> Note: `expect!` macro provides a file name and a line number for a failed test case.
-
-#### Equality
-For types that implement the `PartialEq` trait:
-```rust
-expect!("hello".to_string()).to(be_equal_to("hello"));
-```
-
-#### Closeness of float numbers
-There is a way to check if two float numbers are close each other:
-```rust
-expect!(12.1_f64).to(be_close_to(12.0).delta(0.1));
-```
-With default `delta` equal to `0.001`:
-```rust
-expect!(12.001_f64).to(be_close_to(12.0));
-```
-
-#### Order
-For types that implement the `PartialOrd` trait:
-```rust
-expect!(1).to(be_greater_than(0));
-```
-Use any of the following matchers: `be_less_than`, `be_less_or_equal_to`, `be_greater_than`, `be_greater_or_equal_to`
-
-#### Option
-There are matchers for the `Option<T>` type:
-```rust
-expect!(Some(9)).to(be_some().value(9));
-```
-Use any of the following matchers: `be_some`, `be_none`
-
-#### Result
-There are matchers for the `Result<T, E>` type:
-```rust
-expect!("4".parse::<u32>()).to(be_ok().value(4));
-```
-Use any of the following matchers: `be_ok`, `be_err`
-
-#### Emptyness
-There is `be_empty` matcher for types that implement `Iterator + Clone` trait:
-```rust
-expect!("".chars()).to(be_empty());
-```
-
-#### Count of elements in a collection
-There is `have_count` matcher for types that implement `Iterator + Clone` trait:
-```rust
-expect!("abc".chars()).to(have_count(3));
-```
-
-#### Boolean
-```rust
-expect!(9 == 9).to(be_true());
-```
-Use any of the following matchers: `be_true`, `be_false`
 
 ### Alternative crates
 - [spectral](https://github.com/cfrancia/spectral)
@@ -135,20 +44,3 @@ Unless you explicitly state otherwise, any contribution intentionally
 submitted for inclusion in the work by you, as defined in the Apache-2.0
 license, shall be dual licensed as above, without any additional terms or
 conditions.
-
-
-## Skeptic Template
-
-Examples in this document were tested using
-[skeptic](https://crates.io/crates/skeptic) with the following template:
-
-```rust,skeptic-template
-#[macro_use(expect)]
-extern crate expectest;
-
-use expectest::prelude::*;
-
-fn main() {{
-   {}
-}}
-```

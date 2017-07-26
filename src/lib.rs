@@ -1,4 +1,7 @@
-//! Crate provides matchers and matcher functions for unit testing.
+//! This project is inspired by [Nimble](https://github.com/Quick/Nimble) for Swift.
+//! It provides matchers and matcher functions to express expectations in tests for common cases,
+//! such as: Equality, Order, Option, Result, etc.
+//! The crate also provides instruments to implement custom matchers for your project's domain.
 //!
 //! You express expectations in your tests using three basic constructs:
 //!
@@ -8,7 +11,7 @@
 //! expect!(...).not_to(...);
 //! ```
 //!
-//! And if a test fails, you will see the reason in a nice, human readable format.
+//! If a test fails, you will see the reason in a nice, human readable format.
 //!
 //! # Example
 //!
@@ -28,9 +31,13 @@
 //!
 //! The crate consists of two modules `core` and `matchers` but for general use
 //! you can access all you need using `prelude` module. The `expect!` macro saves
-//! file name and line number to print it later if an expectation fails.
+//! file name and line number to print it later if an expectation fails. Internally the macro uses
+//! the `expect` function which is also available to you.
 //!
 //! # Usage
+//!
+//! The crate is meant to be used in tests, so we recommend you include it as a dev dependency
+//! with `#[cfg(test)]` attribute.
 //!
 //! In your Cargo.toml:
 //!
@@ -39,7 +46,7 @@
 //! expectest = "0.7.0"
 //! ```
 //!
-//! If you prefer to use nightly rust and want failure messages to be integrated in rust's
+//! If you prefer nightly rust and want failure messages to be integrated in rust's
 //! standard panic message, enable `nightly` feature:
 //!
 //! ```toml

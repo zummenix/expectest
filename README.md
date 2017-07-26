@@ -5,10 +5,10 @@
 [Crates.io](https://crates.io/crates/expectest)
 
 This project is inspired by [Nimble](https://github.com/Quick/Nimble) for Swift. It provides matchers and matcher 
-functions to express expectations in tests for common cases and instruments to implement matchers for your project's
-domain.
+functions to express expectations in tests for common cases, such as: Equality, Order, Option, Result, etc.
+The crate also provides instruments to implement custom matchers for your project's domain.
 
-### Alternative crates
+## Alternative crates
 - [spectral](https://github.com/cfrancia/spectral)
 - [rustspec-assertions](https://github.com/uorbe001/rustspec-assertions)
 - [hamcrest-rust](https://github.com/carllerche/hamcrest-rust)

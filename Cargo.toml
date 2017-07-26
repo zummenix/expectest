@@ -5,6 +5,7 @@ authors = ["Aleksey Kuznetsov <zummenix@gmail.com>"]
 
 description = "Crate provides matchers and matcher functions for unit testing."
 repository = "https://github.com/zummenix/expectest"
+documentation = "https://docs.rs/expectest"
 readme = "README.md"
 keywords = ["testing", "tests", "matcher", "expect"]
 categories = ["development-tools::testing"]

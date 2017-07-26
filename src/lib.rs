@@ -43,7 +43,7 @@
 //!
 //! ```toml
 //! [dev-dependencies]
-//! expectest = "0.7.0"
+//! expectest = "0.8.0"
 //! ```
 //!
 //! If you prefer nightly rust and want failure messages to be integrated in rust's
@@ -51,7 +51,7 @@
 //!
 //! ```toml
 //! [dev-dependencies]
-//! expectest = { version = "0.7.0", features = ["nightly"] }
+//! expectest = { version = "0.8.0", features = ["nightly"] }
 //! ```
 //!
 //! In your crate root:

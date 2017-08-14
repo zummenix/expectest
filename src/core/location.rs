@@ -8,21 +8,24 @@ pub struct SourceLocation {
     pub file: &'static str,
     /// Number of line in the file.
     pub line: u32,
+    /// Number of column in the line.
+    pub column: u32,
 }
 
 impl SourceLocation {
     /// Creates a new instance of `SourceLocation` using `file` and `line`.
-    pub fn new(file: &'static str, line: u32) -> SourceLocation {
+    pub fn new(file: &'static str, line: u32, column: u32) -> SourceLocation {
         SourceLocation {
             file: file,
             line: line,
+            column: column,
         }
     }
 }
 
 impl fmt::Display for SourceLocation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}:{}", self.file, self.line)
+        write!(f, "{}:{}:{}", self.file, self.line, self.column)
     }
 }
 
@@ -39,7 +42,7 @@ mod tests {
 
     #[test]
     fn location_should_display_correct_text() {
-        let location = SourceLocation::new("path/to/file.rs", 9);
-        expect!(location.to_string()).to(be_equal_to("path/to/file.rs:9"));
+        let location = SourceLocation::new("path/to/file.rs", 9, 8);
+        expect!(location.to_string()).to(be_equal_to("path/to/file.rs:9:8"));
     }
 }

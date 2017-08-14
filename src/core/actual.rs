@@ -66,7 +66,8 @@ impl<A> ActualValue<A> {
         if success {
             TestResult::new_success()
         } else {
-            TestResult::new_failure(matcher.failure_message(join, &self.value), self.location)
+            let message = matcher.failure_message(join, &self.value);
+            TestResult::new_failure(message, self.location)
         }
     }
 }

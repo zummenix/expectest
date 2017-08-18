@@ -186,9 +186,10 @@ extern crate core as rust_core;
 /// Provides a file name and a line number for a failed test case.
 #[macro_export]
 macro_rules! expect {
-    ($e: expr) => (
-        $crate::core::expect($e).location($crate::core::SourceLocation::new(file!(), line!()))
-    );
+    ($e: expr) => ({
+        let location = $crate::core::SourceLocation::new(file!(), line!(), column!());
+        $crate::core::expect($e).location(location)
+    });
 }
 
 pub mod prelude {

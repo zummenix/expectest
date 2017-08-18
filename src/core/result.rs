@@ -68,19 +68,21 @@ impl Failure {
     fn panic(&self) {
         use rust_core::panicking;
 
-        let location = self.location.unwrap_or_else(|| SourceLocation::new("", 0));
-        let file_line = &(location.file, location.line);
-        panicking::panic_fmt(format_args!("{}", self.message), file_line);
+        if let Some(location) = self.location {
+            let file_line = &(location.file, location.line);
+            panicking::panic_fmt(format_args!("{}", self.message), file_line);
+        } else {
+            panic!("assertion failed: `{}`", self.message);
+        }
     }
 
     #[cfg(not(feature="nightly"))]
     fn panic(&self) {
-        use std::io;
-
-        let location = self.location.map_or("".into(), |l| format!("{}\n", l));
-        let text = format!("\n{}{}\n\n", location, self.message);
-        io::copy(&mut text.as_bytes(), &mut io::stdout()).unwrap();
-        panic!("test failure");
+        if let Some(location) = self.location {
+            panic!("assertion failed: `{}`, {}", self.message, location);
+        } else {
+            panic!("assertion failed: `{}`", self.message);
+        }
     }
 }
 

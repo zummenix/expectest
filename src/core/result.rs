@@ -69,7 +69,7 @@ impl Failure {
         use rust_core::panicking;
 
         if let Some(location) = self.location {
-            let file_line = &(location.file, location.line);
+            let file_line = &(location.file, location.line, location.column);
             panicking::panic_fmt(format_args!("{}", self.message), file_line);
         } else {
             panic!("assertion failed: `{}`", self.message);

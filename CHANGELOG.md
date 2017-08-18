@@ -4,6 +4,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.9.0] - 2017-08-18
+- Changed printing to closely match rust's unit testing behavior, for example on nightly (with `nightly` 
+feature enabled):
+```
+---- core::result::tests::fails stdout ----
+	thread 'tests::fails' panicked at 'assertion failed: `expected to be equal to <1>, got <0>``', src/test.rs:10:12
+```
+on stable:
+```
+---- core::result::tests::fails stdout ----
+	thread 'tests::fails' panicked at 'assertion failed: `expected to be equal to <1>, got <0>``, src/test.rs:10:12', src/core/result.rs:82:12
+```
+
 ## [0.8.0] - 2017-07-26
 - Rework readme and docs
 - Remove `skeptic` dependency

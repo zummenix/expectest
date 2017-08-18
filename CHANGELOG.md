@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [0.9.0] - 2017-08-18
+## [0.9.1] - 2017-08-18
 - Changed printing to closely match rust's unit testing behavior, for example on nightly (with `nightly` 
 feature enabled):
 ```

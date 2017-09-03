@@ -11,7 +11,8 @@ pub struct BeCloseTo<E> {
 
 /// Returns a new `BeCloseTo` matcher with default `delta` equal to `0.001`.
 pub fn be_close_to<E>(expected: E) -> BeCloseTo<E>
-    where E: Float
+where
+    E: Float,
 {
     BeCloseTo {
         expected: expected,
@@ -28,14 +29,17 @@ impl<E> BeCloseTo<E> {
 }
 
 impl<E> Matcher<E, E> for BeCloseTo<E>
-    where E: Float + fmt::Debug
+where
+    E: Float + fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &E) -> String {
-        format!("expected {} be close to <{:?}> ±{:?}, got <{:?}>",
-                join,
-                self.expected,
-                self.delta,
-                actual)
+        format!(
+            "expected {} be close to <{:?}> ±{:?}, got <{:?}>",
+            join,
+            self.expected,
+            self.delta,
+            actual
+        )
     }
 
     fn matches(&self, actual: &E) -> bool {
@@ -54,16 +58,16 @@ mod tests {
 
     #[test]
     fn close_to_one_failure_message() {
-        expect(0.0)
-            .to(be_close_to(1.0))
-            .assert_eq_message("expected to be close to <1> ±0.001, got <0>");
+        expect(0.0).to(be_close_to(1.0)).assert_eq_message(
+            "expected to be close to <1> ±0.001, got <0>",
+        );
     }
 
     #[test]
     fn to_not_be_close_to_one_failure_message() {
-        expect(0.9991)
-            .not_to(be_close_to(1.0))
-            .assert_eq_message("expected not to be close to <1> ±0.001, got <0.9991>");
+        expect(0.9991).not_to(be_close_to(1.0)).assert_eq_message(
+            "expected not to be close to <1> ±0.001, got <0.9991>",
+        );
     }
 
     #[test]

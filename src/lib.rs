@@ -178,7 +178,7 @@
 
 extern crate num_traits;
 
-#[cfg(feature="nightly")]
+#[cfg(feature = "nightly")]
 extern crate core as rust_core;
 
 /// A macro intended to use instead of `expect` function.

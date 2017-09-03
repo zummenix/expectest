@@ -35,28 +35,32 @@ impl<A> ActualValue<A> {
 
     /// Performs assertion matching using `matcher`. Returns a new instance of `TestResult`.
     pub fn to<M, E>(self, matcher: M) -> TestResult
-        where M: Matcher<A, E>
+    where
+        M: Matcher<A, E>,
     {
         self.matching(matcher, Join::To)
     }
 
     /// Performs negation matching using `matcher`. Returns a new instance of `TestResult`.
     pub fn to_not<M, E>(self, matcher: M) -> TestResult
-        where M: Matcher<A, E>
+    where
+        M: Matcher<A, E>,
     {
         self.matching(matcher, Join::ToNot)
     }
 
     /// Performs negation matching using `matcher`. Returns a new instance of `TestResult`.
     pub fn not_to<M, E>(self, matcher: M) -> TestResult
-        where M: Matcher<A, E>
+    where
+        M: Matcher<A, E>,
     {
         self.matching(matcher, Join::NotTo)
     }
 
     /// Performs matching using `matcher` and `join`. Returns a new instance of `TestResult`.
     fn matching<M, E>(self, matcher: M, join: Join) -> TestResult
-        where M: Matcher<A, E>
+    where
+        M: Matcher<A, E>,
     {
         let success = if join.is_assertion() {
             matcher.matches(&self.value)

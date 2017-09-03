@@ -10,7 +10,8 @@ pub fn be_empty() -> BeEmpty {
 }
 
 impl<A, T> Matcher<A, ()> for BeEmpty
-    where A: Iterator<Item = T> + Clone
+where
+    A: Iterator<Item = T> + Clone,
 {
     fn failure_message(&self, join: Join, actual: &A) -> String {
         if join.is_assertion() {
@@ -33,15 +34,15 @@ mod tests {
 
     #[test]
     fn be_empty_str_failure_message() {
-        expect("hello".chars())
-            .to(be_empty())
-            .assert_eq_message("expected to be empty, got the length of 5");
+        expect("hello".chars()).to(be_empty()).assert_eq_message(
+            "expected to be empty, got the length of 5",
+        );
     }
 
     #[test]
     fn to_not_be_empty_str_failure_message() {
-        expect("".chars())
-            .to_not(be_empty())
-            .assert_eq_message("expected to not be empty");
+        expect("".chars()).to_not(be_empty()).assert_eq_message(
+            "expected to not be empty",
+        );
     }
 }

@@ -18,8 +18,9 @@ impl BeOk {
 }
 
 impl<A, T> Matcher<Result<A, T>, ()> for BeOk
-    where A: fmt::Debug,
-          T: fmt::Debug
+where
+    A: fmt::Debug,
+    T: fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &Result<A, T>) -> String {
         format!("expected {} be <Ok>, got <{:?}>", join, actual)
@@ -36,16 +37,19 @@ pub struct BeOkValue<E> {
 }
 
 impl<A, E, T> Matcher<Result<A, T>, E> for BeOkValue<E>
-    where A: PartialEq<E> + fmt::Debug,
-          E: fmt::Debug,
-          T: fmt::Debug
+where
+    A: PartialEq<E> + fmt::Debug,
+    E: fmt::Debug,
+    T: fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &Result<A, T>) -> String {
         if join.is_assertion() {
-            format!("expected {} be <Ok({:?})>, got <{:?}>",
-                    join,
-                    self.value,
-                    actual)
+            format!(
+                "expected {} be <Ok({:?})>, got <{:?}>",
+                join,
+                self.value,
+                actual
+            )
         } else {
             format!("expected {} be <{:?}>", join, actual)
         }
@@ -76,8 +80,9 @@ impl BeErr {
 }
 
 impl<A, T> Matcher<Result<T, A>, ()> for BeErr
-    where A: fmt::Debug,
-          T: fmt::Debug
+where
+    A: fmt::Debug,
+    T: fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &Result<T, A>) -> String {
         format!("expected {} be <Err>, got <{:?}>", join, actual)
@@ -94,16 +99,19 @@ pub struct BeErrValue<E> {
 }
 
 impl<A, E, T> Matcher<Result<T, A>, E> for BeErrValue<E>
-    where A: PartialEq<E> + fmt::Debug,
-          E: fmt::Debug,
-          T: fmt::Debug
+where
+    A: PartialEq<E> + fmt::Debug,
+    E: fmt::Debug,
+    T: fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &Result<T, A>) -> String {
         if join.is_assertion() {
-            format!("expected {} be <Err({:?})>, got <{:?}>",
-                    join,
-                    self.value,
-                    actual)
+            format!(
+                "expected {} be <Err({:?})>, got <{:?}>",
+                join,
+                self.value,
+                actual
+            )
         } else {
             format!("expected {} be <{:?}>", join, actual)
         }
@@ -133,9 +141,9 @@ mod tests {
 
     #[test]
     fn be_ok_failure_message() {
-        expect(err_result("error"))
-            .to(be_ok())
-            .assert_eq_message("expected to be <Ok>, got <Err(\"error\")>");
+        expect(err_result("error")).to(be_ok()).assert_eq_message(
+            "expected to be <Ok>, got <Err(\"error\")>",
+        );
     }
 
     #[test]
@@ -154,16 +162,16 @@ mod tests {
 
     #[test]
     fn to_not_be_ok_failure_message() {
-        expect(ok_result(5))
-            .to_not(be_ok())
-            .assert_eq_message("expected to not be <Ok>, got <Ok(5)>");
+        expect(ok_result(5)).to_not(be_ok()).assert_eq_message(
+            "expected to not be <Ok>, got <Ok(5)>",
+        );
     }
 
     #[test]
     fn be_err_failure_message() {
-        expect(ok_result(2))
-            .to(be_err())
-            .assert_eq_message("expected to be <Err>, got <Ok(2)>");
+        expect(ok_result(2)).to(be_err()).assert_eq_message(
+            "expected to be <Err>, got <Ok(2)>",
+        );
     }
 
     #[test]

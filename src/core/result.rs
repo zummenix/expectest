@@ -64,7 +64,7 @@ pub struct Failure {
 }
 
 impl Failure {
-    #[cfg(feature="nightly")]
+    #[cfg(feature = "nightly")]
     fn panic(&self) {
         use rust_core::panicking;
 
@@ -76,7 +76,7 @@ impl Failure {
         }
     }
 
-    #[cfg(not(feature="nightly"))]
+    #[cfg(not(feature = "nightly"))]
     fn panic(&self) {
         if let Some(location) = self.location {
             panic!("assertion failed: `{}`, {}", self.message, location);

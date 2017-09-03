@@ -18,7 +18,8 @@ impl BeSome {
 }
 
 impl<A> Matcher<Option<A>, ()> for BeSome
-    where A: fmt::Debug
+where
+    A: fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
         format!("expected {} be Some, got <{:?}>", join, actual)
@@ -35,14 +36,17 @@ pub struct BeSomeValue<E> {
 }
 
 impl<A, E> Matcher<Option<A>, E> for BeSomeValue<E>
-    where A: PartialEq<E> + fmt::Debug,
-          E: fmt::Debug
+where
+    A: PartialEq<E> + fmt::Debug,
+    E: fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
-        format!("expected {} be equal to <Some({:?})>, got <{:?}>",
-                join,
-                self.value,
-                actual)
+        format!(
+            "expected {} be equal to <Some({:?})>, got <{:?}>",
+            join,
+            self.value,
+            actual
+        )
     }
 
     fn matches(&self, actual: &Option<A>) -> bool {
@@ -63,7 +67,8 @@ pub fn be_none() -> BeNone {
 }
 
 impl<A> Matcher<Option<A>, ()> for BeNone
-    where A: fmt::Debug
+where
+    A: fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
         format!("expected {} be None, got <{:?}>", join, actual)
@@ -81,9 +86,9 @@ mod tests {
 
     #[test]
     fn be_some_failure_message() {
-        expect(None::<u8>)
-            .to(be_some())
-            .assert_eq_message("expected to be Some, got <None>");
+        expect(None::<u8>).to(be_some()).assert_eq_message(
+            "expected to be Some, got <None>",
+        );
     }
 
     #[test]
@@ -95,15 +100,15 @@ mod tests {
 
     #[test]
     fn be_some_value_failure_message_2() {
-        expect(Some(2))
-            .to(be_some().value(1))
-            .assert_eq_message("expected to be equal to <Some(1)>, got <Some(2)>");
+        expect(Some(2)).to(be_some().value(1)).assert_eq_message(
+            "expected to be equal to <Some(1)>, got <Some(2)>",
+        );
     }
 
     #[test]
     fn be_none_failure_message() {
-        expect(Some(2))
-            .to(be_none())
-            .assert_eq_message("expected to be None, got <Some(2)>");
+        expect(Some(2)).to(be_none()).assert_eq_message(
+            "expected to be None, got <Some(2)>",
+        );
     }
 }

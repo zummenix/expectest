@@ -43,7 +43,7 @@
 //!
 //! ```toml
 //! [dev-dependencies]
-//! expectest = "0.9.1"
+//! expectest = "0.9.2"
 //! ```
 //!
 //! If you prefer nightly rust and want failure messages to be integrated in rust's
@@ -51,7 +51,7 @@
 //!
 //! ```toml
 //! [dev-dependencies]
-//! expectest = { version = "0.9.1", features = ["nightly"] }
+//! expectest = { version = "0.9.2", features = ["nightly"] }
 //! ```
 //!
 //! In your crate root:
@@ -196,9 +196,9 @@ pub mod prelude {
     //! A module contains reexport of all useful functions.
 
     pub use core::expect;
-    pub use matchers::{be_equal_to, be_less_than, be_less_or_equal_to, be_greater_than,
-                       be_greater_or_equal_to, be_true, be_false, be_some, be_none, be_ok, be_err,
-                       be_close_to, be_empty, have_count};
+    pub use matchers::{be_close_to, be_empty, be_equal_to, be_err, be_false,
+                       be_greater_or_equal_to, be_greater_than, be_less_or_equal_to, be_less_than,
+                       be_none, be_ok, be_some, be_true, have_count};
 }
 
 pub mod core;

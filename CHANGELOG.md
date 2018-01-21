@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.9.2] - 2018-01-21
 - Adapted float point tests to a new Debug implementation
 
 ## [0.9.1] - 2017-08-18

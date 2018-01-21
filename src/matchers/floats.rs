@@ -1,5 +1,4 @@
-
-use core::{Matcher, Join};
+use core::{Join, Matcher};
 use std::fmt;
 use num_traits::{self, Float};
 
@@ -35,10 +34,7 @@ where
     fn failure_message(&self, join: Join, actual: &E) -> String {
         format!(
             "expected {} be close to <{:?}> ±{:?}, got <{:?}>",
-            join,
-            self.expected,
-            self.delta,
-            actual
+            join, self.expected, self.delta, actual
         )
     }
 
@@ -57,23 +53,23 @@ mod tests {
     use core::expect;
 
     #[test]
-    fn close_to_one_failure_message() {
-        expect(0.0).to(be_close_to(1.0)).assert_eq_message(
-            "expected to be close to <1> ±0.001, got <0>",
-        );
+    fn close_to_one_and_half_failure_message() {
+        expect(0.5)
+            .to(be_close_to(1.5))
+            .assert_eq_message("expected to be close to <1.5> ±0.001, got <0.5>");
     }
 
     #[test]
-    fn to_not_be_close_to_one_failure_message() {
-        expect(0.9991).not_to(be_close_to(1.0)).assert_eq_message(
-            "expected not to be close to <1> ±0.001, got <0.9991>",
-        );
+    fn to_not_be_close_to_one_and_half_failure_message() {
+        expect(1.4991)
+            .not_to(be_close_to(1.5))
+            .assert_eq_message("expected not to be close to <1.5> ±0.001, got <1.4991>");
     }
 
     #[test]
-    fn close_to_one_delta_failure_message() {
-        expect(0.0)
-            .to(be_close_to(1.0).delta(0.1))
-            .assert_eq_message("expected to be close to <1> ±0.1, got <0>");
+    fn close_to_one_and_half_delta_failure_message() {
+        expect(0.5)
+            .to(be_close_to(1.5).delta(0.1))
+            .assert_eq_message("expected to be close to <1.5> ±0.1, got <0.5>");
     }
 }

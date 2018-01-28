@@ -1,4 +1,3 @@
-
 use core::SourceLocation;
 
 /// Represents result of unit testing.

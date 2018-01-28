@@ -1,6 +1,5 @@
-
 use std::fmt;
-use core::{Matcher, Join};
+use core::{Join, Matcher};
 
 /// A matcher for `be_some` assertions for `Option<T>` types.
 pub struct BeSome;
@@ -43,9 +42,7 @@ where
     fn failure_message(&self, join: Join, actual: &Option<A>) -> String {
         format!(
             "expected {} be equal to <Some({:?})>, got <{:?}>",
-            join,
-            self.value,
-            actual
+            join, self.value, actual
         )
     }
 
@@ -81,14 +78,14 @@ where
 
 #[cfg(test)]
 mod tests {
-    use super::{be_some, be_none};
+    use super::{be_none, be_some};
     use core::expect;
 
     #[test]
     fn be_some_failure_message() {
-        expect(None::<u8>).to(be_some()).assert_eq_message(
-            "expected to be Some, got <None>",
-        );
+        expect(None::<u8>)
+            .to(be_some())
+            .assert_eq_message("expected to be Some, got <None>");
     }
 
     #[test]
@@ -100,15 +97,15 @@ mod tests {
 
     #[test]
     fn be_some_value_failure_message_2() {
-        expect(Some(2)).to(be_some().value(1)).assert_eq_message(
-            "expected to be equal to <Some(1)>, got <Some(2)>",
-        );
+        expect(Some(2))
+            .to(be_some().value(1))
+            .assert_eq_message("expected to be equal to <Some(1)>, got <Some(2)>");
     }
 
     #[test]
     fn be_none_failure_message() {
-        expect(Some(2)).to(be_none()).assert_eq_message(
-            "expected to be None, got <Some(2)>",
-        );
+        expect(Some(2))
+            .to(be_none())
+            .assert_eq_message("expected to be None, got <Some(2)>");
     }
 }

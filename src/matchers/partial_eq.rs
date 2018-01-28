@@ -1,6 +1,5 @@
-
 use std::fmt;
-use core::{Matcher, Join};
+use core::{Join, Matcher};
 
 /// A matcher for `be_equal_to` assertions for types that conforms to
 /// `PartialEq` trait.
@@ -22,9 +21,7 @@ where
         if join.is_assertion() {
             format!(
                 "expected {} be equal to <{:?}>, got <{:?}>",
-                join,
-                self.expected,
-                actual
+                join, self.expected, actual
             )
         } else {
             format!("expected {} be equal to <{:?}>", join, self.expected)
@@ -43,15 +40,15 @@ mod tests {
 
     #[test]
     fn be_equal_to_failure_message() {
-        expect(2).to(be_equal_to(1)).assert_eq_message(
-            "expected to be equal to <1>, got <2>",
-        );
+        expect(2)
+            .to(be_equal_to(1))
+            .assert_eq_message("expected to be equal to <1>, got <2>");
     }
 
     #[test]
     fn to_not_be_equal_to_failure_message() {
-        expect(1).to_not(be_equal_to(1)).assert_eq_message(
-            "expected to not be equal to <1>",
-        );
+        expect(1)
+            .to_not(be_equal_to(1))
+            .assert_eq_message("expected to not be equal to <1>");
     }
 }

@@ -1,4 +1,3 @@
-
 use std::fmt;
 
 /// Represents a location in a source code.

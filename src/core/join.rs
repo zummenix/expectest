@@ -1,4 +1,3 @@
-
 use std::fmt;
 
 /// An enum used to join two parts of a failure message.
@@ -33,7 +32,7 @@ impl Join {
 #[cfg(test)]
 mod tests {
     use super::Join;
-    use matchers::{be_equal_to, be_true, be_false};
+    use matchers::{be_equal_to, be_false, be_true};
 
     #[test]
     fn join_should_display_correct_text() {

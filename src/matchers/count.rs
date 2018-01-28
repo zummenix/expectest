@@ -1,5 +1,4 @@
-
-use core::{Matcher, Join};
+use core::{Join, Matcher};
 
 /// A matcher for `have_count` assertions.
 pub struct HaveCount {
@@ -40,9 +39,9 @@ mod tests {
 
     #[test]
     fn test_to_have_count_2_message() {
-        expect("abc".chars()).to(have_count(2)).assert_eq_message(
-            "expected to have count <2>, got <3>",
-        );
+        expect("abc".chars())
+            .to(have_count(2))
+            .assert_eq_message("expected to have count <2>, got <3>");
     }
 
     #[test]

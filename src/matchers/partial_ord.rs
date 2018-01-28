@@ -1,6 +1,5 @@
-
 use std::fmt;
-use core::{Matcher, Join};
+use core::{Join, Matcher};
 
 /// A matcher for types that conforms to `PartialOrd` trait.
 pub struct PartialOrder<E> {
@@ -25,10 +24,7 @@ where
     fn failure_message(&self, join: Join, actual: &A) -> String {
         format!(
             "expected {} be {} <{:?}>, got <{:?}>",
-            join,
-            self.order,
-            self.expected,
-            actual
+            join, self.order, self.expected, actual
         )
     }
 
@@ -83,34 +79,34 @@ impl fmt::Display for Order {
 
 #[cfg(test)]
 mod tests {
-    use super::{be_less_than, be_less_or_equal_to, be_greater_than, be_greater_or_equal_to};
+    use super::{be_greater_or_equal_to, be_greater_than, be_less_or_equal_to, be_less_than};
     use core::expect;
 
     #[test]
     fn be_less_than_one_failure_message() {
-        expect(1).to(be_less_than(1)).assert_eq_message(
-            "expected to be less than <1>, got <1>",
-        );
+        expect(1)
+            .to(be_less_than(1))
+            .assert_eq_message("expected to be less than <1>, got <1>");
     }
 
     #[test]
     fn be_less_or_equal_to_one_failure_message() {
-        expect(2).to(be_less_or_equal_to(1)).assert_eq_message(
-            "expected to be less or equal to <1>, got <2>",
-        );
+        expect(2)
+            .to(be_less_or_equal_to(1))
+            .assert_eq_message("expected to be less or equal to <1>, got <2>");
     }
 
     #[test]
     fn be_greater_than_zero_failure_message() {
-        expect(0).to(be_greater_than(0)).assert_eq_message(
-            "expected to be greater than <0>, got <0>",
-        );
+        expect(0)
+            .to(be_greater_than(0))
+            .assert_eq_message("expected to be greater than <0>, got <0>");
     }
 
     #[test]
     fn be_greater_or_equal_to_zero_failure_message() {
-        expect(-1).to(be_greater_or_equal_to(0)).assert_eq_message(
-            "expected to be greater or equal to <0>, got <-1>",
-        );
+        expect(-1)
+            .to(be_greater_or_equal_to(0))
+            .assert_eq_message("expected to be greater or equal to <0>, got <-1>");
     }
 }

@@ -1,6 +1,5 @@
-
 use std::fmt;
-use core::{Matcher, Join};
+use core::{Join, Matcher};
 
 /// A matcher for `be_ok` assertions for `Result<T, E>` type.
 pub struct BeOk;
@@ -46,9 +45,7 @@ where
         if join.is_assertion() {
             format!(
                 "expected {} be <Ok({:?})>, got <{:?}>",
-                join,
-                self.value,
-                actual
+                join, self.value, actual
             )
         } else {
             format!("expected {} be <{:?}>", join, actual)
@@ -108,9 +105,7 @@ where
         if join.is_assertion() {
             format!(
                 "expected {} be <Err({:?})>, got <{:?}>",
-                join,
-                self.value,
-                actual
+                join, self.value, actual
             )
         } else {
             format!("expected {} be <{:?}>", join, actual)
@@ -128,7 +123,7 @@ where
 
 #[cfg(test)]
 mod tests {
-    use super::{be_ok, be_err};
+    use super::{be_err, be_ok};
     use core::expect;
 
     fn ok_result(value: u32) -> Result<u32, &'static str> {
@@ -141,9 +136,9 @@ mod tests {
 
     #[test]
     fn be_ok_failure_message() {
-        expect(err_result("error")).to(be_ok()).assert_eq_message(
-            "expected to be <Ok>, got <Err(\"error\")>",
-        );
+        expect(err_result("error"))
+            .to(be_ok())
+            .assert_eq_message("expected to be <Ok>, got <Err(\"error\")>");
     }
 
     #[test]
@@ -162,16 +157,16 @@ mod tests {
 
     #[test]
     fn to_not_be_ok_failure_message() {
-        expect(ok_result(5)).to_not(be_ok()).assert_eq_message(
-            "expected to not be <Ok>, got <Ok(5)>",
-        );
+        expect(ok_result(5))
+            .to_not(be_ok())
+            .assert_eq_message("expected to not be <Ok>, got <Ok(5)>");
     }
 
     #[test]
     fn be_err_failure_message() {
-        expect(ok_result(2)).to(be_err()).assert_eq_message(
-            "expected to be <Err>, got <Ok(2)>",
-        );
+        expect(ok_result(2))
+            .to(be_err())
+            .assert_eq_message("expected to be <Err>, got <Ok(2)>");
     }
 
     #[test]

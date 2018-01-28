@@ -1,5 +1,4 @@
-
-use core::{SourceLocation, Matcher, Join, TestResult};
+use core::{Join, Matcher, SourceLocation, TestResult};
 
 /// Creates a new instance of `ActualValue` using `value`.
 ///

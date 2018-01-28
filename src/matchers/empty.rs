@@ -1,5 +1,4 @@
-
-use core::{Matcher, Join};
+use core::{Join, Matcher};
 
 /// A matcher for `be_empty` assertions.
 pub struct BeEmpty;
@@ -34,15 +33,15 @@ mod tests {
 
     #[test]
     fn be_empty_str_failure_message() {
-        expect("hello".chars()).to(be_empty()).assert_eq_message(
-            "expected to be empty, got the length of 5",
-        );
+        expect("hello".chars())
+            .to(be_empty())
+            .assert_eq_message("expected to be empty, got the length of 5");
     }
 
     #[test]
     fn to_not_be_empty_str_failure_message() {
-        expect("".chars()).to_not(be_empty()).assert_eq_message(
-            "expected to not be empty",
-        );
+        expect("".chars())
+            .to_not(be_empty())
+            .assert_eq_message("expected to not be empty");
     }
 }

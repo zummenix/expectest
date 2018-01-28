@@ -1,10 +1,9 @@
-
 //! A module contains core types of this library.
 
 pub use self::location::SourceLocation;
 pub use self::actual::{expect, ActualValue};
 pub use self::join::Join;
-pub use self::result::{TestResult, Failure};
+pub use self::result::{Failure, TestResult};
 
 mod location;
 mod actual;

@@ -3,12 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Run rustfmt on all files
 
 ## [0.9.2] - 2018-01-21
 - Adapted float point tests to a new Debug implementation
 
 ## [0.9.1] - 2017-08-18
-- Changed printing to closely match rust's unit testing behavior, for example on nightly (with `nightly` 
+- Changed printing to closely match rust's unit testing behavior, for example on nightly (with `nightly`
 feature enabled):
 ```
 ---- core::result::tests::fails stdout ----

@@ -70,11 +70,12 @@
 //! # Matchers
 //!
 //! Keep in mind that some matchers work with types that implement `Debug` trait
-//! to print inner representation. You need to derive it for your types.
+//! to print inner representation. You need to implement or derive it for your types.
 //!
 //! ## Equality
 //!
-//! For types that implement `PartialEq` trait.
+//! For types that implement `PartialEq` trait you can use `be_equal_to` function or its alias
+//! `be_eq`.
 //!
 //! ```rust
 //! # #[macro_use] extern crate expectest;
@@ -99,14 +100,19 @@
 //!
 //! ## Order
 //!
-//! For types that implement `PartialOrd` trait.
-//!
-//! Use any of the following matchers:
+//! For types that implement `PartialOrd` trait you can use any of the following matchers:
 //!
 //! - `be_less_than`
 //! - `be_less_or_equal_to`
 //! - `be_greater_than`
 //! - `be_greater_or_equal_to`
+//!
+//! or their aliases respectively:
+//!
+//! - `be_lt`
+//! - `be_le`
+//! - `be_gt`
+//! - `be_ge`
 //!
 //! ```rust
 //! # #[macro_use] extern crate expectest;
@@ -181,7 +187,7 @@ extern crate num_traits;
 #[cfg(feature = "nightly")]
 extern crate core as rust_core;
 
-/// A macro intended to use instead of `expect` function.
+/// A macro intended to use as a powerful replacement of `expect` function.
 ///
 /// Provides a file name and a line number for a failed test case.
 #[macro_export]

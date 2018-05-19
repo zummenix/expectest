@@ -186,19 +186,19 @@ extern crate core as rust_core;
 /// Provides a file name and a line number for a failed test case.
 #[macro_export]
 macro_rules! expect {
-    ($e: expr) => ({
+    ($e:expr) => {{
         let location = $crate::core::SourceLocation::new(file!(), line!(), column!());
         $crate::core::expect($e).location(location)
-    });
+    }};
 }
 
 pub mod prelude {
     //! A module contains reexport of all useful functions.
 
     pub use core::expect;
-    pub use matchers::{be_close_to, be_empty, be_equal_to, be_err, be_false,
-                       be_greater_or_equal_to, be_greater_than, be_less_or_equal_to, be_less_than,
-                       be_none, be_ok, be_some, be_true, have_count};
+    pub use matchers::{be_close_to, be_empty, be_eq, be_equal_to, be_err, be_false, be_ge,
+                       be_greater_or_equal_to, be_greater_than, be_gt, be_le, be_less_or_equal_to,
+                       be_less_than, be_lt, be_none, be_ok, be_some, be_true, have_count};
 }
 
 pub mod core;

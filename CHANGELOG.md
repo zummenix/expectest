@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.10.0] - 2018-05-21
 - Run rustfmt on all files
 - Added short aliases for some long functions:
 ```

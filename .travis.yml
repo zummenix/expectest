@@ -2,7 +2,8 @@ language: rust
 sudo: false
 
 rust:
-  - stable
-  - nightly
+    - 1.0.0
+    - stable
+    - nightly
 
 script: ./ci/build-and-test.sh

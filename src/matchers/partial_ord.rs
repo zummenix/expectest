@@ -1,7 +1,7 @@
-use std::fmt;
 use core::{Join, Matcher};
+use std::fmt;
 
-/// A matcher for types that conforms to `PartialOrd` trait.
+/// A matcher for types that conform to `PartialOrd` trait.
 pub struct PartialOrder<E> {
     expected: E,
     order: Order,

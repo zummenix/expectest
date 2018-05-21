@@ -8,6 +8,11 @@ fn equality_of_vecs() {
 }
 
 #[test]
+fn equality_of_vecs_alias() {
+    expect!(vec![1, 2, 3]).to(be_eq([1, 2, 3]));
+}
+
+#[test]
 fn equality_of_strings() {
     expect!("hello".to_string()).to(be_equal_to("hello"));
 }

@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 - Run rustfmt on all files
+- Added short aliases for some long functions:
+```
+be_equal_to <=> be_eq
+be_less_than <=> be_lt
+be_less_or_equal_to <=> be_le
+be_greater_than <=> be_gt
+be_greater_or_equal_to <=> be_ge
+```
+- Set minimum rust version in `.travis.yml`
 
 ## [0.9.2] - 2018-01-21
 - Adapted float point tests to a new Debug implementation

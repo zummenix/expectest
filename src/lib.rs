@@ -209,11 +209,3 @@ pub mod prelude {
 
 pub mod core;
 pub mod matchers;
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn should_fail() {
-        panic!();
-    }
-}

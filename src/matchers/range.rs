@@ -3,7 +3,7 @@ use std::fmt;
 use std::ops::RangeBounds;
 use std::marker::PhantomData;
 
-pub fn be_in_range<R, T>(range: R) -> BeInRange<R, T>
+pub fn be_within_range<R, T>(range: R) -> BeInRange<R, T>
     where
         R: RangeBounds<T>,
         T: PartialOrd<T> + std::fmt::Debug {
@@ -26,7 +26,7 @@ impl<A, R> Matcher<A, ()> for BeInRange<R, A>
         R: RangeBounds<A> + std::fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &A) -> String {
-        format!("expected {} be in range <{:?}>, got <{:?}>", join, self.range, actual)
+        format!("expected {} be within range <{:?}>, got <{:?}>", join, self.range, actual)
     }
 
     fn matches(&self, actual: &A) -> bool {
@@ -57,8 +57,8 @@ mod tests {
     #[test]
     fn in_range_message() {
         use core::expect;
-        expect(0).to(be_in_range(1..2))
-            .assert_eq_message("expected to be in range <1..2>, got <0>");
+        expect(0).to(be_within_range(1..2))
+            .assert_eq_message("expected to be within range <1..2>, got <0>");
 
     }
 }

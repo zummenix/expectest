@@ -10,7 +10,7 @@ pub use self::partial_ord::{be_greater_or_equal_to, be_greater_or_equal_to as be
                             be_greater_than, be_greater_than as be_gt, be_less_or_equal_to,
                             be_less_or_equal_to as be_le, be_less_than, be_less_than as be_lt,
                             PartialOrder};
-pub use self::range::{be_in_range, BeInRange};
+pub use self::range::{be_within_range, BeInRange};
 pub use self::result::{be_err, be_ok, BeErr, BeOk};
 
 mod bool;

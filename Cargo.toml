@@ -16,7 +16,7 @@ license = "MIT OR Apache-2.0"
 travis-ci = { repository = "zummenix/expectest" }
 
 [dependencies]
-num-traits = ">0.1.40, <=0.1.42"
+num-traits = "0.1.40"
 
 [features]
 nightly = []

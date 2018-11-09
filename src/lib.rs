@@ -212,10 +212,8 @@ pub mod matchers;
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-
     #[test]
     fn should_fail() {
-        fail!();
+        panic!();
     }
 }

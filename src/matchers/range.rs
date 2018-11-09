@@ -1,5 +1,4 @@
 use core::{Join, Matcher};
-use std::fmt;
 use std::ops::RangeBounds;
 use std::marker::PhantomData;
 

@@ -2,17 +2,17 @@ use core::{Join, Matcher};
 use std::ops::RangeBounds;
 use std::marker::PhantomData;
 
-/// Returns a new `BeInRange` matcher.
-pub fn be_within_range<R, T>(range: R) -> BeInRange<R, T>
+/// Returns a new `BeWithinRange` matcher.
+pub fn be_within_range<R, T>(range: R) -> BeWithinRange<R, T>
     where
         R: RangeBounds<T>,
         T: PartialOrd<T> + std::fmt::Debug {
 
-    BeInRange { range, phantom: PhantomData}
+    BeWithinRange { range, phantom: PhantomData}
 }
 
 /// A matcher for `be_within_range` assertions.
-pub struct BeInRange<R, T>
+pub struct BeWithinRange<R, T>
     where
         R: RangeBounds<T>,
         T: PartialOrd<T> + std::fmt::Debug
@@ -21,7 +21,7 @@ pub struct BeInRange<R, T>
     phantom: PhantomData<T>,
 }
 
-impl<A, R> Matcher<A, ()> for BeInRange<R, A>
+impl<A, R> Matcher<A, ()> for BeWithinRange<R, A>
     where
         A: PartialOrd<A> + std::fmt::Debug,
         R: RangeBounds<A> + std::fmt::Debug,

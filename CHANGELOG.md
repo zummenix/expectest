@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.11.0] - 2018-11-12
+- Added `BeWithinRange` matcher
+- Bumped minimum supported rust verstion to 1.28 due to usage of ranges
+- Run rustfmt on all files
+- Bumped `num-traits` dependency
+
 ## [0.10.0] - 2018-05-21
 - Run rustfmt on all files
 - Added short aliases for some long functions:

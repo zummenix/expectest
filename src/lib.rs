@@ -114,11 +114,15 @@
 //! - `be_gt`
 //! - `be_ge`
 //!
+//! For two-sided checks range matcher can be used:
+//!  - `be_within_range`
+//!
 //! ```rust
 //! # #[macro_use] extern crate expectest;
 //! # use expectest::prelude::*;
 //! # fn main() {
 //! expect!(1).to(be_greater_than(0));
+//! expect!(1).to(be_within_range(0..=1));
 //! # }
 //! ```
 //!
@@ -204,7 +208,7 @@ pub mod prelude {
     pub use core::expect;
     pub use matchers::{be_close_to, be_empty, be_eq, be_equal_to, be_err, be_false, be_ge,
                        be_greater_or_equal_to, be_greater_than, be_gt, be_le, be_less_or_equal_to,
-                       be_less_than, be_lt, be_none, be_ok, be_some, be_true, have_count};
+                       be_less_than, be_lt, be_within_range, be_none, be_ok, be_some, be_true, have_count};
 }
 
 pub mod core;

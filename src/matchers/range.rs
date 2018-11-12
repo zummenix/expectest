@@ -1,12 +1,13 @@
 use core::{Join, Matcher};
 use std::ops::RangeBounds;
 use std::marker::PhantomData;
+use std::fmt;
 
 /// Returns a new `BeWithinRange` matcher.
 pub fn be_within_range<R, T>(range: R) -> BeWithinRange<R, T>
     where
         R: RangeBounds<T>,
-        T: PartialOrd<T> + std::fmt::Debug {
+        T: PartialOrd<T> + fmt::Debug {
 
     BeWithinRange { range, phantom: PhantomData}
 }
@@ -15,7 +16,7 @@ pub fn be_within_range<R, T>(range: R) -> BeWithinRange<R, T>
 pub struct BeWithinRange<R, T>
     where
         R: RangeBounds<T>,
-        T: PartialOrd<T> + std::fmt::Debug
+        T: PartialOrd<T> + fmt::Debug
 {
     range: R,
     phantom: PhantomData<T>,
@@ -23,8 +24,8 @@ pub struct BeWithinRange<R, T>
 
 impl<A, R> Matcher<A, ()> for BeWithinRange<R, A>
     where
-        A: PartialOrd<A> + std::fmt::Debug,
-        R: RangeBounds<A> + std::fmt::Debug,
+        A: PartialOrd<A> + fmt::Debug,
+        R: RangeBounds<A> + fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &A) -> String {
         format!("expected {} be within range <{:?}>, got <{:?}>", join, self.range, actual)

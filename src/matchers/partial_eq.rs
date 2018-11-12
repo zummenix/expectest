@@ -1,5 +1,5 @@
-use std::fmt;
 use core::{Join, Matcher};
+use std::fmt;
 
 /// A matcher for `be_equal_to` assertions for types that conforms to
 /// `PartialEq` trait.

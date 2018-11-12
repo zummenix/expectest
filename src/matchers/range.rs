@@ -1,34 +1,40 @@
 use core::{Join, Matcher};
-use std::ops::RangeBounds;
-use std::marker::PhantomData;
 use std::fmt;
+use std::marker::PhantomData;
+use std::ops::RangeBounds;
 
 /// Returns a new `BeWithinRange` matcher.
 pub fn be_within_range<R, T>(range: R) -> BeWithinRange<R, T>
-    where
-        R: RangeBounds<T>,
-        T: PartialOrd<T> + fmt::Debug {
-
-    BeWithinRange { range, phantom: PhantomData}
+where
+    R: RangeBounds<T>,
+    T: PartialOrd<T> + fmt::Debug,
+{
+    BeWithinRange {
+        range,
+        phantom: PhantomData,
+    }
 }
 
 /// A matcher for `be_within_range` assertions.
 pub struct BeWithinRange<R, T>
-    where
-        R: RangeBounds<T>,
-        T: PartialOrd<T> + fmt::Debug
+where
+    R: RangeBounds<T>,
+    T: PartialOrd<T> + fmt::Debug,
 {
     range: R,
     phantom: PhantomData<T>,
 }
 
 impl<A, R> Matcher<A, ()> for BeWithinRange<R, A>
-    where
-        A: PartialOrd<A> + fmt::Debug,
-        R: RangeBounds<A> + fmt::Debug,
+where
+    A: PartialOrd<A> + fmt::Debug,
+    R: RangeBounds<A> + fmt::Debug,
 {
     fn failure_message(&self, join: Join, actual: &A) -> String {
-        format!("expected {} be within range <{:?}>, got <{:?}>", join, self.range, actual)
+        format!(
+            "expected {} be within range <{:?}>, got <{:?}>",
+            join, self.range, actual
+        )
     }
 
     fn matches(&self, actual: &A) -> bool {
@@ -59,8 +65,8 @@ mod tests {
     #[test]
     fn in_range_message() {
         use core::expect;
-        expect(0).to(be_within_range(1..2))
+        expect(0)
+            .to(be_within_range(1..2))
             .assert_eq_message("expected to be within range <1..2>, got <0>");
-
     }
 }

@@ -1,6 +1,6 @@
 use core::{Join, Matcher};
-use std::fmt;
 use num_traits::{self, Float};
+use std::fmt;
 
 /// A matcher for `be_close_to` assertions for float numbers.
 pub struct BeCloseTo<E> {

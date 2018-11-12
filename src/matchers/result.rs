@@ -1,5 +1,5 @@
-use std::fmt;
 use core::{Join, Matcher};
+use std::fmt;
 
 /// A matcher for `be_ok` assertions for `Result<T, E>` type.
 pub struct BeOk;

@@ -1,5 +1,3 @@
-#[macro_use(expect)]
-extern crate expectest;
 use expectest::prelude::*;
 
 #[test]

@@ -103,13 +103,21 @@
 //! - `be_gt`
 //! - `be_ge`
 //!
+//! ```rust
+//! # use expectest::prelude::*;
+//! # fn main() {
+//! expect!(1).to(be_greater_than(0));
+//! # }
+//! ```
+//!
+//! ## Ranges
+//!
 //! For two-sided checks range matcher can be used:
 //!  - `be_within_range`
 //!
 //! ```rust
 //! # use expectest::prelude::*;
 //! # fn main() {
-//! expect!(1).to(be_greater_than(0));
 //! expect!(1).to(be_within_range(0..=1));
 //! # }
 //! ```

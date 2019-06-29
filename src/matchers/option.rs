@@ -1,4 +1,4 @@
-use core::{Join, Matcher};
+use crate::core::{Join, Matcher};
 use std::fmt;
 
 /// A matcher for `be_some` assertions for `Option<T>` types.
@@ -79,7 +79,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::{be_none, be_some};
-    use core::expect;
+    use crate::core::expect;
 
     #[test]
     fn be_some_failure_message() {

@@ -32,7 +32,7 @@ impl Join {
 #[cfg(test)]
 mod tests {
     use super::Join;
-    use matchers::{be_equal_to, be_false, be_true};
+    use crate::matchers::{be_equal_to, be_false, be_true};
 
     #[test]
     fn join_should_display_correct_text() {

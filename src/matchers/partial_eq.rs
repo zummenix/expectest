@@ -1,4 +1,4 @@
-use core::{Join, Matcher};
+use crate::core::{Join, Matcher};
 use std::fmt;
 
 /// A matcher for `be_equal_to` assertions for types that conforms to
@@ -36,7 +36,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::be_equal_to;
-    use core::expect;
+    use crate::core::expect;
 
     #[test]
     fn be_equal_to_failure_message() {

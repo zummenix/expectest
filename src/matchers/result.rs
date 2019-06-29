@@ -1,4 +1,4 @@
-use core::{Join, Matcher};
+use crate::core::{Join, Matcher};
 use std::fmt;
 
 /// A matcher for `be_ok` assertions for `Result<T, E>` type.
@@ -124,7 +124,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::{be_err, be_ok};
-    use core::expect;
+    use crate::core::expect;
 
     fn ok_result(value: u32) -> Result<u32, &'static str> {
         Ok(value)

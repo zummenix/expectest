@@ -1,4 +1,4 @@
-use core::{Join, Matcher};
+use crate::core::{Join, Matcher};
 
 /// A matcher for `be_true` assertions.
 pub struct BeTrue;
@@ -39,7 +39,7 @@ impl Matcher<bool, ()> for BeFalse {
 #[cfg(test)]
 mod tests {
     use super::{be_false, be_true};
-    use core::expect;
+    use crate::core::expect;
 
     #[test]
     fn test_be_true_message() {

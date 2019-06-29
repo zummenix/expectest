@@ -1,4 +1,4 @@
-use core::SourceLocation;
+use crate::core::SourceLocation;
 
 /// Represents result of unit testing.
 #[derive(Debug)]

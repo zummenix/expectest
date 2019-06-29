@@ -1,4 +1,4 @@
-use core::{Join, Matcher};
+use crate::core::{Join, Matcher};
 use num_traits::{self, Float};
 use std::fmt;
 
@@ -50,7 +50,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::be_close_to;
-    use core::expect;
+    use crate::core::expect;
 
     #[test]
     fn close_to_one_and_half_failure_message() {

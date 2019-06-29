@@ -1,4 +1,4 @@
-use core::{Join, Matcher, SourceLocation, TestResult};
+use crate::core::{Join, Matcher, SourceLocation, TestResult};
 
 /// Creates a new instance of `ActualValue` using `value`.
 ///

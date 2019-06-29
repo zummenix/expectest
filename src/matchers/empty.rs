@@ -1,4 +1,4 @@
-use core::{Join, Matcher};
+use crate::core::{Join, Matcher};
 
 /// A matcher for `be_empty` assertions.
 pub struct BeEmpty;
@@ -29,7 +29,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::be_empty;
-    use core::expect;
+    use crate::core::expect;
 
     #[test]
     fn be_empty_str_failure_message() {

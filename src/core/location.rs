@@ -33,7 +33,7 @@ impl fmt::Debug for SourceLocation {
 #[cfg(test)]
 mod tests {
     use super::SourceLocation;
-    use matchers::be_equal_to;
+    use crate::matchers::be_equal_to;
 
     #[test]
     fn location_should_display_correct_text() {

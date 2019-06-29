@@ -1,4 +1,4 @@
-use core::{Join, Matcher};
+use crate::core::{Join, Matcher};
 use std::fmt;
 use std::marker::PhantomData;
 use std::ops::RangeBounds;
@@ -64,7 +64,7 @@ mod tests {
 
     #[test]
     fn in_range_message() {
-        use core::expect;
+        use crate::core::expect;
         expect(0)
             .to(be_within_range(1..2))
             .assert_eq_message("expected to be within range <1..2>, got <0>");

@@ -1,4 +1,4 @@
-use core::{Join, Matcher};
+use crate::core::{Join, Matcher};
 
 /// A matcher for `have_count` assertions.
 pub struct HaveCount {
@@ -35,7 +35,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::have_count;
-    use core::expect;
+    use crate::core::expect;
 
     #[test]
     fn test_to_have_count_2_message() {

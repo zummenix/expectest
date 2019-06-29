@@ -1,4 +1,4 @@
-use core::{Join, Matcher};
+use crate::core::{Join, Matcher};
 use std::fmt;
 
 /// A matcher for types that conform to `PartialOrd` trait.
@@ -80,7 +80,7 @@ impl fmt::Display for Order {
 #[cfg(test)]
 mod tests {
     use super::{be_greater_or_equal_to, be_greater_than, be_less_or_equal_to, be_less_than};
-    use core::expect;
+    use crate::core::expect;
 
     #[test]
     fn be_less_than_one_failure_message() {

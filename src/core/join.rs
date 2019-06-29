@@ -12,7 +12,7 @@ pub enum Join {
 }
 
 impl fmt::Display for Join {
-    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
         let join = match *self {
             Join::To => "to",
             Join::ToNot => "to not",

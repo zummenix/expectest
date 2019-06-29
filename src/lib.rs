@@ -186,8 +186,6 @@
 
 #![cfg_attr(feature = "nightly", feature(core_panic))]
 
-extern crate num_traits;
-
 #[cfg(feature = "nightly")]
 extern crate core as rust_core;
 

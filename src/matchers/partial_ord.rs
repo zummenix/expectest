@@ -66,7 +66,7 @@ enum Order {
 }
 
 impl fmt::Display for Order {
-    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
         let order = match *self {
             Order::LessThan => "less than",
             Order::LessOrEqualTo => "less or equal to",

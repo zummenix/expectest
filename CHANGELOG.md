@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.12.0] - 2019-10-19
+- Update for rust 2018 edition
+
 ## [0.11.0] - 2018-11-12
 - Added `BeWithinRange` matcher
 - Bumped minimum supported rust verstion to 1.28 due to usage of ranges

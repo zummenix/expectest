@@ -9,7 +9,6 @@ documentation = "https://docs.rs/expectest"
 readme = "README.md"
 keywords = ["testing", "tests", "matcher", "expect"]
 categories = ["development-tools::testing"]
-maintenance = { status = "passively-maintained" }
 
 license = "MIT OR Apache-2.0"
 
@@ -17,6 +16,7 @@ edition = "2018"
 
 [badges]
 travis-ci = { repository = "zummenix/expectest" }
+maintenance = { status = "passively-maintained" }
 
 [dependencies]
 num-traits = "0.2"

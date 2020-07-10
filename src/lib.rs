@@ -17,10 +17,8 @@
 //!
 //! ```rust,should_panic
 //! # use expectest::prelude::*;
-//! # fn main() {
 //! let result = vec![1, 2, 2];
 //! expect!(result).to(be_equal_to([1, 2, 3]));
-//! # }
 //! // --
 //! // This will print:
 //! // expected to be equal to <[1, 2, 3]>, got <[1, 2, 2]>
@@ -70,9 +68,7 @@
 //!
 //! ```rust
 //! # use expectest::prelude::*;
-//! # fn main() {
 //! expect!("hello".to_string()).to(be_equal_to("hello"));
-//! # }
 //! ```
 //!
 //! ## Equality of Floats
@@ -81,10 +77,8 @@
 //!
 //! ```rust
 //! # use expectest::prelude::*;
-//! # fn main() {
 //! expect!(12.001_f64).to(be_close_to(12.0));
 //! expect!(12.1_f64).to(be_close_to(12.0).delta(0.1));
-//! # }
 //! ```
 //!
 //! ## Order
@@ -105,9 +99,7 @@
 //!
 //! ```rust
 //! # use expectest::prelude::*;
-//! # fn main() {
 //! expect!(1).to(be_greater_than(0));
-//! # }
 //! ```
 //!
 //! ## Ranges
@@ -117,9 +109,7 @@
 //!
 //! ```rust
 //! # use expectest::prelude::*;
-//! # fn main() {
 //! expect!(1).to(be_within_range(0..=1));
-//! # }
 //! ```
 //!
 //! ## Option\<T\>
@@ -128,10 +118,8 @@
 //!
 //! ```rust
 //! # use expectest::prelude::*;
-//! # fn main() {
 //! expect!(Some(9)).to(be_some());
 //! expect!(Some(9)).to(be_some().value(9));
-//! # }
 //! ```
 //!
 //! ## Result\<T, E\>
@@ -140,10 +128,8 @@
 //!
 //! ```rust
 //! # use expectest::prelude::*;
-//! # fn main() {
 //! expect!("4".parse::<u32>()).to(be_ok());
 //! expect!("4".parse::<u32>()).to(be_ok().value(4));
-//! # }
 //! ```
 //!
 //! ## Iterators
@@ -154,10 +140,8 @@
 //!
 //! ```rust
 //! # use expectest::prelude::*;
-//! # fn main() {
 //! expect!("".chars()).to(be_empty());
 //! expect!("abc".chars()).to(have_count(3));
-//! # }
 //! ```
 //!
 //! ## Boolean
@@ -166,9 +150,7 @@
 //!
 //! ```rust
 //! # use expectest::prelude::*;
-//! # fn main() {
 //! expect!(9 == 9).to(be_true());
-//! # }
 //! ```
 //!
 //! That's all you need to know.

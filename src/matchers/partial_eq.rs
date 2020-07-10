@@ -9,7 +9,7 @@ pub struct BeEqualTo<E> {
 
 /// Returns a new `BeEqualTo` matcher.
 pub fn be_equal_to<E>(expected: E) -> BeEqualTo<E> {
-    BeEqualTo { expected: expected }
+    BeEqualTo { expected }
 }
 
 impl<A, E> Matcher<A, E> for BeEqualTo<E>

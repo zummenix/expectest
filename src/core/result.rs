@@ -20,8 +20,8 @@ impl TestResult {
     pub fn new_failure(message: String, location: Option<SourceLocation>) -> Self {
         TestResult::Failure(Failure {
             should_panic: true,
-            message: message,
-            location: location,
+            message,
+            location,
         })
     }
 

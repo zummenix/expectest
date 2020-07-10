@@ -21,7 +21,7 @@ impl<A> ActualValue<A> {
     /// Macro is better because it can save location of a test case in a source code.
     pub fn new(value: A) -> Self {
         ActualValue {
-            value: value,
+            value,
             location: None,
         }
     }

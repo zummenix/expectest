@@ -9,10 +9,7 @@ pub struct PartialOrder<E> {
 
 impl<E> PartialOrder<E> {
     fn new(expected: E, order: Order) -> PartialOrder<E> {
-        PartialOrder {
-            expected: expected,
-            order: order,
-        }
+        PartialOrder { expected, order }
     }
 }
 

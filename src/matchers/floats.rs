@@ -14,7 +14,7 @@ where
     E: Float,
 {
     BeCloseTo {
-        expected: expected,
+        expected,
         delta: num_traits::cast(0.001).unwrap(),
     }
 }

@@ -16,7 +16,6 @@ edition = "2018"
 include = ["src/**/*", "LICENSE-*", "README.md", "CHANGELOG.md"]
 
 [badges]
-travis-ci = { repository = "zummenix/expectest" }
 maintenance = { status = "passively-maintained" }
 
 [dependencies]

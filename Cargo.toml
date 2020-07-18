@@ -13,6 +13,7 @@ categories = ["development-tools::testing"]
 license = "MIT OR Apache-2.0"
 
 edition = "2018"
+include = ["src/**/*", "LICENSE-*", "README.md", "CHANGELOG.md"]
 
 [badges]
 travis-ci = { repository = "zummenix/expectest" }
